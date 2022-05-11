@@ -1,10 +1,9 @@
 /* abstracts */
-@use "./styles/abstracts/variables";
-@use "./styles/abstracts/mixins";
+@use "./assets/styles/abstracts/variables";
+@use "./assets/styles/abstracts/mixins";
 
 /* base */
-@use "./styles/base/base";
-@use "./styles/base/resets";
+@use "./assets/styles/base/base";
+@use "./assets/styles/base/resets";
 
 /* components */
-// @use "./styles/components/ButtonFormLoginRegister.scss";
