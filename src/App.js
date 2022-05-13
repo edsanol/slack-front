@@ -12,8 +12,8 @@ function App() {
         <Route exact path="/" element={<LandingPage />} />
         <Route exact path="/register" element={<Register />} />
         <Route exact path="/login" element={<Login />} />
-        <Route exact path="/changePassword" element={<ChangePassword />} />
-        <Route exact path="/recoverPassword" element={<RecoverPassword />} />
+        <Route exact path="/change-password" element={<ChangePassword />} />
+        <Route exact path="/recover-password" element={<RecoverPassword />} />
       </Routes>
     </BrowserRouter>
   );
