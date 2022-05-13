@@ -1,0 +1,152 @@
+@import "../abstracts/mixins";
+@import "../abstracts/variables";
+
+.aside-container {
+    background-color: var(--Purple);
+    display: flex;
+    flex-direction: row;
+    width: 300px;
+    height: 100%;
+    position: fixed;
+    overflow-y: auto;
+    @include hideScrollbar;
+}
+
+
+.aside-section-workspace{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 50px;
+    border-top: 1px solid #492451;
+    border-right: 1px solid #492451;
+}
+
+.aside-button-workspace-A {
+    @include aside-button-workspace(20px, 8px, 2px, 8px, none);
+}
+.aside-button-workspace-B {
+    @include aside-button-workspace(8px, 8px, 8px, 8px, none);
+}
+
+.aside-button-workspace-selected{
+    @include aside-button-workspace(2px, 2px, 2px, 2px, none);
+}
+.aside-selected-button{
+    border-radius: 8px;
+    border: 2px solid white;
+}
+.aside-button-workspace-plus{
+    cursor: pointer;
+    margin-top: 30px;
+    color: var(--White);
+    background-color: var(--Purple);
+    border: none;
+    font-size: 24px;
+    opacity: 0.7;
+    &:hover{
+        color: gray;
+        opacity: 0.7;
+    }
+}
+
+.aside-section-channels{
+    display: flex;
+    flex-direction: column;
+    width: 250px;
+    border-top: 1px solid #492451;
+    border-right: 1px solid #492451;
+}
+.aside-channels-header{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    color: var(--White);
+    padding: 20px;
+    
+}
+
+.aside-header-channels{
+    overflow-y: auto;
+    border-top: 1px solid #492451;
+    border-right: 1px solid #492451;
+}
+.list-channels-options-subtitles{
+    @include list-channels-styles( 8px, 0px);
+    display: flex;
+    flex-direction: row;
+}
+.p-channels-options-subtitles{
+    margin-left: 8px;
+    font-weight: var(--font-bold);
+}
+.aside-section-channels-options{
+    @include aside-section-channels(0px);
+}
+.aside-section-channels-channels{
+    @include aside-section-channels(16px);
+}
+.aside-section-channels-directs{
+    @include aside-section-channels(16px);
+}
+.list-channels-options{
+    @include list-channels-styles( 8px, 0px);
+}
+.list-channels-dropdown{
+    @include list-channels-styles( 8px, 15px);
+}
+.list-channels-dropdown-direct{
+    @include list-channels-styles( 8px, 0px);
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    margin-left: 16px;
+}
+.p-user-slack{
+    opacity: 0.5;
+}
+.span-user-active{
+  position: relative;
+  height: 0px;
+  width: 0px;
+  top: 12px;
+  left: -78px;
+  border: 4px solid rgb(98, 227, 108);
+  border-radius: 10px;
+  box-shadow: 0px 0px 0px 2px var(--Purple)
+}
+.span-user-desactive{
+    position: relative;
+    background-color: gray;
+    height: 4px;
+    width: 4px;
+    top: 12px;
+    left: -56px;
+    border: 2px solid gray;
+    border-radius: 10px;
+    box-shadow: 0px 0px 0px 2px var(--Purple)
+  }
+.list-channels-add-channels{
+    @include list-channels-styles( 8px, 15px);
+    display: flex;
+    flex-direction: row;
+    margin-bottom: 16px;
+}
+.button-add-channels{
+    background-color: #570f63;
+    border-radius: 5px;
+    border: none;
+    color: var(--White);
+    padding: 2px 6px;
+    margin-right: 6px;
+}
+
+.list-channels-name{
+    &:hover{
+        position: relative;
+        background-color: #570f63;
+    }
+}
+.list-channels-name-directs{
+    padding: 0px 10px;
+}
