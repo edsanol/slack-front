@@ -1,11 +1,19 @@
 import React from 'react';
 
-import { HelpLandingPage } from '../components/HelpLandingPage';
+import { Aside } from '../components/Aside';
+import { BoxChatMessage } from '../components/BoxChatMessage';
+import { ThreadChatMessage } from '../components/ThreadChatMessage';
+
+
 
 export const LandingPage = () => {
   return (
     <>
-      <HelpLandingPage />
+
+      <Aside />
+      <BoxChatMessage />
+      <ThreadChatMessage />
+
     </>
   );
 };

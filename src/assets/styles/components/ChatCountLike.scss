@@ -1,0 +1,21 @@
+.span-like-count{
+    background-color: rgb(239, 238, 238);
+    border-radius: 10px;
+    width: 40px;
+    height: 25px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    margin-top: 8px;
+    margin-left: 4px;
+    
+}
+.img-like-style{
+    width: 20px;
+    height: 20px;
+    margin-right: 2px;
+}
+.p-like-count{
+    font-size: small;
+}
