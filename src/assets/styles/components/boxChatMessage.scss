@@ -4,7 +4,6 @@
     top: 200px;
     left: 300px;
     width: 600px;
-    height: 120px;
     border: 1px solid lightgray;
     padding: 20px;
     display: flex;
@@ -41,5 +40,11 @@
 .p-chat-text-message{
     padding-left: 10px;
     font-size: var(--Font-sm);
+    height: 100px;
+    overflow-y: auto;
+    border-radius: 10px;
+    &::-webkit-scrollbar{
+        display: none;
+    }
 }
 

@@ -30,10 +30,19 @@ export const BoxChatMessage = () => {
               (N. del T. persona que se dedica a la imprenta) desconocido usó
               una galería de textos y los mezcló de tal manera que logró hacer
               un libro de textos especimen. No sólPageMaker, el cual incluye
+              versiones de Lorem Ipsum.rem Ipsum. una galería de textos y los
+              mezcló de tal manera que logró hacer un libro de textos especimen.
+              No sólPageMaker, el cual incluye versiones de Lorem Ipsum. una
+              galería de textos y los mezcló de tal manera que logró hacer un
+              libro de textos especimen. No sólPage una galería de textos y los
+              mezcló de tal manera que logró hacer un libro de textos especimen.
+              No sólPageMaker, el cual incluye versiones de Lorem Ipsum. una
+              galería de textos y los mezcló de tal manera que logró hacer un
+              libro de textos especimen. No sólPageMaker, el cual incluye
               versiones de Lorem Ipsum.{' '}
             </p>
             <ReplyMessagesChat />
-            {/* <ChatCountLike /> */}
+            <ChatCountLike />
           </div>
         </div>
       </div>
