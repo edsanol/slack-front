@@ -7,4 +7,5 @@
 @use "./assets/styles/base/resets";
 
 /* components */
-@use "./assets/styles/components/BoxChatMessage.sass"
+@use "./assets/styles/components/aside.scss";
+@use "./assets/styles/components/boxChatMessage.scss";
