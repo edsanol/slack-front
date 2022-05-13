@@ -1,0 +1,21 @@
+.reaction__div-chat {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  width: 220px;
+  height: 38px;
+  border: 1px solid var(--gray);
+  border-radius: 8px;
+  background-color: var(--White);
+  font-size: 22px;
+  font-weight: 400;
+  color: #6F6F6F;
+  text-align: center;
+  top: 0;
+  right: 0;
+  & i {
+    margin-left: 0.6rem;
+    margin-right: 0.6rem;
+  }
+}
