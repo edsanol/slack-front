@@ -4,7 +4,7 @@
   align-items: center;
   justify-content: space-between;
   top: 0;
-  height: 5rem;
+  height: 80px;
   border-bottom: 1px solid var(--gray);
   background-color: var(--White);
   z-index: 100;
@@ -34,5 +34,10 @@
   }
   &-right i {
     margin-right: 2rem;
+  }
+}
+@media (max-height: 450px) {
+  .chat__header {
+    height: 55px;
   }
 }

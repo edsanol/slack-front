@@ -8,6 +8,7 @@ import { FooterLoginRegister } from '../components/FooterLoginRegister';
 export const Login = () => {
   return (
     <>
+      
       <HeaderLoginRegister title={'Conectarse a Slack'} text={'O'} />
 
       <main className="mainForm">
