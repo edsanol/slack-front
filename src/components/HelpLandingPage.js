@@ -13,14 +13,14 @@ export const HelpLandingPage = () => {
         <h2>Help</h2>
         <div className="help-header-icon">
           <div className="help-icon">
-            <i class="fa-solid fa-keyboard"></i>
+            <i className="fa-solid fa-keyboard"></i>
           </div>
           <div className="help-icon">
-            <i class="fa-solid fa-gift"></i>
+            <i className="fa-solid fa-gift"></i>
             <div className="help-icon-notification"></div>
           </div>
           <div className="help-icon">
-            <i class="fa-solid fa-xmark"></i>
+            <i className="fa-solid fa-xmark"></i>
           </div>
         </div>
       </div>
@@ -48,7 +48,7 @@ export const HelpLandingPage = () => {
             <h2>Recommended articles</h2>
             <div className="help-link">
               <p>Visit Help Center</p>
-              <i class="fa-solid fa-arrow-up-right-from-square"></i>
+              <i className="fa-solid fa-arrow-up-right-from-square"></i>
             </div>
           </div>
 
@@ -89,7 +89,7 @@ export const HelpLandingPage = () => {
       <div className="help-footer-container">
         <div className="help-footer-subtitle">
           <h2>Help requests</h2>
-          <i class="fa-solid fa-arrow-up-right-from-square"></i>
+          <i className="fa-solid fa-arrow-up-right-from-square"></i>
         </div>
         <button className="button-help-footer">Contact Us</button>
       </div>

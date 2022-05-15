@@ -11,7 +11,7 @@ export const HeaderLandingPage = () => {
       <nav className="header__nav">
         <div className="header__div-left">
           <div>
-            <a href="#" className="header__a">
+            <a href="#header" className="header__a">
               <i className="bx bxs-circle"></i>
             </a>
           </div>
@@ -20,17 +20,17 @@ export const HeaderLandingPage = () => {
         <div className="header__div-center">
           <div className="header__div-icons">
             <div>
-              <a href="#" className="header__a-icons">
+              <a href="#header" className="header__a-icons">
                 <i className="bx bx-left-arrow-alt"></i>
               </a>
             </div>
             <div>
-              <a href="#" className="header__a-icons">
+              <a href="#header" className="header__a-icons">
                 <i className="bx bx-right-arrow-alt"></i>
               </a>
             </div>
             <div>
-              <a href="#" className="header__a-icons">
+              <a href="#header" className="header__a-icons">
                 <i className="bx bx-time"></i>
               </a>
             </div>
@@ -43,7 +43,7 @@ export const HeaderLandingPage = () => {
               style={inputStyle}
             />
           </div>
-          <a href="#" className="header__div-question">
+          <a href="#header" className="header__div-question">
             <p>?</p>
             <span className="header__span-badge"> </span>
           </a>

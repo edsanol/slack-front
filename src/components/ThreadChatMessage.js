@@ -30,7 +30,7 @@ export const ThreadChatMessage = () => {
                 Lorem Ipsum es simplemente el texto de relleno de las imprentas
                 y archivos de texto. Lorem Ipsum ha sido el texto de relleno
                 estándar de las industrias desde el año 1500, cuando un impresor
-                (N. del T. persona que se dedica a la imprenta)
+                N. del T. persona que se dedica a la imprenta
               </p>
             </div>
           </div>
@@ -59,28 +59,28 @@ export const ThreadChatMessage = () => {
                 Lorem Ipsum es simplemente el texto de relleno de las imprentas
                 y archivos de texto. Lorem Ipsum ha sido el texto de relleno
                 estándar de
-                <p className="div-thread-url">
-                  https://youtube.com/sfsdfsdf/sdfs/sdf/
-                </p>
-                <div className="thread-url-reply-container">
-                  <h2>Device Atlas</h2>
-                  <h3>The Most Popular Cell Phone</h3>
-                  <p>
-                    m Ipsum es simplemente el texto de relleno de las imprentas
-                    y archivos de texto.
-                  </p>
-                  <div className="thread-date-data">
-                    <p className="div-thread-chat-date">Dec 3ed. 2022</p>
-                    <h4>(32KB) ⌵ </h4>
-                  </div>
-
-                  <img
-                    className="img-thread-chat-reply-img"
-                    src={rectangle8}
-                    alt="img7"
-                  />
-                </div>
               </p>
+              <p className="div-thread-url">
+                https://youtube.com/sfsdfsdf/sdfs/sdf/
+              </p>
+              <div className="thread-url-reply-container">
+                <h2>Device Atlas</h2>
+                <h3>The Most Popular Cell Phone</h3>
+                <p>
+                  m Ipsum es simplemente el texto de relleno de las imprentas y
+                  archivos de texto.
+                </p>
+                <div className="thread-date-data">
+                  <p className="div-thread-chat-date">Dec 3ed. 2022</p>
+                  <h4>32KB ⌵ </h4>
+                </div>
+
+                <img
+                  className="img-thread-chat-reply-img"
+                  src={rectangle8}
+                  alt="img7"
+                />
+              </div>
             </div>
           </div>
         </div>
