@@ -5,7 +5,7 @@ export const RichInput = () => {
   return (
     <div className="container-input-chat">
       <div>
-        <textarea placeholder="Write something.."></textarea>
+        <textarea placeholder="Write something..."></textarea>
       </div>
       <div className="container-icon-link">
         <div className="container-icon-text">

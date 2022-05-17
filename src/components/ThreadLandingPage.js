@@ -1,9 +1,15 @@
-import React from 'react';
+import React, {useState} from 'react';
 import { ThreadMessage } from '../components/ThreadMessage'
 import '../assets/styles/components/ThreadLandingPage.scss';
 import { RichInput } from '../components/RichInput';
 
-export const ThreadLandingPage = () => {
+export const ThreadLandingPage = ({ setHiddenThread }) => {
+  
+
+  const handleClickThread = () => {
+    setHiddenThread(false)
+  }
+
   return (
     <section className="thread__section-container">
       <div className="main__thread-header">
@@ -12,7 +18,7 @@ export const ThreadLandingPage = () => {
           <p>#uxui_design</p>
         </div>
         <div className="thread-header-right">
-          <span>X</span>
+          <button className="thread__header-right-button-close" onClick={handleClickThread}>X</button>
         </div>
       </div>
 

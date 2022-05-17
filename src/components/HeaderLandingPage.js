@@ -1,10 +1,15 @@
 import React from 'react';
 import '../assets/styles/components/HeaderLandingPage.scss';
 
-export const HeaderLandingPage = () => {
+export const HeaderLandingPage = ({ setHiddenThread, setHiddenHelp }) => {
   const inputStyle = {
     fontFamily: "'Lato', FontAwesome",
   };
+
+  const handleClickHelpShow = () => {
+    setHiddenThread(false);
+    setHiddenHelp(true);
+  }
 
   return (
     <header className="header">
@@ -43,10 +48,10 @@ export const HeaderLandingPage = () => {
               style={inputStyle}
             />
           </div>
-          <a href="#header" className="header__div-question">
+          <div className="header__div-question" type="button" onClick={handleClickHelpShow}>
             <p>?</p>
             <span className="header__span-badge"> </span>
-          </a>
+          </div>
         </div>
 
         <div className="header__div-right">
