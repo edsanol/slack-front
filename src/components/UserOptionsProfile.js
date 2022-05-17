@@ -1,7 +1,10 @@
-import React from 'react';
+import React, { useState } from 'react';
 import rectangle1 from '../assets/images/Rectangle-1.png';
+import { Modal, Group } from '@mantine/core';
+import { ModalEditUser } from './modals/ModalEditUser';
 
 export const UserOptionsProfile = () => {
+  const [opened, setOpened] = useState(false);
   const userProfile = [
     {
       id: 123,
@@ -31,9 +34,16 @@ export const UserOptionsProfile = () => {
           </div>
         ))}
       </div>
+      <Modal opened={opened} onClose={() => setOpened(false)}>
+        {<ModalEditUser />}
+      </Modal>
       <div className="div-user-options-body">
         <div className="hover-user-options">
-          <p>Editar Perfil</p>
+          <Group>
+            <p type="button" onClick={() => setOpened(true)}>
+              Editar Perfil
+            </p>
+          </Group>
         </div>
         <div className="hover-user-options">
           <p>Ver Perfil</p>

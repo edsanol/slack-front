@@ -37,7 +37,9 @@ export const ModalEditUser = () => {
             />
           </div>
           <div className="button-edit">
-            <button className="button-upload button-transparent">Subir foto</button>
+            <button className="button-upload button-transparent">
+              Subir foto
+            </button>
             <button className="button-delete">Eliminar foto</button>
           </div>
         </div>
