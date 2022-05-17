@@ -1,5 +1,7 @@
 import React from 'react';
-import rectangle1 from '../assets/images/Rectangle-1.png';
+import { ChannelMessageGroup } from './ChannelMessageGroup';
+import { DirectMessageUser } from './DirectMessageUser';
+
 import rectangle2 from '../assets/images/Rectangle-2.png';
 import rectangle4 from '../assets/images/Rectangle.png';
 
@@ -43,27 +45,8 @@ export const Aside = () => {
             <li className="list-channels-options">
               <p className="p-channels-options-subtitles">⌵ㅤChannels</p>
               <ul className="aside-section-channels-dropdown">
-                <li className="list-channels-dropdown">
-                  <p className="list-channels-name"># ㅤClubhouse</p>
-                </li>
-                <li className="list-channels-dropdown">
-                  <p className="list-channels-name"># ㅤdkr-webinar</p>
-                </li>
-                <li className="list-channels-dropdown">
-                  <p className="list-channels-name"># ㅤenglish</p>
-                </li>
-                <li className="list-channels-dropdown">
-                  <p className="list-channels-name"># ㅤjob_posting</p>
-                </li>
-                <li className="list-channels-dropdown">
-                  <p className="list-channels-name"># ㅤtalks</p>
-                </li>
-                <li className="list-channels-dropdown">
-                  <p className="list-channels-name"># ㅤuxui_design</p>
-                </li>
-                <li className="list-channels-dropdown">
-                  <p className="list-channels-name"># ㅤ아무말</p>
-                </li>
+                <ChannelMessageGroup />
+
                 <li className="list-channels-add-channels">
                   <button className="button-add-channels">+</button>
                   <p>Add channels</p>
@@ -74,26 +57,9 @@ export const Aside = () => {
 
           <ul className="aside-section-channels-directs">
             <li className="list-channels-options">
-              <p className="p-channels-options-subtitles">
-                ⌵ㅤDirect messages
-              </p>
+              <p className="p-channels-options-subtitles">⌵ㅤDirect messages</p>
               <ul>
-                <li className="list-channels-dropdown-direct">
-                  <img src={rectangle1} alt="rec1" />
-                  <p className="list-channels-name-directs">jiwon</p>
-                  <p className="p-user-slack">you</p>
-                  <span className="span-user-active"></span>
-                </li>
-                <li className="list-channels-dropdown-direct">
-                  <img src={rectangle2} alt="rec1" />
-                  <p className="list-channels-name-directs">Cameron</p>
-                  <span className="span-user-active"></span>
-                </li>
-                <li className="list-channels-dropdown-direct">
-                  <img src={rectangle4} alt="rec1" />
-                  <p className="list-channels-name-directs">hojae</p>
-                  <span className="span-user-desactive"></span>
-                </li>
+                <DirectMessageUser />
                 <li className="list-channels-dropdown-direct">
                   <button className="button-add-channels">+</button>{' '}
                   <p>Add Teammates</p>
