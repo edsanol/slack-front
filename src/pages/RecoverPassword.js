@@ -3,11 +3,13 @@ import { HeaderRecoverChangePassword } from '../components/HeaderRecoverChangePa
 import { InputLoginRegister } from '../components/InputLoginRegister';
 import { ButtonFormLoginRegister } from '../components/ButtonFormLoginRegister';
 import { FooterLoginRegister } from '../components/FooterLoginRegister';
+import { UserOptionsProfile } from '../components/UserOptionsProfile';
 
 export const RecoverPassword = () => {
   return (
     <>
-      <HeaderRecoverChangePassword
+      <UserOptionsProfile />
+      {/* <HeaderRecoverChangePassword
         title={'Restablecer tu contraseña'}
         text={
           'Para restablecer la contraseña, introduce la dirección de correo que usas para conectarte a'
@@ -27,7 +29,7 @@ export const RecoverPassword = () => {
           <ButtonFormLoginRegister buttonText={'Obtener un enlace para restablecer'}/>
         </form>
       </main>
-      <FooterLoginRegister />
+      <FooterLoginRegister /> */}
     </>
   );
 };

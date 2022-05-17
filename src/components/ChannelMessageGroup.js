@@ -3,11 +3,11 @@ import React from 'react';
 export const ChannelMessageGroup = () => {
   const channelsGroup = [
     {
-      id: 1,
+      id: 3,
       channel: 'Grupo Slack',
     },
     {
-      id: 1,
+      id: 4,
       channel: 'Grupo Trello',
     },
   ];
@@ -15,11 +15,9 @@ export const ChannelMessageGroup = () => {
     <>
       {channelsGroup.map((e) => {
         return (
-          <li className="list-channels-dropdown">
+          <li key={e.id} className="list-channels-dropdown">
             <span>#</span>
-            <div key={e.id} className="list-channels-name">
-              {e.channel}
-            </div>
+            <div className="list-channels-name">{e.channel}</div>
           </li>
         );
       })}
