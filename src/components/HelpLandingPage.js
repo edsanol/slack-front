@@ -6,7 +6,12 @@ import time from '../assets/images/time.png';
 import user from '../assets/images/user.png';
 import video from '../assets/images/video.png';
 
-export const HelpLandingPage = () => {
+export const HelpLandingPage = ({ setHiddenHelp }) => {
+
+  const handleClickHelpClose = () => {
+    setHiddenHelp(false);
+  }
+
   return (
     <div className="div-help-container">
       <div className="div-help-header">
@@ -20,7 +25,7 @@ export const HelpLandingPage = () => {
             <div className="help-icon-notification"></div>
           </div>
           <div className="help-icon">
-            <i className="fa-solid fa-xmark"></i>
+            <i className="fa-solid fa-xmark" type="button" onClick={handleClickHelpClose}></i>
           </div>
         </div>
       </div>

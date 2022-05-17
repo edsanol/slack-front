@@ -64,6 +64,7 @@
     font-size: 1rem;
     font-weight: 400;
     margin-right: 0.6rem;
+    cursor: pointer;
   }
   &__div-question p {
     color: var(--White);
@@ -84,10 +85,6 @@
     color: var(--White);
     font-size: 10px;
     font-weight: 700;
-  }
-  &__div-question p {
-    color: var(--White);
-    text-align: center;
   }
   
   &__div-right {
