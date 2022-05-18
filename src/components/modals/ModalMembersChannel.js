@@ -17,7 +17,6 @@ export const ModalMembersChannel = () => {
     <section className="modalMembers">
       <div className="modalMembers__header">
         <h2>1,141 members in #talks</h2>
-        <span>X</span>
       </div>
 
       <div className="modalMembers__div-search">
