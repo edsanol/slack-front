@@ -6,6 +6,7 @@ import { BoxChatMessage } from '../components/BoxChatMessage';
 import { ThreadLandingPage } from '../components/ThreadLandingPage';
 import { HelpLandingPage } from '../components/HelpLandingPage';
 import { RichInput } from '../components/RichInput';
+import { HeaderChatGroup } from '../components/HeaderChatGroup';
 import { UserOptionsProfile } from '../components/UserOptionsProfile';
 
 export const LandingPage = () => {
@@ -35,7 +36,7 @@ export const LandingPage = () => {
                 ? 'main__div-chat'
                 : 'main__div-chat-full'
             }>
-            <HeaderChat />
+            <HeaderChatGroup />
             <div className="chat__div-message">
               <BoxChatMessage text={'1'} />
               <BoxChatMessage />

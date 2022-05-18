@@ -13,11 +13,13 @@ export const ChannelMessageGroup = () => {
   ];
   return (
     <>
-      {channelsGroup.map((e) => {
+      {channelsGroup.map((e, index) => {
         return (
           <li key={e.id} className="list-channels-dropdown">
             <span>#</span>
-            <div className="list-channels-name">{e.channel}</div>
+            <div className="list-channels-name">
+              {e.channel}
+            </div>
           </li>
         );
       })}

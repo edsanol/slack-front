@@ -2,9 +2,6 @@ import React from 'react';
 import { ChannelMessageGroup } from './ChannelMessageGroup';
 import { DirectMessageUser } from './DirectMessageUser';
 
-import rectangle2 from '../assets/images/Rectangle-2.png';
-import rectangle4 from '../assets/images/Rectangle.png';
-
 export const Aside = () => {
   return (
     <div className="aside-container">
