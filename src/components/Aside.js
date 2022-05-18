@@ -1,8 +1,11 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { ChannelMessageGroup } from './ChannelMessageGroup';
 import { DirectMessageUser } from './DirectMessageUser';
+import { Collapse } from '@mantine/core';
 
 export const Aside = () => {
+  const [openedChannels, setOpenChannels] = useState(true);
+  const [openedChats, setOpenChats] = useState(true);
   return (
     <div className="aside-container">
       <section className="aside-section-workspace">
@@ -40,31 +43,51 @@ export const Aside = () => {
 
           <ul className="aside-section-channels-channels">
             <li className="list-channels-options">
-              <p className="p-channels-options-subtitles">⌵ㅤChannels</p>
-              <ul className="aside-section-channels-dropdown">
-                <ChannelMessageGroup />
+              <p
+                className="p-channels-options-subtitles"
+                type="button"
+                onClick={() => setOpenChannels((o) => !o)}>
+                ⌵ㅤChannels
+              </p>
+              <Collapse
+                in={openedChannels}
+                transitionDuration={300}
+                transitionTimingFunction="linear">
+                <ul className="aside-section-channels-dropdown">
+                  <ChannelMessageGroup />
 
-                <li className="list-channels-add-channels">
-                  <button className="button-add-channels">+</button>
-                  <p>Add channels</p>
-                </li>
-              </ul>
+                  <li className="list-channels-add-channels">
+                    <button className="button-add-channels">+</button>
+                    <p>Add channels</p>
+                  </li>
+                </ul>
+              </Collapse>
             </li>
           </ul>
 
           <ul className="aside-section-channels-directs">
             <li className="list-channels-options">
-              <p className="p-channels-options-subtitles">⌵ㅤDirect messages</p>
-              <ul>
-                <DirectMessageUser />
-                <li className="list-channels-dropdown-direct">
-                  <button className="button-add-channels">+</button>{' '}
-                  <p>Add Teammates</p>
-                </li>
-                <li id="li__hidden">
-                  <div></div>
-                </li>
-              </ul>
+              <p
+                className="p-channels-options-subtitles"
+                type="button"
+                onClick={() => setOpenChats((o) => !o)}>
+                ⌵ㅤDirect messages
+              </p>
+              <Collapse
+                in={openedChats}
+                transitionDuration={300}
+                transitionTimingFunction="linear">
+                <ul>
+                  <DirectMessageUser />
+                  <li className="list-channels-dropdown-direct">
+                    <button className="button-add-channels">+</button>{' '}
+                    <p>Add Teammates</p>
+                  </li>
+                  <li id="li__hidden">
+                    <div></div>
+                  </li>
+                </ul>
+              </Collapse>
             </li>
           </ul>
         </aside>
