@@ -11,7 +11,7 @@ export const DirectMessageUser = () => {
     },
     {
       user: 'pepe',
-      state: false,
+      state: true,
       img: rectangle1,
       id: 2,
     },
@@ -21,8 +21,8 @@ export const DirectMessageUser = () => {
     <>
       {directMessageUser.map((e) => {
         return (
-          <li className="list-user-dropdown-direct">
-            <div key={e.id} className="div-direct-message-user">
+          <li key={e.id} className="list-user-dropdown-direct">
+            <div className="div-direct-message-user">
               <img src={e.img} alt="rec1" />
               <div className="list-channels-name-directs">{e.user}</div>
               <span
