@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React from 'react';
 import { ThreadMessage } from '../components/ThreadMessage'
 import '../assets/styles/components/ThreadLandingPage.scss';
 import { RichInput } from '../components/RichInput';

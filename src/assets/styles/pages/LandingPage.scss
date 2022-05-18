@@ -27,6 +27,7 @@
 
 .chat__div-message {
   display: flex;
+  padding-top: 18px;
   flex-direction: column;
   justify-content: flex-start;
   height: calc(100vh - 230px);

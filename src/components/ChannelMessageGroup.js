@@ -7,17 +7,17 @@ export const ChannelMessageGroup = () => {
       channel: 'Grupo Slack',
     },
     {
-      id: 1,
+      id: 2,
       channel: 'Grupo Trello',
     },
   ];
   return (
     <>
-      {channelsGroup.map((e) => {
+      {channelsGroup.map((e, index) => {
         return (
-          <li className="list-channels-dropdown">
+          <li key={e.id} className="list-channels-dropdown">
             <span>#</span>
-            <div key={e.id} className="list-channels-name">
+            <div className="list-channels-name">
               {e.channel}
             </div>
           </li>
