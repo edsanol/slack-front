@@ -3,11 +3,11 @@ import React from 'react';
 export const ChannelMessageGroup = () => {
   const channelsGroup = [
     {
-      id: 1,
+      id: 3,
       channel: 'Grupo Slack',
     },
     {
-      id: 2,
+      id: 4,
       channel: 'Grupo Trello',
     },
   ];

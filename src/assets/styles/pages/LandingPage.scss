@@ -57,6 +57,13 @@
   background-color: #fff;
   border: 1px solid #e1e1e1;
 }
+.div-show-profile-optioncs{
+  position: absolute;
+  left: calc(100% - 312px);
+  @media (max-width: 500px) {
+      display: none;
+}
+}
 
 @media (max-width: 1100px) {
   .main__div-thread {

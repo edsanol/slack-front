@@ -1,7 +1,12 @@
 import React from 'react';
 import '../assets/styles/components/HeaderLandingPage.scss';
 
-export const HeaderLandingPage = ({ setHiddenThread, setHiddenHelp }) => {
+export const HeaderLandingPage = ({
+  setHiddenThread,
+  setHiddenHelp,
+  setShowProfileOptions,
+  showProfileOptions,
+}) => {
   const inputStyle = {
     fontFamily: "'Lato', FontAwesome",
   };
@@ -9,7 +14,12 @@ export const HeaderLandingPage = ({ setHiddenThread, setHiddenHelp }) => {
   const handleClickHelpShow = () => {
     setHiddenThread(false);
     setHiddenHelp(true);
-  }
+  };
+  const handleClickUserProfilepShow = () => {
+    showProfileOptions
+      ? setShowProfileOptions(false)
+      : setShowProfileOptions(true);
+  };
 
   return (
     <header className="header">
@@ -48,14 +58,20 @@ export const HeaderLandingPage = ({ setHiddenThread, setHiddenHelp }) => {
               style={inputStyle}
             />
           </div>
-          <div className="header__div-question" type="button" onClick={handleClickHelpShow}>
+          <div
+            className="header__div-question"
+            type="button"
+            onClick={handleClickHelpShow}>
             <p>?</p>
             <span className="header__span-badge"> </span>
           </div>
         </div>
 
         <div className="header__div-right">
-          <div className="header__perfil">
+          <div
+            className="header__perfil"
+            type="button"
+            onClick={handleClickUserProfilepShow}>
             <span className="header__span-badge"> </span>
           </div>
           <div className="header__flag">

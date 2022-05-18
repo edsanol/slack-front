@@ -12,7 +12,7 @@ export const RecoverPassword = () => {
         text={
           'Para restablecer la contraseña, introduce la dirección de correo que usas para conectarte a'
         }
-        textSlack={" Slack"}
+        textSlack={' Slack'}
       />
 
       <main className="mainForm">
@@ -24,7 +24,9 @@ export const RecoverPassword = () => {
             name={'email'}
             id={'email'}
           />
-          <ButtonFormLoginRegister buttonText={'Obtener un enlace para restablecer'}/>
+          <ButtonFormLoginRegister
+            buttonText={'Obtener un enlace para restablecer'}
+          />
         </form>
       </main>
       <FooterLoginRegister />

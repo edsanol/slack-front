@@ -7,24 +7,32 @@ import { ThreadLandingPage } from '../components/ThreadLandingPage';
 import { HelpLandingPage } from '../components/HelpLandingPage';
 import { RichInput } from '../components/RichInput';
 import { HeaderChatGroup } from '../components/HeaderChatGroup';
+import { UserOptionsProfile } from '../components/UserOptionsProfile';
 
 export const LandingPage = () => {
   const [hiddenThread, setHiddenThread] = useState(false);
   const [hiddenHelp, setHiddenHelp] = useState(true);
-
+  const [showProfileOptions, setShowProfileOptions] = useState(false);
   return (
     <>
       <HeaderLandingPage
         setHiddenThread={setHiddenThread}
         setHiddenHelp={setHiddenHelp}
+        setShowProfileOptions={setShowProfileOptions}
+        showProfileOptions={showProfileOptions}
       />
+      {showProfileOptions && (
+        <div className="div-show-profile-optioncs">
+          <UserOptionsProfile />
+        </div>
+      )}
 
       <main className="main__full-container">
         <Aside />
         <section className="main__section-main">
           <div
             className={
-              (hiddenThread === true || hiddenHelp === true)
+              hiddenThread === true || hiddenHelp === true
                 ? 'main__div-chat'
                 : 'main__div-chat-full'
             }>

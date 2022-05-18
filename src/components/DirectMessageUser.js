@@ -11,7 +11,7 @@ export const DirectMessageUser = () => {
     },
     {
       user: 'pepe',
-      state: false,
+      state: true,
       img: rectangle1,
       id: 2,
     },
