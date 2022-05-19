@@ -2,8 +2,10 @@ import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import { ChangePassword } from './pages/ChangePassword';
 import { LandingPage } from './pages/LandingPage';
 import { Login } from './pages/Login';
+import { NotFound } from './pages/NotFound';
 import { RecoverPassword } from './pages/RecoverPassword';
 import { Register } from './pages/Register';
+
 
 function App() {
   return (
@@ -14,6 +16,7 @@ function App() {
         <Route exact path="/login" element={<Login />} />
         <Route exact path="/change-password" element={<ChangePassword />} />
         <Route exact path="/recover-password" element={<RecoverPassword />} />
+        <Route path="*" element={<NotFound />} />
       </Routes>
     </BrowserRouter>
   );

@@ -35,3 +35,36 @@
   }
 }
 
+.mainForm__form-label {
+  margin-top: 8px;
+}
+.mainForm__form-input {
+  border: 1px solid lightgray;
+  border-radius: 5px;
+  padding: 10px;
+  color: #606060;
+  margin-top: 4px;
+}
+
+.button-form-login-register{
+  padding: 10px;
+  max-width: 400px;
+  width: 100%;
+  background-color: #611f69;
+  color: white;
+  font-weight: 500;
+  border-radius: 5px;
+  border: none;
+  font-size: 1.2rem;
+  cursor: pointer;
+  margin-top: 20px;
+
+  &:hover {
+    background-color: #73257c;
+  }
+}
+
+.input__error {
+  color: #bf1650;
+}
+
