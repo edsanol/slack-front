@@ -51,7 +51,7 @@ export const Aside = () => {
               </p>
               <Collapse
                 in={openedChannels}
-                transitionDuration={300}
+                transitionDuration={200}
                 transitionTimingFunction="linear">
                 <ul className="aside-section-channels-dropdown">
                   <ChannelMessageGroup />
@@ -75,7 +75,7 @@ export const Aside = () => {
               </p>
               <Collapse
                 in={openedChats}
-                transitionDuration={300}
+                transitionDuration={200}
                 transitionTimingFunction="linear">
                 <ul>
                   <DirectMessageUser />

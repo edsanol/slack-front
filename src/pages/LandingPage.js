@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { HeaderLandingPage } from '../components/HeaderLandingPage';
 import { Aside } from '../components/Aside';
-import { HeaderChat } from '../components/HeaderChat';
+// import { HeaderChat } from '../components/HeaderChat';
 import { BoxChatMessage } from '../components/BoxChatMessage';
 import { ThreadLandingPage } from '../components/ThreadLandingPage';
 import { HelpLandingPage } from '../components/HelpLandingPage';

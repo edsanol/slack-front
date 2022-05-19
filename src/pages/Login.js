@@ -1,33 +1,79 @@
 import React from 'react';
-import '../assets/styles/pages/Login.scss'
-import { InputLoginRegister } from '../components/InputLoginRegister';
+import '../assets/styles/pages/Login.scss';
+import { useForm } from 'react-hook-form';
 import { HeaderLoginRegister } from '../components/HeaderLoginRegister';
-import { ButtonFormLoginRegister } from '../components/ButtonFormLoginRegister';
 import { FooterLoginRegister } from '../components/FooterLoginRegister';
 
 export const Login = () => {
+  const {
+    register,
+    formState: { errors },
+    handleSubmit,
+  } = useForm();
+
+  const onSubmit = (data) => {
+    console.log(data);
+  };
+
   return (
     <>
-      
       <HeaderLoginRegister title={'Conectarse a Slack'} text={'O'} />
 
       <main className="mainForm">
-        <form className="mainForm__form" action="">
-          <InputLoginRegister
-            label={'Email'}
-            placeholder={'Ingresa tu email'}
-            type={'email'}
-            name={'email'}
-            id={'email'}
+        <form className="mainForm__form" onSubmit={handleSubmit(onSubmit)}>
+          <label htmlFor="name" className="mainForm__form-label">
+            Email
+          </label>
+          <input
+            className="mainForm__form-input"
+            type="email"
+            name="email"
+            id="email"
+            placeholder="Ingresa tu email"
+            {...register('email', {
+              required: true,
+              pattern: /^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/,
+            })}
           />
-          <InputLoginRegister
-            label={'Contraseña'}
-            placeholder={'Ingresa tu contraseña'}
-            type={'password'}
-            name={'password'}
-            id={'password'}
+          {errors.email?.type === 'required' && (
+            <p className="input__error">⚠ El campo email es requerido</p>
+          )}
+          {errors.email?.type === 'pattern' && (
+            <p className="input__error">⚠ El formato del email es incorrecto</p>
+          )}
+          <label htmlFor="name" className="mainForm__form-label">
+            Contraseña
+          </label>
+          <input
+            className="mainForm__form-input"
+            type="password"
+            name="password"
+            id="password"
+            placeholder="Ingresa tu contraseña"
+            {...register('password', {
+              required: true,
+              minLength: 8,
+              pattern:
+                /(?=^.{8,}$)((?=.*\d)|(?=.*\W+))(?![.\n])(?=.*[A-Z])(?=.*[a-z]).*$/,
+            })}
           />
-          <ButtonFormLoginRegister buttonText={'Conectarse a traves de correo electrónico'}/>
+          {errors.password?.type === 'required' && (
+            <p className="input__error">⚠ El campo contraseña es requerido</p>
+          )}
+          {errors.password?.type === 'minLength' && (
+            <p className="input__error">⚠ La contraseña debe tener minimo 8 carácteres</p>
+          )}
+          {errors.password?.type === 'pattern' && (
+            <p className="input__error">
+              ⚠ La contraseña debe tener por lo menos una letra mayúscula, una
+              letra minúscula, un número o carácter especial y una longitud minima de 8 carácteres
+            </p>
+          )}
+          <input
+            type="submit"
+            value="Enviar"
+            className="button-form-login-register"
+          />
         </form>
         <div className="mainForm__link">
           <p className="pin__magic">
