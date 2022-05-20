@@ -8,16 +8,17 @@ import { HelpLandingPage } from '../components/HelpLandingPage';
 import { RichInput } from '../components/RichInput';
 import { HeaderChatGroup } from '../components/HeaderChatGroup';
 import { UserOptionsProfile } from '../components/UserOptionsProfile';
+import { useSelector } from 'react-redux';
+import chat from '../assets/mocks/chat.json';
 
 export const LandingPage = () => {
-  const [hiddenThread, setHiddenThread] = useState(false);
-  const [hiddenHelp, setHiddenHelp] = useState(true);
   const [showProfileOptions, setShowProfileOptions] = useState(false);
+
+  const showView = useSelector((state) => state.hiddenView);
+
   return (
     <>
       <HeaderLandingPage
-        setHiddenThread={setHiddenThread}
-        setHiddenHelp={setHiddenHelp}
         setShowProfileOptions={setShowProfileOptions}
         showProfileOptions={showProfileOptions}
       />
@@ -32,33 +33,39 @@ export const LandingPage = () => {
         <section className="main__section-main">
           <div
             className={
-              hiddenThread === true || hiddenHelp === true
-                ? 'main__div-chat'
-                : 'main__div-chat-full'
+              showView === 'hiddenAll'
+                ? 'main__div-chat-full'
+                : 'main__div-chat'
             }>
             <HeaderChatGroup />
             <div className="chat__div-message">
-              <BoxChatMessage text={'1'} />
-              <BoxChatMessage />
-              <BoxChatMessage />
-              <BoxChatMessage
-                setHiddenThread={setHiddenThread}
-                setHiddenHelp={setHiddenHelp}
-              />
-              <BoxChatMessage />
+              {chat.map((itemChat) => (
+                <BoxChatMessage
+                  key={itemChat.id}
+                  name={itemChat.name}
+                  comment={itemChat.comment}
+                  avatar={itemChat.avatar}
+                  time={itemChat.time}
+                />
+              ))}
             </div>
-            <div className="chat__div-input">
+            <div
+              className={
+                showView === 'hiddenAll'
+                  ? 'main__div-input-full'
+                  : 'main__div-input'
+              }>
               <RichInput />
             </div>
           </div>
-          {hiddenThread && (
+          {showView === 'showThread' && (
             <div className="main__div-thread">
-              <ThreadLandingPage setHiddenThread={setHiddenThread} />
+              <ThreadLandingPage />
             </div>
           )}
-          {hiddenHelp && (
+          {showView === 'showHelp' && (
             <div className="main__div-thread">
-              <HelpLandingPage setHiddenHelp={setHiddenHelp} />
+              <HelpLandingPage />
             </div>
           )}
         </section>

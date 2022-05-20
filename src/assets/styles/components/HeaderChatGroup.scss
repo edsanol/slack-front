@@ -52,9 +52,18 @@
   &-right-users .img-right1 {
     right: -5px;
   }
+  @media (max-width: 768px) {
+    &-right-users {
+      display: none;
+    }
+  }
 }
+
 @media (max-height: 450px) {
   .chat__header {
     height: 55px;
+  }
+  .chat__header-right-users {
+    display: block;
   }
 }

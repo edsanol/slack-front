@@ -47,7 +47,7 @@ export const Aside = () => {
                 className="p-channels-options-subtitles"
                 type="button"
                 onClick={() => setOpenChannels((o) => !o)}>
-                ⌵ㅤChannels
+                {openedChannels ? "▼" : "▶"}ㅤChannels
               </p>
               <Collapse
                 in={openedChannels}
@@ -71,7 +71,7 @@ export const Aside = () => {
                 className="p-channels-options-subtitles"
                 type="button"
                 onClick={() => setOpenChats((o) => !o)}>
-                ⌵ㅤDirect messages
+                {openedChats ? "▼" : "▶"}ㅤDirect messages
               </p>
               <Collapse
                 in={openedChats}

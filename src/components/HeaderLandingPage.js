@@ -1,5 +1,7 @@
 import React from 'react';
 import '../assets/styles/components/HeaderLandingPage.scss';
+import { useDispatch } from 'react-redux';
+import { changeView } from '../store/actions';
 
 export const HeaderLandingPage = ({
   setHiddenThread,
@@ -11,9 +13,12 @@ export const HeaderLandingPage = ({
     fontFamily: "'Lato', FontAwesome",
   };
 
+  const dispatch = useDispatch();
+
   const handleClickHelpShow = () => {
-    setHiddenThread(false);
-    setHiddenHelp(true);
+    // setHiddenThread(false);
+    // setHiddenHelp(true);
+    dispatch(changeView('showHelp'));
   };
   const handleClickUserProfilepShow = () => {
     showProfileOptions
