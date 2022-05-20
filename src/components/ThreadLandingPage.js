@@ -2,12 +2,15 @@ import React from 'react';
 import { ThreadMessage } from '../components/ThreadMessage'
 import '../assets/styles/components/ThreadLandingPage.scss';
 import { RichInput } from '../components/RichInput';
+import { useDispatch } from 'react-redux';
+import { changeView } from '../store/actions';
 
-export const ThreadLandingPage = ({ setHiddenThread }) => {
+export const ThreadLandingPage = () => {
   
-
+  const dispatch = useDispatch();
+  
   const handleClickThread = () => {
-    setHiddenThread(false)
+    dispatch(changeView('hiddenAll'));
   }
 
   return (

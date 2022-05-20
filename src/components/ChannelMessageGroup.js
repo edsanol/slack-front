@@ -1,21 +1,13 @@
 import React from 'react';
+import listChannelsJson from '../assets/mocks/channel.json';
 
 export const ChannelMessageGroup = () => {
-  const channelsGroup = [
-    {
-      id: 3,
-      channel: 'Grupo Slack',
-    },
-    {
-      id: 4,
-      channel: 'Grupo Trello',
-    },
-  ];
+  const channelsGroup = listChannelsJson
   return (
     <>
       {channelsGroup.map((e, index) => {
         return (
-          <li key={e.id} className="list-channels-dropdown">
+          <li key={e.idChannel} className="list-channels-dropdown">
             <span>#</span>
             <div className="list-channels-name">
               {e.channel}

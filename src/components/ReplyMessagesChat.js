@@ -1,11 +1,15 @@
 import React from 'react';
 import '../assets//styles/components/ReplyMessagesChat.scss';
 import rectangle5 from '../assets/images/Rectangle-5.png';
-export const ReplyMessagesChat = ({ setHiddenThread, setHiddenHelp }) => {
+import { useDispatch } from 'react-redux';
+import { changeView } from '../store/actions';
+
+export const ReplyMessagesChat = () => {
+
+  const dispatch = useDispatch();
   
   const handleClickThreadShow = () => {
-    setHiddenHelp(false);
-    setHiddenThread(true);
+    dispatch(changeView('showThread'));
   };
 
   return (

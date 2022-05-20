@@ -1,4 +1,4 @@
-import React, {useState} from 'react'
+import React, { useState } from 'react';
 import rectangle from '../assets/images/Rectangle.png';
 import rectangle1 from '../assets/images/Rectangle-1.png';
 import rectangle2 from '../assets/images/Rectangle-2.png';
@@ -13,11 +13,16 @@ export const HeaderChatGroup = () => {
       <div className="chat__header-left">
         <span className="online"></span>
         <h2>
-          hojae <span>&#x2b50;</span>
+          id praesentium sint <span>&#x2b50;</span>
         </h2>
         <p>&#x1f60a;</p>
       </div>
-      <Modal opened={opened} onClose={() => setOpened(false)} overflow="inside" withCloseButton={false} size="lg">
+      <Modal
+        opened={opened}
+        onClose={() => setOpened(false)}
+        overflow="inside"
+        withCloseButton={false}
+        size="lg">
         {<ModalMembersChannel />}
       </Modal>
       <div className="chat__header-right">
@@ -27,12 +32,13 @@ export const HeaderChatGroup = () => {
           <img className="img-right3" src={rectangle2} alt="user" />
         </div>
         <Group>
-          <i className='bx bx-user-plus' type="button" onClick={() => setOpened(true)}></i>
+          <i
+            className="bx bx-user-plus"
+            type="button"
+            onClick={() => setOpened(true)}></i>
         </Group>
         <i className="bx bx-info-circle"></i>
       </div>
-      
     </div>
   );
-}
-
+};

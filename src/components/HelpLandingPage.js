@@ -5,11 +5,15 @@ import notification from '../assets/images/notification.png';
 import time from '../assets/images/time.png';
 import user from '../assets/images/user.png';
 import video from '../assets/images/video.png';
+import { useDispatch } from 'react-redux';
+import { changeView } from '../store/actions';
 
-export const HelpLandingPage = ({ setHiddenHelp }) => {
+export const HelpLandingPage = () => {
+
+  const dispatch = useDispatch();
 
   const handleClickHelpClose = () => {
-    setHiddenHelp(false);
+    dispatch(changeView('hiddenAll'));
   }
 
   return (
