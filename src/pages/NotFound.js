@@ -47,7 +47,6 @@ export const NotFound = () => {
               <div className="home__shadow"></div>
             </div>
           </div>
-
         </section>
       </main>
     </>
