@@ -1,4 +1,5 @@
 import { legacy_createStore as createStore } from 'redux';
+import { composeWithDevTools } from 'redux-devtools-extension';
 
 const initialState = {
   hiddenView: 'hiddenAll',
@@ -16,4 +17,4 @@ const reducer = (state = initialState, action) => {
   }
 };
 
-export const store = createStore(reducer);
+export const store = createStore(reducer, composeWithDevTools());
