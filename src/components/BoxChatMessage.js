@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import rectangle7 from '../assets/images/Rectangle-6.png';
 import bandera from '../assets/images/mexico.png';
 import { ChatDate } from '../components/ChatDate';
 import { ReactionChat } from '../components/ReactionChat';

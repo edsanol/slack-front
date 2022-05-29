@@ -1,18 +1,20 @@
 import React, { useState } from 'react';
 import { HeaderLandingPage } from '../components/HeaderLandingPage';
 import { Aside } from '../components/Aside';
-// import { HeaderChat } from '../components/HeaderChat';
+import { HeaderChat } from '../components/HeaderChat';
 import { BoxChatMessage } from '../components/BoxChatMessage';
 import { ThreadLandingPage } from '../components/ThreadLandingPage';
 import { HelpLandingPage } from '../components/HelpLandingPage';
-import { RichInput } from '../components/RichInput';
+import RichInput from '../components/RichInput';
 import { HeaderChatGroup } from '../components/HeaderChatGroup';
 import { UserOptionsProfile } from '../components/UserOptionsProfile';
 import { useSelector } from 'react-redux';
 import chat from '../assets/mocks/chat.json';
+import { AddChannelOptions } from '../components/AddChannelOptions';
 
 export const LandingPage = () => {
   const [showProfileOptions, setShowProfileOptions] = useState(false);
+  const [showAddChannel, setshowAddChannel] = useState(false);
 
   const showView = useSelector((state) => state.hiddenView);
 
@@ -29,7 +31,12 @@ export const LandingPage = () => {
       )}
 
       <main className="main__full-container">
-        <Aside />
+        <Aside showAddChannel={showAddChannel} setshowAddChannel={setshowAddChannel}/>
+        {showAddChannel && (
+          <div className="div-show-add-channel-options">
+            <AddChannelOptions />
+          </div>
+        )}
         <section className="main__section-main">
           <div
             className={
