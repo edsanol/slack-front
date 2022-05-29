@@ -1,59 +1,88 @@
-import React from 'react';
+import React, { useRef, useState } from 'react';
 import '../assets/styles/components/RichInput.scss';
+import tinymce from 'tinymce/tinymce';
+import BundledEditor from '../BundledEditor';
 
-export const RichInput = () => {
+export default function RichInput() {
+  const [data, setData] = useState(``);
+  const editorRef = useRef(null);
+  const log = () => {
+    if (editorRef.current) {
+      console.log(editorRef.current.getContent());
+      setData(editorRef.current.getContent());
+    }
+  };
   return (
-    <div className="container-input-chat">
-      <div>
-        <textarea placeholder="Write something..."></textarea>
+    <>
+      <div className="rich__input-container">
+        <button className="rich__input-btn" onClick={log}><i className='bx bx-send'></i></button>
       </div>
-      <div className="container-icon-link">
-        <div className="container-icon-text">
-          <a href="#header" className="icon-link" id="lightning">
-            <i className="fa-solid fa-bolt-lightning"></i>
-            <div className="v-line"></div>
-          </a>
-          <a href="#header" className="icon-link icon-text">
-            <i className="fa-solid fa-bold"></i>
-          </a>
-          <a href="#header" className="icon-link">
-            <i className="fa-solid fa-italic"></i>
-          </a>
-          <a href="#header" className="icon-link">
-            <i className="fa-solid fa-strikethrough"></i>
-          </a>
-          <a href="#header" className="icon-link">
-            <i className="fa-solid fa-code"></i>
-          </a>
-          <a href="#header" className="icon-link">
-            <i className="fa-solid fa-link"></i>
-          </a>
-          <a href="#header" className="icon-link">
-            <i className="fa-solid fa-list-ol" id="thread__icon-hidden"></i>
-          </a>
-          <a href="#header" className="icon-link">
-            <i className="fa-solid fa-list" id="thread__icon-hidden"></i>
-          </a>
-          <a href="#header" className="icon-link">
-            <i className="fa-solid fa-ellipsis" id="thread__icon-hidden"></i>
-          </a>
+      <div className="container-rich">
+        <BundledEditor
+          onInit={(evt, editor) => (editorRef.current = editor)}
+          initialValue=""
+          init={{
+            selector: 'textarea#file-picker',
+            plugins: 'image code lists emoticons autoresize',
+            toolbar:
+              'undo redo | emoticons | link image | code | bold italic forecolor | bullist numlist outdent indent ',
+            menubar: false,
+            /* enable title field in the Image dialog*/
+            image_title: true,
+            /* enable automatic uploads of images represented by blob or data URIs*/
+            automatic_uploads: true,
+            autoresize_bottom_margin: 0,
+            max_height: 150,
+            autoresize_overflow_padding: 0,
+            /*
+              URL of our upload handler (for more details check: https://www.tiny.cloud/docs/configure/file-image-upload/#images_upload_url)
+              images_upload_url: 'postAcceptor.php',
+              here we add custom filepicker only to Image dialog
+            */
+            file_picker_types: 'image',
+            /* and here's our custom image picker*/
+            file_picker_callback: function (cb, value, meta) {
+              var input = document.createElement('input');
+              input.setAttribute('type', 'file');
+              input.setAttribute('accept', 'image/*');
 
-          <a href="#header" className="icon-link">
-            <i className="fa-solid fa-font-case"></i>
-          </a>
-        </div>
-        <div>
-          <a href="#header" className="icon-link">
-            <i className="fa-solid fa-at" id="thread__icon-hidden"></i>
-          </a>
-          <a href="#header" className="icon-link">
-            <i className="fa-solid fa-face-smile"></i>
-          </a>
-          <a href="#header" className="icon-link">
-            <i className="fa-solid fa-paper-plane"></i>
-          </a>
-        </div>
+              /*
+                Note: In modern browsers input[type="file"] is functional without
+                even adding it to the DOM, but that might not be the case in some older
+                or quirky browsers like IE, so you might want to add it to the DOM
+                just in case, and visually hide it. And do not forget do remove it
+                once you do not need it anymore.
+              */
+
+              input.onchange = function () {
+                var file = this.files[0];
+
+                var reader = new FileReader();
+                reader.onload = function () {
+                  /*
+                    Note: Now we need to register the blob in TinyMCEs image blob
+                    registry. In the next release this part hopefully won't be
+                    necessary, as we are looking to handle it internally.
+                  */
+                  var id = 'blobid' + new Date().getTime();
+                  var blobCache = tinymce.activeEditor.editorUpload.blobCache;
+                  var base64 = reader.result.split(',')[1];
+                  var blobInfo = blobCache.create(id, file, base64);
+                  blobCache.add(blobInfo);
+
+                  /* call the callback and populate the Title field with the file name */
+                  cb(blobInfo.blobUri(), { title: file.name });
+                };
+                reader.readAsDataURL(file);
+              };
+
+              input.click();
+            },
+            content_style: 'element.style {max-height: 200px}',
+          }}
+        />
       </div>
-    </div>
+      {/* <div dangerouslySetInnerHTML={{ __html: data }}></div> */}
+    </>
   );
-};
+}

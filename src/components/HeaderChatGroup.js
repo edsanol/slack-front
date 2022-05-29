@@ -23,7 +23,7 @@ export const HeaderChatGroup = () => {
         overflow="inside"
         withCloseButton={false}
         size="lg">
-        {<ModalMembersChannel />}
+        {<ModalMembersChannel title={"1,141 members in talks"} paragraph={"Add people"} />}
       </Modal>
       <div className="chat__header-right">
         <div className="chat__header-right-users">
@@ -37,7 +37,6 @@ export const HeaderChatGroup = () => {
             type="button"
             onClick={() => setOpened(true)}></i>
         </Group>
-        <i className="bx bx-info-circle"></i>
       </div>
     </div>
   );
