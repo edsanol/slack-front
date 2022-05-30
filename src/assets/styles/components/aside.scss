@@ -38,6 +38,7 @@
 .aside-selected-button {
   border-radius: 8px;
   border: 2px solid white;
+  margin-top: 20px;
 }
 .aside-button-workspace-plus {
   cursor: pointer;
@@ -113,6 +114,8 @@
 }
 .aside-section-channels-options {
   @include aside-section-channels(0px);
+  margin-top: 10px;
+  margin-bottom: 30px;
 }
 .aside-section-channels-channels {
   @include aside-section-channels(16px);
@@ -175,6 +178,13 @@
   opacity: 0;
 }
 
+.div-show-add-channel-options {
+  position: absolute;
+  left: 130px;
+  top: 450px;
+  z-index: 99;
+}
+
 @media (max-width: 979px) {
   .aside-container {
     width: 270px;
@@ -198,9 +208,6 @@
   .aside-section-channels {
     max-width: 100vw;
     width: 100%;
-  }
-  #icon__header-aside {
-    right: 60px;
   }
 }
 @media (max-height: 450px) {

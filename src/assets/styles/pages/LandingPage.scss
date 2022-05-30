@@ -7,7 +7,7 @@
   position: relative;
   width: calc(100vw - 300px);
   height: calc(100vh - 40px);
-  background-color: #fff;
+  background-color: #FFF;
   left: 300px;
 }
 .main__div-chat {
@@ -15,14 +15,14 @@
   position: fixed;
   left: 300px;
   width: calc(100vw - 690px);
-  background-color: #fff;
+  background-color: #FFF;
 }
 .main__div-chat-full {
   height: calc(100vh - 40px);
   position: fixed;
   left: 300px;
   width: calc(100vw - 300px);
-  background-color: #fff;
+  background-color: #FFF;
 }
 
 .chat__div-message {
@@ -30,8 +30,8 @@
   padding-top: 18px;
   flex-direction: column;
   justify-content: flex-start;
-  height: calc(100vh - 240px);
-  background-color: #fff;
+  height: calc(100vh - 300px);
+  background-color: #FFF;
   overflow-y: auto;
   overflow-x: auto;
   scrollbar-width: none;
@@ -42,18 +42,20 @@
 }
 .chat__div-input {
   position: fixed;
+  margin: 0 5px;
   height: 100px;
   width: calc(100vw - 690px);
-  bottom: 0;
-  background-color: #fff;
+  bottom: 5px;
+  background-color: #FFF;
   padding: 2px;
 }
 .chat__div-input-full {
   position: fixed;
+  margin: 0 5px;
   height: 100px;
   width: calc(100vw - 300px);
   bottom: 0;
-  background-color: #fff;
+  background-color: #FFF;
   padding: 2px;
 }
 
@@ -62,7 +64,7 @@
   width: 390px;
   position: fixed;
   right: 0;
-  background-color: #fff;
+  background-color: #FFF;
   border: 1px solid #e1e1e1;
 }
 .div-show-profile-optioncs{
@@ -133,6 +135,6 @@
     height: 100px;
   }
   .chat__div-message {
-    height: calc(100vh - 175px);
+    height: calc(100vh - 230px);
   }
 }

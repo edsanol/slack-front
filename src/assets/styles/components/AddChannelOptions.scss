@@ -1,0 +1,22 @@
+.channel-options__container {
+  position: fixed;
+  border-radius: 8px;
+  background-color: #f8f8f8;
+  border: 1px solid #d5d5d5;
+  box-shadow: 0px 0px 4px 0px #000000;
+  margin: 0;
+  padding: 0;
+}
+.channel-options__options {
+  height: 50px;
+  color: #000000;
+  cursor: pointer;
+  padding: 0px;
+}
+.channel-options__options p {
+  padding: 15px;
+}
+.channel-options__options:hover {
+  background-color: #2D649E;
+  color: #FFFFFF;
+}

@@ -37,17 +37,10 @@ export const HeaderLandingPage = ({
           <div className="header__div-icons">
             <div>
               <a href="#header" className="header__a-icons">
-                <i className="bx bx-left-arrow-alt"></i>
               </a>
             </div>
             <div>
               <a href="#header" className="header__a-icons">
-                <i className="bx bx-right-arrow-alt"></i>
-              </a>
-            </div>
-            <div>
-              <a href="#header" className="header__a-icons">
-                <i className="bx bx-time"></i>
               </a>
             </div>
           </div>
@@ -74,9 +67,6 @@ export const HeaderLandingPage = ({
             type="button"
             onClick={handleClickUserProfilepShow}>
             <span className=""> </span>
-          </div>
-          <div className="header__flag">
-            <p>&#x262f;&#xfe0f;</p>
           </div>
         </div>
       </nav>

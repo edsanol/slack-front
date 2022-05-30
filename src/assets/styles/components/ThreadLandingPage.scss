@@ -30,7 +30,7 @@
   display: flex;
   background-color: #FFF;
   flex-direction: column;
-  height: calc(100vh - 260px);
+  height: calc(100vh - 320px);
   overflow-y: auto;
 	scrollbar-width: none;
 	transition: all .3s ease;
@@ -47,7 +47,7 @@
   position: fixed;
   height: 130px;
   width: 390px;
-  bottom: 0;
+  bottom: 22px;
   background-color: #FFF;
 }
 .thread__header-right-button-close {

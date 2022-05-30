@@ -2,17 +2,23 @@ import React, { useState } from 'react';
 import { ChannelMessageGroup } from './ChannelMessageGroup';
 import { DirectMessageUser } from './DirectMessageUser';
 import { Collapse } from '@mantine/core';
+import { Group, Modal } from '@mantine/core';
+import { ModalMembersChannel } from './modals/ModalMembersChannel';
 
-export const Aside = () => {
+export const Aside = ({ showAddChannel, setshowAddChannel }) => {
   const [openedChannels, setOpenChannels] = useState(true);
   const [openedChats, setOpenChats] = useState(true);
+  const [opened, setOpened] = useState(false);
+
+  const handleClickChannel = () => {
+    showAddChannel ? setshowAddChannel(false) : setshowAddChannel(true);
+  };
+
   return (
     <div className="aside-container">
       <section className="aside-section-workspace">
-        <button className="aside-button-workspace-A">A</button>
-        <button className="aside-button-workspace-B">B</button>
         <div className="aside-selected-button">
-          <button className="aside-button-workspace-selected">C</button>
+          <button className="aside-button-workspace-selected">A</button>
         </div>
         <button className="aside-button-workspace-plus">+</button>
       </section>
@@ -20,24 +26,13 @@ export const Aside = () => {
       <section className="aside-section-channels">
         <div className="aside-channels-header">
           <p>DesignersKR ⌵</p>
-          <i className="fa-solid fa-pen-to-square" id="icon__header-aside"></i>
         </div>
 
         <aside className="aside-header-channels">
           <ul className="aside-section-channels-options">
             <li className="list-channels-options-subtitles">
-              <i className="fa-solid fa-at" id="icon-channel"></i>
-              <p className="p-channels-options-subtitles">
-                Mentions & reactions
-              </p>
-            </li>
-            <li className="list-channels-options-subtitles">
               <i className="fa-regular fa-bookmark" id="icon-channel"></i>
               <p className="p-channels-options-subtitles">Saved items</p>
-            </li>
-            <li className="list-channels-options-subtitles">
-              <p>⁝</p>
-              <p className="p-channels-options-subtitles">More</p>
             </li>
           </ul>
 
@@ -47,7 +42,7 @@ export const Aside = () => {
                 className="p-channels-options-subtitles"
                 type="button"
                 onClick={() => setOpenChannels((o) => !o)}>
-                {openedChannels ? "▼" : "▶"}ㅤChannels
+                {openedChannels ? '▼' : '▶'}ㅤChannels
               </p>
               <Collapse
                 in={openedChannels}
@@ -57,8 +52,15 @@ export const Aside = () => {
                   <ChannelMessageGroup />
 
                   <li className="list-channels-add-channels">
-                    <button className="button-add-channels">+</button>
-                    <p>Add channels</p>
+                    <button
+                      className="button-add-channels"
+                      type="button"
+                      onClick={handleClickChannel}>
+                      +
+                    </button>
+                    <p type="button" onClick={handleClickChannel}>
+                      Add channels
+                    </p>
                   </li>
                 </ul>
               </Collapse>
@@ -71,7 +73,7 @@ export const Aside = () => {
                 className="p-channels-options-subtitles"
                 type="button"
                 onClick={() => setOpenChats((o) => !o)}>
-                {openedChats ? "▼" : "▶"}ㅤDirect messages
+                {openedChats ? '▼' : '▶'}ㅤDirect messages
               </p>
               <Collapse
                 in={openedChats}
@@ -81,7 +83,11 @@ export const Aside = () => {
                   <DirectMessageUser />
                   <li className="list-channels-dropdown-direct">
                     <button className="button-add-channels">+</button>{' '}
-                    <p>Add Teammates</p>
+                    <Group>
+                      <p type="button" onClick={() => setOpened(true)}>
+                        Add Teammates
+                      </p>
+                    </Group>
                   </li>
                   <li id="li__hidden">
                     <div></div>
@@ -90,6 +96,14 @@ export const Aside = () => {
               </Collapse>
             </li>
           </ul>
+          <Modal
+            opened={opened}
+            onClose={() => setOpened(false)}
+            overflow="inside"
+            withCloseButton={false}
+            size="lg">
+            {<ModalMembersChannel title={"Add new teammates"} paragraph={"Add people"} />}
+          </Modal>
         </aside>
       </section>
     </div>
