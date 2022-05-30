@@ -11,15 +11,20 @@ export const UserOptionsProfile = ({ setShowProfile, showProfile }) => {
     dispatch(changeView('showProfile'));
   };
 
+  const [changeState, setChangeState] = useState(true);
   const [opened, setOpened] = useState(false);
   const userProfile = [
     {
       id: 123,
       name: 'Peter Parker',
       img: rectangle1,
-      state: true,
+      state: changeState,
     },
   ];
+  const handleChangeStatus = () => {
+    setChangeState(!changeState);
+  };
+
   return (
     <div className="div-user-options-container">
       <div>
@@ -45,6 +50,16 @@ export const UserOptionsProfile = ({ setShowProfile, showProfile }) => {
         {<ModalEditUser />}
       </Modal>
       <div className="div-user-options-body">
+        <div className="hover-user-options" onClick={handleChangeStatus}>
+          <p>
+            Cambiar tu estado a{' '}
+            {changeState ? (
+              <strong>ausente</strong>
+            ) : (
+              <strong>disponible</strong>
+            )}
+          </p>
+        </div>
         <div className="hover-user-options">
           <Group>
             <p type="button" onClick={() => setOpened(true)}>

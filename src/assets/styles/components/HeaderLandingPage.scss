@@ -86,7 +86,7 @@
     font-size: 10px;
     font-weight: 700;
   }
-  
+
   &__div-right {
     max-width: 15rem;
     width: 100%;
@@ -119,7 +119,7 @@
     border-radius: 0 7px 7px 0;
     background: linear-gradient(to bottom right, red, orange);
   }
-  &__span-badge {
+  &__span-badge-active {
     position: absolute;
     top: 17px;
     right: -5px;
@@ -127,11 +127,27 @@
     height: 10px;
     border-radius: 50%;
     border: 3px solid var(--Purple-navbar);
-    background: var(--green-line);
+    background: #34785c;
     display: flex;
     justify-content: center;
     align-items: center;
-    color: var(--green-line);
+    color: #34785c;
+    font-size: 10px;
+    font-weight: 700;
+  }
+  &__span-badge-disactive {
+    position: absolute;
+    top: 17px;
+    right: -5px;
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    border: 3px solid var(--Purple-navbar);
+    background: var(--gray);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: var(--gray);
     font-size: 10px;
     font-weight: 700;
   }
@@ -172,5 +188,3 @@
     }
   }
 }
-
-

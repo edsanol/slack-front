@@ -4,8 +4,6 @@ import { useDispatch } from 'react-redux';
 import { changeView } from '../store/actions';
 
 export const HeaderLandingPage = ({
-  setHiddenThread,
-  setHiddenHelp,
   setShowProfileOptions,
   showProfileOptions,
 }) => {
@@ -16,8 +14,6 @@ export const HeaderLandingPage = ({
   const dispatch = useDispatch();
 
   const handleClickHelpShow = () => {
-    // setHiddenThread(false);
-    // setHiddenHelp(true);
     dispatch(changeView('showHelp'));
   };
   const handleClickUserProfilepShow = () => {
@@ -77,7 +73,7 @@ export const HeaderLandingPage = ({
             className="header__perfil"
             type="button"
             onClick={handleClickUserProfilepShow}>
-            <span className="header__span-badge"> </span>
+            <span className=""> </span>
           </div>
           <div className="header__flag">
             <p>&#x262f;&#xfe0f;</p>
