@@ -40,7 +40,7 @@ export const ProfileLandingPage = () => {
         </section>
         <section>
           <div className="div-profile-button">
-            <i class="fa-solid fa-pen"></i>
+            <i className="fa-solid fa-pen"></i>
             <p>Modificar tu perfil</p>
           </div>
         </section>
