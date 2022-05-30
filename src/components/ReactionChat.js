@@ -15,7 +15,6 @@ export const ReactionChat = () => {
   return (
     <div className="reaction__div-chat">
       <i className="bx bx-like"></i>
-      <i className="bx bx-message-rounded-dots"></i>
       <div type="button" onClick={handleClickThreadShow}>
         <i className="bx bx-message-rounded-dots"></i>
       </div>
