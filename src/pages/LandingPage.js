@@ -5,6 +5,7 @@ import { HeaderChat } from '../components/HeaderChat';
 import { BoxChatMessage } from '../components/BoxChatMessage';
 import { ThreadLandingPage } from '../components/ThreadLandingPage';
 import { HelpLandingPage } from '../components/HelpLandingPage';
+import { ProfileLandingPage } from '../components/ProfileLandingPage';
 import RichInput from '../components/RichInput';
 import { HeaderChatGroup } from '../components/HeaderChatGroup';
 import { UserOptionsProfile } from '../components/UserOptionsProfile';
@@ -73,6 +74,11 @@ export const LandingPage = () => {
           {showView === 'showHelp' && (
             <div className="main__div-thread">
               <HelpLandingPage />
+            </div>
+          )}
+          {showView === 'showProfile' && (
+            <div className="main__div-thread">
+              <ProfileLandingPage />
             </div>
           )}
         </section>

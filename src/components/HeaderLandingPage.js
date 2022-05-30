@@ -66,7 +66,7 @@ export const HeaderLandingPage = ({
             className="header__perfil"
             type="button"
             onClick={handleClickUserProfilepShow}>
-            <span className="header__span-badge"> </span>
+            <span className=""> </span>
           </div>
         </div>
       </nav>
