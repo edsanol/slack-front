@@ -2,8 +2,15 @@ import React, { useState } from 'react';
 import rectangle1 from '../assets/images/Rectangle-1.png';
 import { Modal, Group } from '@mantine/core';
 import { ModalEditUser } from './modals/ModalEditUser';
+import { changeView } from '../store/actions';
+import { useDispatch } from 'react-redux';
 
-export const UserOptionsProfile = () => {
+export const UserOptionsProfile = ({ setShowProfile, showProfile }) => {
+  const dispatch = useDispatch();
+  const handleClickProfileShow = () => {
+    dispatch(changeView('showProfile'));
+  };
+
   const [opened, setOpened] = useState(false);
   const userProfile = [
     {
@@ -45,12 +52,12 @@ export const UserOptionsProfile = () => {
             </p>
           </Group>
         </div>
-        <div className="hover-user-options">
+        <div className="hover-user-options" onClick={handleClickProfileShow}>
           <p>Ver Perfil</p>
         </div>
-        <div className="hover-user-options">
+        {/* <div className="hover-user-options">
           <p>Preferencias</p>
-        </div>
+        </div> */}
       </div>
 
       <div className="div-user-options-logout">
