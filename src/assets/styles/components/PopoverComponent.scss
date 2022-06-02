@@ -1,0 +1,42 @@
+.header__perfil {
+  cursor: pointer;
+  position: relative;
+  order: 1;
+  width: 1.7rem;
+  height: 1.7rem;
+  border-radius: 7px;
+  background: linear-gradient(to bottom right, red, orange);
+}
+
+.header__span-badge-active {
+  position: absolute;
+  top: 17px;
+  right: -5px;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  border: 3px solid var(--Purple-navbar);
+  background: #34785c;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #34785c;
+  font-size: 10px;
+  font-weight: 700;
+}
+.header__span-badge-disactive {
+  position: absolute;
+  top: 17px;
+  right: -5px;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  border: 3px solid var(--Purple-navbar);
+  background: var(--gray);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: var(--gray);
+  font-size: 10px;
+  font-weight: 700;
+}

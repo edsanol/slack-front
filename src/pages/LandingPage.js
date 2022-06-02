@@ -25,11 +25,11 @@ export const LandingPage = () => {
         setShowProfileOptions={setShowProfileOptions}
         showProfileOptions={showProfileOptions}
       />
-      {showProfileOptions && (
+      {/* {showProfileOptions && (
         <div className="div-show-profile-optioncs">
           <UserOptionsProfile />
         </div>
-      )}
+      )} */}
 
       <main className="main__full-container">
         <Aside

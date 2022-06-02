@@ -2,11 +2,9 @@ import React from 'react';
 import '../assets/styles/components/HeaderLandingPage.scss';
 import { useDispatch } from 'react-redux';
 import { actionsChangeView } from '../store/actions/actionsChangeView';
+import { PopoverComponent } from './PopoverComponent'
 
-export const HeaderLandingPage = ({
-  setShowProfileOptions,
-  showProfileOptions,
-}) => {
+export const HeaderLandingPage = () => {
   const inputStyle = {
     fontFamily: "'Lato', FontAwesome",
   };
@@ -15,11 +13,6 @@ export const HeaderLandingPage = ({
 
   const handleClickHelpShow = () => {
     dispatch(actionsChangeView('showHelp'));
-  };
-  const handleClickUserProfilepShow = () => {
-    showProfileOptions
-      ? setShowProfileOptions(false)
-      : setShowProfileOptions(true);
   };
 
   return (
@@ -60,12 +53,7 @@ export const HeaderLandingPage = ({
         </div>
 
         <div className="header__div-right">
-          <div
-            className="header__perfil"
-            type="button"
-            onClick={handleClickUserProfilepShow}>
-            <span className=""> </span>
-          </div>
+          <PopoverComponent />
         </div>
       </nav>
     </header>

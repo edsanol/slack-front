@@ -1,29 +1,37 @@
 import React, { useState } from 'react';
 import rectangle1 from '../assets/images/Rectangle-1.png';
-import { Modal, Group } from '@mantine/core';
+import { Modal } from '@mantine/core';
 import { ModalEditUser } from './modals/ModalEditUser';
 import { actionsChangeView } from '../store/actions/actionsChangeView';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
+import { actionsChangeState } from '../store/actions/actionsChangeState';
 
-export const UserOptionsProfile = ({ setShowProfile, showProfile }) => {
+export const UserOptionsProfile = () => {
   const dispatch = useDispatch();
   const handleClickProfileShow = () => {
     dispatch(actionsChangeView('showProfile'));
   };
 
-  const [changeState, setChangeState] = useState(true);
+  const [changeState, setChangeState] = useState(false);
   const [opened, setOpened] = useState(false);
+
+  const handleChangeStatus = () => {
+    setChangeState(!changeState);
+    dispatch(actionsChangeState(changeState));
+  };
+
+  const stateOption = useSelector(
+    (state) => state.changeStateReducer.stateView
+  );
+
   const userProfile = [
     {
       id: 123,
       name: 'Peter Parker',
       img: rectangle1,
-      state: changeState,
+      state: stateOption,
     },
   ];
-  const handleChangeStatus = () => {
-    setChangeState(!changeState);
-  };
 
   return (
     <div className="div-user-options-container">
@@ -53,7 +61,7 @@ export const UserOptionsProfile = ({ setShowProfile, showProfile }) => {
         <div className="hover-user-options" onClick={handleChangeStatus}>
           <p>
             Cambiar tu estado a{' '}
-            {changeState ? (
+            {stateOption ? (
               <strong>ausente</strong>
             ) : (
               <strong>disponible</strong>
@@ -61,18 +69,13 @@ export const UserOptionsProfile = ({ setShowProfile, showProfile }) => {
           </p>
         </div>
         <div className="hover-user-options">
-          <Group>
-            <p type="button" onClick={() => setOpened(true)}>
-              Editar Perfil
-            </p>
-          </Group>
+          <p type="button" onClick={() => setOpened(true)}>
+            Editar Perfil
+          </p>
         </div>
         <div className="hover-user-options" onClick={handleClickProfileShow}>
           <p>Ver Perfil</p>
         </div>
-        {/* <div className="hover-user-options">
-          <p>Preferencias</p>
-        </div> */}
       </div>
 
       <div className="div-user-options-logout">

@@ -7,6 +7,8 @@
   border: 1px solid #d5d5d5;
   box-shadow: 0px 0px 4px 0px #000000;
   z-index: 100;
+  right: -30px;
+  top: 4px;
 }
 .div-user-options-header {
   position: relative;
@@ -63,6 +65,9 @@
     &:hover {
       background-color: #2d649e;
     }
+    & p:hover {
+      color: #fff;
+    }
   }
   p {
     margin-left: 25px;
@@ -79,6 +84,10 @@
     cursor: pointer;
     &:hover {
       background-color: #2d649e;
+      color: #fff;
+    }
+    & p:hover {
+      color: #fff;
     }
   }
   p {
