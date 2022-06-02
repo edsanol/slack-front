@@ -1,12 +1,12 @@
 import React from 'react';
 import { useDispatch } from 'react-redux';
-import { changeView } from '../store/actions';
+import { actionsChangeView } from '../store/actions/actionsChangeView';
 import '../assets/styles/components/ProfileLandingPage.scss';
 
 export const ProfileLandingPage = () => {
   const dispatch = useDispatch();
   const handleClickProfileClose = () => {
-    dispatch(changeView('hiddenAll'));
+    dispatch(actionsChangeView('hiddenAll'));
   };
 
   return (

@@ -1,20 +1,20 @@
-import { legacy_createStore as createStore } from 'redux';
-import { composeWithDevTools } from 'redux-devtools-extension';
+import {
+  legacy_createStore as createStore,
+  applyMiddleware,
+  compose,
+} from 'redux';
+// import { composeWithDevTools } from 'redux-devtools-extension';
+import thunk from 'redux-thunk';
+import reducers from './reducers';
 
-const initialState = {
-  hiddenView: 'hiddenAll',
-};
-
-const reducer = (state = initialState, action) => {
-  switch (action.type) {
-    case 'CHANGE_VIEW':
-      return {
-        ...state,
-        hiddenView: action.payload,
-      };
-    default:
-      return state;
-  }
-};
-
-export const store = createStore(reducer, composeWithDevTools());
+const store = createStore(
+  reducers,
+  compose(
+    applyMiddleware(thunk),
+    typeof window === 'object' &&
+      typeof window.__REDUX_DEVTOOLS_EXTENSION__ !== 'undefined'
+      ? window.__REDUX_DEVTOOLS_EXTENSION__()
+      : (f) => f
+  )
+);
+export default store;

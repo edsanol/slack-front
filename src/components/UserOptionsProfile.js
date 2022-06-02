@@ -2,13 +2,13 @@ import React, { useState } from 'react';
 import rectangle1 from '../assets/images/Rectangle-1.png';
 import { Modal, Group } from '@mantine/core';
 import { ModalEditUser } from './modals/ModalEditUser';
-import { changeView } from '../store/actions';
+import { actionsChangeView } from '../store/actions/actionsChangeView';
 import { useDispatch } from 'react-redux';
 
 export const UserOptionsProfile = ({ setShowProfile, showProfile }) => {
   const dispatch = useDispatch();
   const handleClickProfileShow = () => {
-    dispatch(changeView('showProfile'));
+    dispatch(actionsChangeView('showProfile'));
   };
 
   const [changeState, setChangeState] = useState(true);

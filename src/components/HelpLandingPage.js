@@ -6,15 +6,14 @@ import time from '../assets/images/time.png';
 import user from '../assets/images/user.png';
 import video from '../assets/images/video.png';
 import { useDispatch } from 'react-redux';
-import { changeView } from '../store/actions';
+import { actionsChangeView } from '../store/actions/actionsChangeView';
 
 export const HelpLandingPage = () => {
-
   const dispatch = useDispatch();
 
   const handleClickHelpClose = () => {
-    dispatch(changeView('hiddenAll'));
-  }
+    dispatch(actionsChangeView('hiddenAll'));
+  };
 
   return (
     <div className="div-help-container">
@@ -29,7 +28,10 @@ export const HelpLandingPage = () => {
             <div className="help-icon-notification"></div>
           </div>
           <div className="help-icon">
-            <i className="fa-solid fa-xmark" type="button" onClick={handleClickHelpClose}></i>
+            <i
+              className="fa-solid fa-xmark"
+              type="button"
+              onClick={handleClickHelpClose}></i>
           </div>
         </div>
       </div>
