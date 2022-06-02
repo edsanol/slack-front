@@ -47,7 +47,7 @@ export const HelpLandingPage = () => {
             <div className="div-box-icon-select">
               <img className="img-cohete" src={cohete} alt="img" />
             </div>
-            <div>
+            <div> 
               <h2>Quick start guide</h2>
               <p>Learn the basics and get to work in Slack</p>
             </div>
