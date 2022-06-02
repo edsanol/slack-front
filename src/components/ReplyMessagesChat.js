@@ -2,14 +2,13 @@ import React from 'react';
 import '../assets//styles/components/ReplyMessagesChat.scss';
 import rectangle5 from '../assets/images/Rectangle-5.png';
 import { useDispatch } from 'react-redux';
-import { changeView } from '../store/actions';
+import { actionsChangeView } from '../store/actions/actionsChangeView';
 
 export const ReplyMessagesChat = () => {
-
   const dispatch = useDispatch();
-  
+
   const handleClickThreadShow = () => {
-    dispatch(changeView('showThread'));
+    dispatch(actionsChangeView('showThread'));
   };
 
   return (

@@ -17,7 +17,7 @@ export const LandingPage = () => {
   const [showProfileOptions, setShowProfileOptions] = useState(false);
   const [showAddChannel, setshowAddChannel] = useState(false);
 
-  const showView = useSelector((state) => state.hiddenView);
+  const showView = useSelector((state) => state.changeViewReducer.hiddenView);
 
   return (
     <>
@@ -32,7 +32,10 @@ export const LandingPage = () => {
       )}
 
       <main className="main__full-container">
-        <Aside showAddChannel={showAddChannel} setshowAddChannel={setshowAddChannel}/>
+        <Aside
+          showAddChannel={showAddChannel}
+          setshowAddChannel={setshowAddChannel}
+        />
         {showAddChannel && (
           <div className="div-show-add-channel-options">
             <AddChannelOptions />

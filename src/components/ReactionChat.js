@@ -1,16 +1,18 @@
 import React from 'react';
 import '../assets/styles/components/ReactionChat.scss';
 import { useDispatch, useSelector } from 'react-redux';
-import { changeView } from '../store/actions';
+import { actionsChangeView } from '../store/actions/actionsChangeView';
 
 export const ReactionChat = () => {
   const dispatch = useDispatch();
-  const OpenCloseThread = useSelector((state) => state.hiddenView);
+  const OpenCloseThread = useSelector(
+    (state) => state.changeViewReducer.hiddenView
+  );
 
   const handleClickThreadShow = () => {
     OpenCloseThread === 'hiddenAll'
-      ? dispatch(changeView('showThread'))
-      : dispatch(changeView('hiddenAll'));
+      ? dispatch(actionsChangeView('showThread'))
+      : dispatch(actionsChangeView('hiddenAll'));
   };
   return (
     <div className="reaction__div-chat">

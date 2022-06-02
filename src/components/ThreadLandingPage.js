@@ -1,17 +1,16 @@
 import React from 'react';
-import { ThreadMessage } from '../components/ThreadMessage'
+import { ThreadMessage } from '../components/ThreadMessage';
 import '../assets/styles/components/ThreadLandingPage.scss';
 import RichInput from '../components/RichInput';
 import { useDispatch } from 'react-redux';
-import { changeView } from '../store/actions';
+import { actionsChangeView } from '../store/actions/actionsChangeView';
 
 export const ThreadLandingPage = () => {
-  
   const dispatch = useDispatch();
-  
+
   const handleClickThread = () => {
-    dispatch(changeView('hiddenAll'));
-  }
+    dispatch(actionsChangeView('hiddenAll'));
+  };
 
   return (
     <section className="thread__section-container">
@@ -21,7 +20,11 @@ export const ThreadLandingPage = () => {
           <p>#uxui_design</p>
         </div>
         <div className="thread-header-right">
-          <button className="thread__header-right-button-close" onClick={handleClickThread}>X</button>
+          <button
+            className="thread__header-right-button-close"
+            onClick={handleClickThread}>
+            X
+          </button>
         </div>
       </div>
 
@@ -37,7 +40,6 @@ export const ThreadLandingPage = () => {
       <div className="chat-input-thread">
         <RichInput />
       </div>
-
     </section>
   );
 };

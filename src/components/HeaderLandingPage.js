@@ -1,7 +1,7 @@
 import React from 'react';
 import '../assets/styles/components/HeaderLandingPage.scss';
 import { useDispatch } from 'react-redux';
-import { changeView } from '../store/actions';
+import { actionsChangeView } from '../store/actions/actionsChangeView';
 
 export const HeaderLandingPage = ({
   setShowProfileOptions,
@@ -14,7 +14,7 @@ export const HeaderLandingPage = ({
   const dispatch = useDispatch();
 
   const handleClickHelpShow = () => {
-    dispatch(changeView('showHelp'));
+    dispatch(actionsChangeView('showHelp'));
   };
   const handleClickUserProfilepShow = () => {
     showProfileOptions
@@ -36,12 +36,10 @@ export const HeaderLandingPage = ({
         <div className="header__div-center">
           <div className="header__div-icons">
             <div>
-              <a href="#header" className="header__a-icons">
-              </a>
+              <a href="#header" className="header__a-icons"></a>
             </div>
             <div>
-              <a href="#header" className="header__a-icons">
-              </a>
+              <a href="#header" className="header__a-icons"></a>
             </div>
           </div>
           <div className="header__div-input">
