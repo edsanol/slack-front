@@ -1,8 +1,10 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import '../assets/styles/pages/Register.scss';
 import { useForm } from 'react-hook-form';
 import { HeaderLoginRegister } from '../components/HeaderLoginRegister';
 import { FooterLoginRegister } from '../components/FooterLoginRegister';
+import { useDispatch, useSelector } from 'react-redux'
+import { getWorkspaceAction, registerUserAction } from '../store/actions/actionsAuth';
 
 export const Register = () => {
   const {
@@ -11,25 +13,38 @@ export const Register = () => {
     handleSubmit,
   } = useForm();
 
+  const dispatch = useDispatch();
+  const workspaceid = useSelector(state => state.authReducer.workspaceId)
+
   const onSubmit = (data) => {
     console.log(data);
+
+    const { fullName, email, password } = data;
+
+    dispatch(registerUserAction({fullName, email, password, workspaceid }))
   };
+
+  useEffect(() => {
+    const workspace = () => dispatch(getWorkspaceAction())
+    workspace()
+  }, [])
+
   return (
     <>
       <HeaderLoginRegister title={'Registrarse'} text={'O BIEN'} />
 
       <main className="mainForm">
         <form className="mainForm__form" onSubmit={handleSubmit(onSubmit)}>
-          <label htmlFor="name" className="mainForm__form-label">
+          <label htmlFor="fullName" className="mainForm__form-label">
             Nombre y Apellido
           </label>
           <input
             className="mainForm__form-input"
             type="text"
-            name="name"
-            id="name"
+            name="fullName"
+            id="fullName"
             placeholder="Ingresa tu nombre y apellido"
-            {...register('nombre', {
+            {...register('fullName', {
               required: true,
               pattern: /^[a-z\d A-Z\d]{6,30}$/i,
             })}
@@ -42,7 +57,7 @@ export const Register = () => {
               ⚠ Ingresa un nombre de minimo 6 carácteres y maximo 30
             </p>
           )}
-          <label htmlFor="name" className="mainForm__form-label">
+          <label htmlFor="email" className="mainForm__form-label">
             Email
           </label>
           <input
