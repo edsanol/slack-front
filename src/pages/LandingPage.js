@@ -8,10 +8,8 @@ import { HelpLandingPage } from '../components/HelpLandingPage';
 import { ProfileLandingPage } from '../components/ProfileLandingPage';
 import RichInput from '../components/RichInput';
 import { HeaderChatGroup } from '../components/HeaderChatGroup';
-import { UserOptionsProfile } from '../components/UserOptionsProfile';
 import { useSelector } from 'react-redux';
 import chat from '../assets/mocks/chat.json';
-import { AddChannelOptions } from '../components/AddChannelOptions';
 
 export const LandingPage = () => {
   const [showProfileOptions, setShowProfileOptions] = useState(false);
@@ -36,11 +34,11 @@ export const LandingPage = () => {
           showAddChannel={showAddChannel}
           setshowAddChannel={setshowAddChannel}
         />
-        {showAddChannel && (
+        {/* {showAddChannel && (
           <div className="div-show-add-channel-options">
             <AddChannelOptions />
           </div>
-        )}
+        )} */}
         <section className="main__section-main">
           <div
             className={
