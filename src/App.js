@@ -1,21 +1,37 @@
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
-import { ChangePassword } from './pages/ChangePassword';
 import { LandingPage } from './pages/LandingPage';
-import { Login } from './pages/Login';
 import { NotFound } from './pages/NotFound';
-import { RecoverPassword } from './pages/RecoverPassword';
-import { Register } from './pages/Register';
-
+import { AuthRouter } from './router/AuthRouter';
+import { PublicRoute } from './router/PublicRoute';
+import { PrivateRoute } from './router/PrivateRoute';
+import { useDispatch } from 'react-redux'
+import { useEffect } from 'react';
+import { verifyToken } from './store/actions/actionsAuth';
 
 function App() {
+
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(verifyToken())
+  }, []);
+
   return (
     <BrowserRouter>
       <Routes>
-        <Route exact path="/" element={<LandingPage />} />
-        <Route exact path="/register" element={<Register />} />
-        <Route exact path="/login" element={<Login />} />
-        <Route exact path="/change-password" element={<ChangePassword />} />
-        <Route exact path="/recover-password" element={<RecoverPassword />} />
+
+        <Route path="/" element={
+          <PrivateRoute>
+            <LandingPage />
+          </PrivateRoute>} 
+        />
+
+        <Route path="/auth/*" element={
+          <PublicRoute>
+            <AuthRouter />
+          </PublicRoute>}
+        />
+
         <Route path="*" element={<NotFound />} />
       </Routes>
     </BrowserRouter>

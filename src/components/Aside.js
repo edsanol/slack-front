@@ -5,6 +5,7 @@ import { Collapse } from '@mantine/core';
 import { Group, Modal } from '@mantine/core';
 import { ModalMembersChannel } from './modals/ModalMembersChannel';
 import { PopoverAddChannel } from './PopoverAddChannel';
+import { useSelector } from 'react-redux';
 
 export const Aside = ({ showAddChannel, setshowAddChannel }) => {
   const [openedChannels, setOpenChannels] = useState(true);
@@ -14,6 +15,8 @@ export const Aside = ({ showAddChannel, setshowAddChannel }) => {
   const handleClickChannel = () => {
     showAddChannel ? setshowAddChannel(false) : setshowAddChannel(true);
   };
+
+  const hiddenScroll = useSelector((state) => state.changeStateReducer.hiddenScroll);
 
   return (
     <div className="aside-container">
@@ -29,7 +32,7 @@ export const Aside = ({ showAddChannel, setshowAddChannel }) => {
           <p>DesignersKR ⌵</p>
         </div>
 
-        <aside className="aside-header-channels">
+        <aside className={hiddenScroll ? "aside-header-channels-hidden" : "aside-header-channels"}>
           <ul className="aside-section-channels-options">
             <li className="list-channels-options-subtitles">
               <i className="fa-regular fa-bookmark" id="icon-channel"></i>

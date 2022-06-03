@@ -85,6 +85,13 @@
   scrollbar-width: none;
   transition: all .3s ease;
 }
+.aside-header-channels-hidden {
+  overflow-y: auto;
+  border-top: 1px solid #492451;
+  border-right: 1px solid #492451;
+  line-height: 29px;
+  overflow-y: hidden;
+}
 .aside-header-channels::-webkit-scrollbar {
 	display: none;
 }

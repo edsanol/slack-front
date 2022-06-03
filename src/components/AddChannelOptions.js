@@ -10,11 +10,9 @@ export const AddChannelOptions = () => {
   return (
     <div className="channel-options__container">
       <div className="channel-options__options">
-        <Group>
           <p type="button" onClick={() => setOpenedNewChannel(true)}>
             Crear nuevo canal
           </p>
-        </Group>
       </div>
       <Modal
         opened={openedNewChannel}
@@ -30,11 +28,9 @@ export const AddChannelOptions = () => {
         }
       </Modal>
       <div className="channel-options__options">
-        <Group>
           <p type="button" onClick={() => setOpened(true)}>
             Explorar la lista de canales
           </p>
-        </Group>
       </div>
       <Modal
         opened={opened}

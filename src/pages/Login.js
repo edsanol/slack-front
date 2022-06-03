@@ -3,6 +3,8 @@ import '../assets/styles/pages/Login.scss';
 import { useForm } from 'react-hook-form';
 import { HeaderLoginRegister } from '../components/HeaderLoginRegister';
 import { FooterLoginRegister } from '../components/FooterLoginRegister';
+import { loginUserAction } from '../store/actions/actionsAuth';
+import { useDispatch } from 'react-redux'
 
 export const Login = () => {
   const {
@@ -11,8 +13,13 @@ export const Login = () => {
     handleSubmit,
   } = useForm();
 
+  const dispatch = useDispatch();
+
   const onSubmit = (data) => {
     console.log(data);
+    const { email, password } = data;
+
+    dispatch(loginUserAction({email, password}))
   };
 
   return (
