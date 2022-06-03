@@ -4,6 +4,7 @@ import { DirectMessageUser } from './DirectMessageUser';
 import { Collapse } from '@mantine/core';
 import { Group, Modal } from '@mantine/core';
 import { ModalMembersChannel } from './modals/ModalMembersChannel';
+import { PopoverAddChannel } from './PopoverAddChannel';
 
 export const Aside = ({ showAddChannel, setshowAddChannel }) => {
   const [openedChannels, setOpenChannels] = useState(true);
@@ -58,9 +59,7 @@ export const Aside = ({ showAddChannel, setshowAddChannel }) => {
                       onClick={handleClickChannel}>
                       +
                     </button>
-                    <p type="button" onClick={handleClickChannel}>
-                      Add channels
-                    </p>
+                    <PopoverAddChannel />
                   </li>
                 </ul>
               </Collapse>
@@ -102,7 +101,12 @@ export const Aside = ({ showAddChannel, setshowAddChannel }) => {
             overflow="inside"
             withCloseButton={false}
             size="lg">
-            {<ModalMembersChannel title={"Add new teammates"} paragraph={"Add people"} />}
+            {
+              <ModalMembersChannel
+                title={'Add new teammates'}
+                paragraph={'Add people'}
+              />
+            }
           </Modal>
         </aside>
       </section>
