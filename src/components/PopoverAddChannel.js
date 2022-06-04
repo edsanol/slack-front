@@ -28,7 +28,8 @@ export const PopoverAddChannel = () => {
         </p>
       }
       width={240}
-      position="right">
+      position="right"
+      closeOnClickOutside={false}>
       <AddChannelOptions />
     </Popover>
   );

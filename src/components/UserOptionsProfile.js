@@ -54,7 +54,7 @@ export const UserOptionsProfile = () => {
           </div>
         ))}
       </div>
-      <Modal opened={opened} onClose={() => setOpened(false)}>
+      <Modal zIndex={9999} opened={opened} onClose={() => setOpened(false)}>
         {<ModalEditUser />}
       </Modal>
       <div className="div-user-options-body">

@@ -10,16 +10,17 @@ export const AddChannelOptions = () => {
   return (
     <div className="channel-options__container">
       <div className="channel-options__options">
-          <p type="button" onClick={() => setOpenedNewChannel(true)}>
-            Crear nuevo canal
-          </p>
+        <p type="button" onClick={() => setOpenedNewChannel(true)}>
+          Crear nuevo canal
+        </p>
       </div>
       <Modal
         opened={openedNewChannel}
         onClose={() => setOpenedNewChannel(false)}
         overflow="inside"
         withCloseButton={false}
-        size="md">
+        size="md"
+        zIndex={999}>
         {
           <ModalCreateChannel
             title={'Add new channel'}
@@ -28,16 +29,17 @@ export const AddChannelOptions = () => {
         }
       </Modal>
       <div className="channel-options__options">
-          <p type="button" onClick={() => setOpened(true)}>
-            Explorar la lista de canales
-          </p>
+        <p type="button" onClick={() => setOpened(true)}>
+          Explorar la lista de canales
+        </p>
       </div>
       <Modal
         opened={opened}
         onClose={() => setOpened(false)}
         overflow="inside"
         withCloseButton={false}
-        size="lg">
+        size="lg"
+        zIndex={999}>
         {
           <ModalMembersChannel
             title={'Add new channel'}

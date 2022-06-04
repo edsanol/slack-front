@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { HeaderLandingPage } from '../components/HeaderLandingPage';
 import { Aside } from '../components/Aside';
 import { HeaderChat } from '../components/HeaderChat';
@@ -8,14 +8,19 @@ import { HelpLandingPage } from '../components/HelpLandingPage';
 import { ProfileLandingPage } from '../components/ProfileLandingPage';
 import RichInput from '../components/RichInput';
 import { HeaderChatGroup } from '../components/HeaderChatGroup';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import chat from '../assets/mocks/chat.json';
+import { getChannelsAction } from '../store/actions/actionsChannel';
 
 export const LandingPage = () => {
   const [showProfileOptions, setShowProfileOptions] = useState(false);
   const [showAddChannel, setshowAddChannel] = useState(false);
 
   const showView = useSelector((state) => state.changeViewReducer.hiddenView);
+  const dispatch = useDispatch();
+  useEffect(() => {
+    dispatch(getChannelsAction());
+  }, []);
 
   return (
     <>
@@ -23,22 +28,11 @@ export const LandingPage = () => {
         setShowProfileOptions={setShowProfileOptions}
         showProfileOptions={showProfileOptions}
       />
-      {/* {showProfileOptions && (
-        <div className="div-show-profile-optioncs">
-          <UserOptionsProfile />
-        </div>
-      )} */}
-
       <main className="main__full-container">
         <Aside
           showAddChannel={showAddChannel}
           setshowAddChannel={setshowAddChannel}
         />
-        {/* {showAddChannel && (
-          <div className="div-show-add-channel-options">
-            <AddChannelOptions />
-          </div>
-        )} */}
         <section className="main__section-main">
           <div
             className={
