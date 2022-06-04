@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { useCallback } from 'react';
+import jwt_decode from 'jwt-decode';
 const BASE_URL = 'http://localhost:8080';
 
 export function getWorkspaceAction() {
@@ -28,7 +28,7 @@ export function loginUserAction(data) {
         `${BASE_URL}/users/login`,
         {
           email: data.email,
-          password: data.password
+          password: data.password,
         },
         {
           headers: {
@@ -36,23 +36,22 @@ export function loginUserAction(data) {
           },
         }
       );
-      
-      if(response.data.ok) {
-        localStorage.setItem("token", response.data.token);
+
+      if (response.data.ok) {
+        localStorage.setItem('token', response.data.token);
       }
 
       dispatch(loginUser(response.data));
     } catch (error) {
-      console.log(error)
+      console.log(error);
     }
   };
 }
 
 const loginUser = (login) => ({
-  type: "LOGIN_USER",
-  payload: login
+  type: 'LOGIN_USER',
+  payload: login,
 });
-
 
 export function registerUserAction(data) {
   return async (dispatch) => {
@@ -64,7 +63,7 @@ export function registerUserAction(data) {
           fullName: data.fullName,
           email: data.email,
           password: data.password,
-          workSpaceId: '629a2552587275ec49d069cd'
+          workSpaceId: '629a2552587275ec49d069cd',
         },
         {
           headers: {
@@ -72,54 +71,53 @@ export function registerUserAction(data) {
           },
         }
       );
-      
-      if(response.data.ok) {
-        localStorage.setItem("token", response.data.token);
+
+      if (response.data.ok) {
+        localStorage.setItem('token', response.data.token);
       }
-      console.log(data)
+      console.log(data);
 
       dispatch(registerUser(response.data));
     } catch (error) {
-      console.log(error)
+      console.log(error);
     }
   };
 }
 
 const registerUser = (register) => ({
-  type: "REGISTER_USER",
-  payload: register
+  type: 'REGISTER_USER',
+  payload: register,
 });
 
-
-export function verifyToken() {
-  return async(dispatch) => {
-    const token = localStorage.getItem("token");
-    console.log(token)
-
-    if(!token){
-      dispatch(withoutToken())
-      // return false
-    }
+export const startChecking = () => {
+  return async (dispatch) => {
     try {
-      const response = await axios.post(
-        `${BASE_URL}/users/renew`,
-        {
-          headers: {
-            'Content-type': 'application/json; charset=UTF-8',
-            "x-token": token,
-          },
-        }
-      )
-      console.log(response)
+      const token = localStorage.getItem('token') || '';
+      const response = await axios.get(`${BASE_URL}/users/renew`, {
+        headers: {
+          'x-token': token,
+        },
+      });
 
-    } catch (error) {
-      console.log(error)
+      if (response.data.ok) {
+        const tokenDecode = jwt_decode(response.data.token);
+
+        dispatch(
+          loginUser({
+            _id: tokenDecode.uid,
+            name: tokenDecode.fullName,
+            email: tokenDecode.email,
+          })
+        );
+        localStorage.setItem('token', response.data.token);
+      }
+    } catch (err) {
+      dispatch(finishChecking());
+      console.log(err);
     }
+  };
+};
 
-  }
-}
-
-
-const withoutToken = () => ({
-  type: 'WITHOUT_TOKEN'
-})
+const finishChecking = () => ({
+  type: 'FINISH_CHECKING',
+});
