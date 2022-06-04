@@ -1,6 +1,8 @@
 import React from 'react';
 import '../../assets/styles/components/modals/ModalCreateChannel.scss';
 import { useForm } from 'react-hook-form';
+import { useDispatch, useSelector } from 'react-redux';
+import { createChannelAction } from '../../store/actions/actionsChannel';
 
 export const ModalCreateChannel = () => {
   const {
@@ -9,8 +11,13 @@ export const ModalCreateChannel = () => {
     handleSubmit,
   } = useForm();
 
+  const userId = useSelector((state) => state.authReducer.uid);
+  const dispatch = useDispatch();
+
   const onSubmit = (data) => {
-    console.log(data);
+    const { name, description } = data;
+    //console.log(data, userId);
+    dispatch(createChannelAction({ name, description, userId }));
   };
 
   return (
@@ -50,11 +57,11 @@ export const ModalCreateChannel = () => {
             className="form-create-channel__input"
             name="channelDescription"
             id="channelDescription"
-            {...register('Description', {
+            {...register('description', {
               required: true,
             })}
           />
-          {errors.Description?.type === 'required' && (
+          {errors.description?.type === 'required' && (
             <p className="input__error">⚠ El campo nombre es requerido</p>
           )}
           <p>¿De que trata este canal?</p>
