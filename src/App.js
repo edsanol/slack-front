@@ -4,32 +4,36 @@ import { NotFound } from './pages/NotFound';
 import { AuthRouter } from './router/AuthRouter';
 import { PublicRoute } from './router/PublicRoute';
 import { PrivateRoute } from './router/PrivateRoute';
-import { useDispatch } from 'react-redux'
+import { useDispatch } from 'react-redux';
 import { useEffect } from 'react';
-import { verifyToken } from './store/actions/actionsAuth';
+import { startChecking, verifyToken } from './store/actions/actionsAuth';
 
 function App() {
-
   const dispatch = useDispatch();
-
+  //
   useEffect(() => {
-    dispatch(verifyToken())
+    dispatch(startChecking());
   }, []);
 
   return (
     <BrowserRouter>
       <Routes>
-
-        <Route path="/" element={
-          <PrivateRoute>
-            <LandingPage />
-          </PrivateRoute>} 
+        <Route
+          path="/"
+          element={
+            <PrivateRoute>
+              <LandingPage />
+            </PrivateRoute>
+          }
         />
 
-        <Route path="/auth/*" element={
-          <PublicRoute>
-            <AuthRouter />
-          </PublicRoute>}
+        <Route
+          path="/auth/*"
+          element={
+            <PublicRoute>
+              <AuthRouter />
+            </PublicRoute>
+          }
         />
 
         <Route path="*" element={<NotFound />} />
