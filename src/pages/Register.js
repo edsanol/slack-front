@@ -17,17 +17,14 @@ export const Register = () => {
   const workspaceid = useSelector(state => state.authReducer.workspaceId)
 
   const onSubmit = (data) => {
-    console.log(data);
-
     const { fullName, email, password } = data;
-
     dispatch(registerUserAction({fullName, email, password, workspaceid }))
   };
 
   useEffect(() => {
     const workspace = () => dispatch(getWorkspaceAction())
     workspace()
-  }, [])
+  }, [dispatch])
 
   return (
     <>

@@ -4,7 +4,7 @@ import { useForm } from 'react-hook-form';
 import { useDispatch, useSelector } from 'react-redux';
 import { createChannelAction } from '../../store/actions/actionsChannel';
 
-export const ModalCreateChannel = () => {
+export const ModalCreateChannel = ({setOpenedNewChannel}) => {
   const {
     register,
     formState: { errors },
@@ -16,8 +16,8 @@ export const ModalCreateChannel = () => {
 
   const onSubmit = (data) => {
     const { name, description } = data;
-    //console.log(data, userId);
     dispatch(createChannelAction({ name, description, userId }));
+    setOpenedNewChannel(false);
   };
 
   return (

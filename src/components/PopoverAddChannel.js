@@ -3,7 +3,6 @@ import { Popover } from '@mantine/core';
 import { AddChannelOptions } from './AddChannelOptions';
 import { useDispatch } from 'react-redux';
 import { actionsHiddenScroll } from '../store/actions/actionsChangeState';
-import { useSelector } from 'react-redux';
 
 export const PopoverAddChannel = () => {
   const [opened, setOpened] = useState(false);

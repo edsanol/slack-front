@@ -16,7 +16,12 @@ export const Aside = ({ showAddChannel, setshowAddChannel }) => {
     showAddChannel ? setshowAddChannel(false) : setshowAddChannel(true);
   };
 
-  const hiddenScroll = useSelector((state) => state.changeStateReducer.hiddenScroll);
+  const hiddenScroll = useSelector(
+    (state) => state.changeStateReducer.hiddenScroll
+  );
+  const channelsByUser = useSelector((state) => state.channelReducer.channels);
+  const channelsloading = useSelector((state) => state.channelReducer.loading);
+  const memberInChannel = useSelector(state => state.authReducer.uid)
 
   return (
     <div className="aside-container">
@@ -32,7 +37,12 @@ export const Aside = ({ showAddChannel, setshowAddChannel }) => {
           <p>DesignersKR ⌵</p>
         </div>
 
-        <aside className={hiddenScroll ? "aside-header-channels-hidden" : "aside-header-channels"}>
+        <aside
+          className={
+            hiddenScroll
+              ? 'aside-header-channels-hidden'
+              : 'aside-header-channels'
+          }>
           <ul className="aside-section-channels-options">
             <li className="list-channels-options-subtitles">
               <i className="fa-regular fa-bookmark" id="icon-channel"></i>
@@ -50,10 +60,21 @@ export const Aside = ({ showAddChannel, setshowAddChannel }) => {
               </p>
               <Collapse
                 in={openedChannels}
-                transitionDuration={200}
+                transitionDuration={0}
                 transitionTimingFunction="linear">
                 <ul className="aside-section-channels-dropdown">
-                  <ChannelMessageGroup />
+                  {channelsloading
+                    ? 'Cargando...'
+                    : channelsByUser
+                      .filter(channels => channels.users.includes(memberInChannel))
+                      .map((channel) => {
+                        return (
+                          <ChannelMessageGroup
+                            key={channel._id}
+                            name={channel.name}
+                          />
+                        );
+                      })}
 
                   <li className="list-channels-add-channels">
                     <button
@@ -79,7 +100,7 @@ export const Aside = ({ showAddChannel, setshowAddChannel }) => {
               </p>
               <Collapse
                 in={openedChats}
-                transitionDuration={200}
+                transitionDuration={0}
                 transitionTimingFunction="linear">
                 <ul>
                   <DirectMessageUser />

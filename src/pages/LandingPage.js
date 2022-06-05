@@ -11,6 +11,7 @@ import { HeaderChatGroup } from '../components/HeaderChatGroup';
 import { useDispatch, useSelector } from 'react-redux';
 import chat from '../assets/mocks/chat.json';
 import { getChannelsAction } from '../store/actions/actionsChannel';
+import { startChecking } from '../store/actions/actionsAuth';
 
 export const LandingPage = () => {
   const [showProfileOptions, setShowProfileOptions] = useState(false);
@@ -19,8 +20,9 @@ export const LandingPage = () => {
   const showView = useSelector((state) => state.changeViewReducer.hiddenView);
   const dispatch = useDispatch();
   useEffect(() => {
+    dispatch(startChecking())
     dispatch(getChannelsAction());
-  }, []);
+  }, [dispatch]);
 
   return (
     <>

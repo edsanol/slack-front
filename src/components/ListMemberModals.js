@@ -1,5 +1,4 @@
 import React from 'react';
-
 import '../assets/styles/components/ListMemberModals.scss';
 import listMembersJson from '../assets/mocks/list-member.json';
 export const ListMemberModals = () => {

@@ -6,14 +6,19 @@ import { PublicRoute } from './router/PublicRoute';
 import { PrivateRoute } from './router/PrivateRoute';
 import { useDispatch } from 'react-redux';
 import { useEffect } from 'react';
-import { startChecking, verifyToken } from './store/actions/actionsAuth';
+import { startChecking } from './store/actions/actionsAuth';
 
 function App() {
   const dispatch = useDispatch();
-  //
+  // const checkingState = useSelector((state) => state.authReducer.checking);
+  
   useEffect(() => {
     dispatch(startChecking());
-  }, []);
+  }, [dispatch]);
+
+  // if (checkingState) {
+  //   return <h1>Espere por favor</h1>;
+  // }
 
   return (
     <BrowserRouter>
