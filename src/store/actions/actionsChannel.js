@@ -50,6 +50,7 @@ export function addUserToChannelAction(data){
     }
   }
 }
+
 const addUserToChannel = (channel) => ({
   type: 'ADD_USER_TO_CHANNEL',
   payload: channel,

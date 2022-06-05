@@ -5,6 +5,7 @@ import { ModalEditUser } from './modals/ModalEditUser';
 import { actionsChangeView } from '../store/actions/actionsChangeView';
 import { useDispatch, useSelector } from 'react-redux';
 import { actionsChangeState } from '../store/actions/actionsChangeState';
+import { logoutUser } from '../store/actions/actionsAuth';
 
 export const UserOptionsProfile = () => {
   const dispatch = useDispatch();
@@ -23,6 +24,11 @@ export const UserOptionsProfile = () => {
   const stateOption = useSelector(
     (state) => state.changeStateReducer.stateView
   );
+  const nameUser = useSelector((state) => state.authReducer.name);
+
+  const handleClickLogout = () => {
+    dispatch(logoutUser());
+  }
 
   const userProfile = [
     {
@@ -40,7 +46,7 @@ export const UserOptionsProfile = () => {
           <div className="div-user-options-header" key={user.id}>
             <img src={user.img} alt="rec1" />
             <div>
-              <h2 className="">{user.name}</h2>
+              <h2 className="">{nameUser}</h2>
               <div className="state-container">
                 <span
                   className={
@@ -79,7 +85,7 @@ export const UserOptionsProfile = () => {
       </div>
 
       <div className="div-user-options-logout">
-        <div className="hover-user-options">
+        <div type="button" className="hover-user-options" onClick={handleClickLogout}>
           <p>Salir</p>
         </div>
       </div>
