@@ -119,6 +119,23 @@ export const startChecking = () => {
   };
 };
 
+// const ReloginUser = (login) => ({
+//   type: 'RELOGIN_USER',
+//   payload: login,
+// });
+
 const finishChecking = () => ({
   type: 'FINISH_CHECKING',
+});
+
+
+export const logoutUser = () => {
+  return (dispatch) => {
+    localStorage.removeItem('token');
+    dispatch(logout());
+  }
+}
+
+const logout = () => ({
+  type: 'LOGOUT_USER',
 });

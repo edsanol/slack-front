@@ -4,6 +4,8 @@ const initialState = {
   loggedIn: false,
   name: null,
   email: null,
+  image: null,
+  description: null,
   workspaceId: null,
 };
 
@@ -22,6 +24,8 @@ export const authReducer = (state = initialState, action) => {
         uid: action.payload._id,
         name: action.payload.name,
         email: action.payload.email,
+        // image: action.payload.image,
+        // description: action.payload.description,
       };
     case 'REGISTER_USER':
       return {
@@ -36,6 +40,27 @@ export const authReducer = (state = initialState, action) => {
       return {
         ...state,
         checking: false,
+      };
+    // case 'RELOGIN_USER':
+    //   return {
+    //     ...state,
+    //     checking: false,
+    //     loggedIn: true,
+    //     uid: action.payload._id,
+    //     name: action.payload.name,
+    //     email: action.payload.email,
+    //   };
+    case 'LOGOUT_USER':
+      return {
+        ...state,
+        checking: false,
+        loggedIn: false,
+        uid: null,
+        name: null,
+        email: null,
+        image: null,
+        description: null,
+        workspaceId: null,
       };
 
     default:

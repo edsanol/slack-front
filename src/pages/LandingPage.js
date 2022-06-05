@@ -20,6 +20,7 @@ export const LandingPage = () => {
   const showView = useSelector((state) => state.changeViewReducer.hiddenView);
   const dispatch = useDispatch();
   useEffect(() => {
+    // TODO: Get:id del usuario logueado
     dispatch(startChecking())
     dispatch(getChannelsAction());
   }, [dispatch]);
