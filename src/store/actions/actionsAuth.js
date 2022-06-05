@@ -22,7 +22,6 @@ const getWorkspace = (res) => ({
 
 export function loginUserAction(data) {
   return async (dispatch) => {
-    console.log(data);
     try {
       const response = await axios.post(
         `${BASE_URL}/users/login`,
@@ -55,7 +54,6 @@ const loginUser = (login) => ({
 
 export function registerUserAction(data) {
   return async (dispatch) => {
-    console.log(data);
     try {
       const response = await axios.post(
         `${BASE_URL}/users/register`,
@@ -75,7 +73,6 @@ export function registerUserAction(data) {
       if (response.data.ok) {
         localStorage.setItem('token', response.data.token);
       }
-      console.log(data);
 
       dispatch(registerUser(response.data));
     } catch (error) {
@@ -91,8 +88,12 @@ const registerUser = (register) => ({
 
 export const startChecking = () => {
   return async (dispatch) => {
+
     try {
       const token = localStorage.getItem('token') || '';
+      if (!token) {
+        return false;
+      }
       const response = await axios.get(`${BASE_URL}/users/renew`, {
         headers: {
           'x-token': token,

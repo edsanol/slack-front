@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import '../assets/styles/components/AddChannelOptions.scss';
-import { Group, Modal } from '@mantine/core';
-import { ModalMembersChannel } from './modals/ModalMembersChannel';
+import { Modal } from '@mantine/core';
 import { ModalCreateChannel } from './modals/ModalCreateChannel';
+import { ModalListChannels } from './modals/ModalListChannels';
 
 export const AddChannelOptions = () => {
   const [opened, setOpened] = useState(false);
@@ -22,10 +22,7 @@ export const AddChannelOptions = () => {
         size="md"
         zIndex={999}>
         {
-          <ModalCreateChannel
-            title={'Add new channel'}
-            paragraph={'Add channel'}
-          />
+          <ModalCreateChannel setOpenedNewChannel={setOpenedNewChannel}/>
         }
       </Modal>
       <div className="channel-options__options">
@@ -41,10 +38,7 @@ export const AddChannelOptions = () => {
         size="lg"
         zIndex={999}>
         {
-          <ModalMembersChannel
-            title={'Add new channel'}
-            paragraph={'Add channel'}
-          />
+          <ModalListChannels setOpened={setOpened}/>
         }
       </Modal>
     </div>
