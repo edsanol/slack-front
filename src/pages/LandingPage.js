@@ -12,17 +12,19 @@ import { useDispatch, useSelector } from 'react-redux';
 import chat from '../assets/mocks/chat.json';
 import { getChannelsAction } from '../store/actions/actionsChannel';
 import { startChecking } from '../store/actions/actionsAuth';
-import { getUsersAction } from '../store/actions/actionUsers';
+import { getUsersAction, getUsersIdAction } from '../store/actions/actionUsers';
 
 export const LandingPage = () => {
   const [showProfileOptions, setShowProfileOptions] = useState(false);
   const [showAddChannel, setshowAddChannel] = useState(false);
 
   const showView = useSelector((state) => state.changeViewReducer.hiddenView);
+  const userUid = useSelector((state) => state.authReducer.uid);
   const dispatch = useDispatch();
   useEffect(() => {
     // TODO: Get:id del usuario logueado
-    dispatch(startChecking())
+    dispatch(getUsersIdAction(userUid))
+    dispatch(startChecking());
     dispatch(getChannelsAction());
     dispatch(getUsersAction());
   }, [dispatch]);
