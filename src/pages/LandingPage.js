@@ -12,6 +12,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import chat from '../assets/mocks/chat.json';
 import { getChannelsAction } from '../store/actions/actionsChannel';
 import { startChecking } from '../store/actions/actionsAuth';
+import { getUsersAction } from '../store/actions/actionUsers';
 
 export const LandingPage = () => {
   const [showProfileOptions, setShowProfileOptions] = useState(false);
@@ -23,6 +24,7 @@ export const LandingPage = () => {
     // TODO: Get:id del usuario logueado
     dispatch(startChecking())
     dispatch(getChannelsAction());
+    dispatch(getUsersAction());
   }, [dispatch]);
 
   return (
