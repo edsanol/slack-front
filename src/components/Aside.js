@@ -3,9 +3,9 @@ import { ChannelMessageGroup } from './ChannelMessageGroup';
 import { DirectMessageUser } from './DirectMessageUser';
 import { Collapse } from '@mantine/core';
 import { Group, Modal } from '@mantine/core';
-import { ModalMembersChannel } from './modals/ModalMembersChannel';
 import { PopoverAddChannel } from './PopoverAddChannel';
 import { useSelector } from 'react-redux';
+import { ModalListUsers } from './modals/ModalListUsers';
 
 export const Aside = ({ showAddChannel, setshowAddChannel }) => {
   const [openedChannels, setOpenChannels] = useState(true);
@@ -126,10 +126,7 @@ export const Aside = ({ showAddChannel, setshowAddChannel }) => {
             withCloseButton={false}
             size="lg">
             {
-              <ModalMembersChannel
-                title={'Add new teammates'}
-                paragraph={'Add people'}
-              />
+              <ModalListUsers />
             }
           </Modal>
         </aside>

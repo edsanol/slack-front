@@ -1,27 +1,27 @@
 import React, { useState } from 'react';
 import { useSelector } from 'react-redux';
 import '../../assets/styles/components/modals/ModalMembersChannel.scss';
-import { ListChannels } from '../ListChannels';
+import { ListUsers } from '../ListUsers';
 
-export const ModalListChannels = ({setOpened}) => {
+export const ModalListUsers = () => {
   const [newFilter, setNewFilter] = useState('');
   const inputStyle = {
     fontFamily: "'Lato', FontAwesome",
   };
 
-  const channels = useSelector((state) => state.channelReducer.channels);
+  const allUsers = useSelector((state) => state.userReducer.users);
 
-  // Filtro por nombre de canales
-  const search = channels.filter(channel => channel.name.toLowerCase().includes(newFilter.toLowerCase()));
+  // Filtro por nombre de usuarios
+  const search = allUsers.filter(user => user.fullName.toLowerCase().includes(newFilter.toLowerCase()));
 
   return (
     <section className="modalMembers">
       <div className="modalMembers__header">
-        <h2>Channels explorer</h2>
+        <h2>Users explorer</h2>
       </div>
 
       <div className="modalMembers__div-search">
-        <p className="modalMembers__p-add">Add channel</p>
+        <p className="modalMembers__p-add">Add new teammate</p>
         <input
           type="text"
           className="modalMembers__input"
@@ -33,13 +33,12 @@ export const ModalListChannels = ({setOpened}) => {
       </div>
       <div className="modalMembers__div-listPeople">
         {search.map((data) => (
-          <ListChannels
+          <ListUsers
             key={data._id}
-            name={data.name}
+            name={data.fullName}
+            image={data.image}
+            email={data.email}
             description={data.description}
-            users={data.users}
-            channelId={data._id}
-            setOpened={setOpened}
           />
         ))}
       </div>
