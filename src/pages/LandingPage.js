@@ -16,15 +16,31 @@ import { getUsersAction, getUsersIdAction } from '../store/actions/actionUsers';
 
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import { LoadingPage } from './LoadingPage';
+import { useSocket } from '../hooks/useSocket';
+import { actionsSocket } from '../store/actions/actionsSocket';
+import { actionsChat } from '../store/actions/actionsChat';
 
 export const LandingPage = () => {
+  const dispatch = useDispatch();
   const [showProfileOptions, setShowProfileOptions] = useState(false);
   const [showAddChannel, setshowAddChannel] = useState(false);
+  const sockets = useSocket('http://localhost:8080');
+
+  useEffect(() => {
+    dispatch(actionsSocket(sockets));
+  }, [sockets]);
+
+  const usersSocket = useSelector((state) => state.socketReducer.socket);
+
+  useEffect(() => {
+    usersSocket?.on('emitAllUsers', (allUsers) => {
+      dispatch(actionsChat(allUsers));
+    });
+  }, [usersSocket]);
 
   const showView = useSelector((state) => state.changeViewReducer.hiddenView);
   const { uid } = useSelector((state) => state.authReducer);
-  const dispatch = useDispatch();
+
   useEffect(() => {
     dispatch(getUsersIdAction(uid));
     dispatch(startChecking());

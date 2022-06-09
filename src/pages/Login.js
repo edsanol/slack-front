@@ -16,7 +16,6 @@ export const Login = () => {
   const dispatch = useDispatch();
 
   const onSubmit = (data) => {
-    console.log(data);
     const { email, password } = data;
 
     dispatch(loginUserAction({ email, password }));
