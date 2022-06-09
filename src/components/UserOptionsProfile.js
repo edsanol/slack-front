@@ -24,11 +24,11 @@ export const UserOptionsProfile = () => {
   const stateOption = useSelector(
     (state) => state.changeStateReducer.stateView
   );
-  const nameUser = useSelector((state) => state.authReducer.name);
+  const { fullName } = useSelector((state) => state.userReducer.user);
 
   const handleClickLogout = () => {
     dispatch(logoutUser());
-  }
+  };
 
   const userProfile = [
     {
@@ -46,7 +46,7 @@ export const UserOptionsProfile = () => {
           <div className="div-user-options-header" key={user.id}>
             <img src={user.img} alt="rec1" />
             <div>
-              <h2 className="">{nameUser}</h2>
+              <h2 className="">{fullName}</h2>
               <div className="state-container">
                 <span
                   className={
@@ -60,8 +60,8 @@ export const UserOptionsProfile = () => {
           </div>
         ))}
       </div>
-      <Modal zIndex={9999} opened={opened} onClose={() => setOpened(false)}>
-        {<ModalEditUser />}
+      <Modal zIndex={1000} opened={opened} onClose={() => setOpened(false)}>
+        {<ModalEditUser setOpened={setOpened} />}
       </Modal>
       <div className="div-user-options-body">
         <div className="hover-user-options" onClick={handleChangeStatus}>
@@ -85,7 +85,10 @@ export const UserOptionsProfile = () => {
       </div>
 
       <div className="div-user-options-logout">
-        <div type="button" className="hover-user-options" onClick={handleClickLogout}>
+        <div
+          type="button"
+          className="hover-user-options"
+          onClick={handleClickLogout}>
           <p>Salir</p>
         </div>
       </div>

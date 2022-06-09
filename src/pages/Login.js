@@ -4,7 +4,7 @@ import { useForm } from 'react-hook-form';
 import { HeaderLoginRegister } from '../components/HeaderLoginRegister';
 import { FooterLoginRegister } from '../components/FooterLoginRegister';
 import { loginUserAction } from '../store/actions/actionsAuth';
-import { useDispatch } from 'react-redux'
+import { useDispatch } from 'react-redux';
 
 export const Login = () => {
   const {
@@ -19,7 +19,7 @@ export const Login = () => {
     console.log(data);
     const { email, password } = data;
 
-    dispatch(loginUserAction({email, password}))
+    dispatch(loginUserAction({ email, password }));
   };
 
   return (
@@ -68,12 +68,15 @@ export const Login = () => {
             <p className="input__error">⚠ El campo contraseña es requerido</p>
           )}
           {errors.password?.type === 'minLength' && (
-            <p className="input__error">⚠ La contraseña debe tener minimo 8 carácteres</p>
+            <p className="input__error">
+              ⚠ La contraseña debe tener minimo 8 carácteres
+            </p>
           )}
           {errors.password?.type === 'pattern' && (
             <p className="input__error">
               ⚠ La contraseña debe tener por lo menos una letra mayúscula, una
-              letra minúscula, un número o carácter especial y una longitud minima de 8 carácteres
+              letra minúscula, un número o carácter especial y una longitud
+              minima de 8 carácteres
             </p>
           )}
           <input

@@ -88,7 +88,7 @@ const registerUser = (register) => ({
 
 export const startChecking = () => {
   return async (dispatch) => {
-
+    dispatch({ type: 'LOADING_REVALIDATE', payload: true });
     try {
       const token = localStorage.getItem('token') || '';
       if (!token) {
@@ -116,6 +116,7 @@ export const startChecking = () => {
       dispatch(finishChecking());
       console.log(err);
     }
+    dispatch({ type: 'LOADING_REVALIDATE', payload: false });
   };
 };
 
@@ -128,13 +129,12 @@ const finishChecking = () => ({
   type: 'FINISH_CHECKING',
 });
 
-
 export const logoutUser = () => {
   return (dispatch) => {
     localStorage.removeItem('token');
     dispatch(logout());
-  }
-}
+  };
+};
 
 const logout = () => ({
   type: 'LOGOUT_USER',

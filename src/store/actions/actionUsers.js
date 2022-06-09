@@ -29,7 +29,6 @@ export function getUsersIdAction(id) {
           'x-token': token,
         },
       });
-      console.log(response.data);
       dispatch(getUsersId(response.data.data));
     } catch (error) {
       console.log(error);
@@ -40,4 +39,33 @@ export function getUsersIdAction(id) {
 const getUsersId = (user) => ({
   type: 'GET_USER_ID',
   payload: user,
+});
+
+export function updateUserProfileAction(data) {
+  return async (dispatch) => {
+    try {
+      const token = localStorage.getItem('token') || '';
+      if (!token) {
+        return false;
+      }
+
+      const response = await axios.put(`${BASE_URL}/users/edit`, data, {
+        headers: {
+          'x-token': token,
+          'Content-type': 'application/json; charset=UTF-8',
+        },
+      });
+      if (response.data.ok) {
+        dispatch(updateUserProfile(response.data.data));
+      }
+    } catch (error) {
+      console.log(error);
+      throw new Error('error');
+    }
+  };
+}
+
+const updateUserProfile = (userUpdated) => ({
+  type: 'UPDATE_USER_PROFILE',
+  payload: userUpdated,
 });
