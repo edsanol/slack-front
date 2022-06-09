@@ -21,7 +21,8 @@ export const Aside = ({ showAddChannel, setshowAddChannel }) => {
   );
   const channelsByUser = useSelector((state) => state.channelReducer.channels);
   const channelsloading = useSelector((state) => state.channelReducer.loading);
-  const memberInChannel = useSelector(state => state.authReducer.uid)
+  const memberInChannel = useSelector((state) => state.authReducer.uid);
+  const allUser = useSelector((state) => state.chatReducer.users);
 
   return (
     <div className="aside-container">
@@ -66,15 +67,17 @@ export const Aside = ({ showAddChannel, setshowAddChannel }) => {
                   {channelsloading
                     ? 'Cargando...'
                     : channelsByUser
-                      .filter(channels => channels.users.includes(memberInChannel))
-                      .map((channel) => {
-                        return (
-                          <ChannelMessageGroup
-                            key={channel._id}
-                            name={channel.name}
-                          />
-                        );
-                      })}
+                        .filter((channels) =>
+                          channels.users.includes(memberInChannel)
+                        )
+                        .map((channel) => {
+                          return (
+                            <ChannelMessageGroup
+                              key={channel._id}
+                              name={channel.name}
+                            />
+                          );
+                        })}
 
                   <li className="list-channels-add-channels">
                     <button
@@ -103,7 +106,15 @@ export const Aside = ({ showAddChannel, setshowAddChannel }) => {
                 transitionDuration={0}
                 transitionTimingFunction="linear">
                 <ul>
-                  <DirectMessageUser />
+                  {allUser.map((user) => (
+                    <DirectMessageUser
+                      key={user._id}
+                      fullName={user.fullName}
+                      state={user.state}
+                      image={user.image}
+                    />
+                  ))}
+
                   <li className="list-channels-dropdown-direct">
                     <button className="button-add-channels">+</button>{' '}
                     <Group>
@@ -125,9 +136,7 @@ export const Aside = ({ showAddChannel, setshowAddChannel }) => {
             overflow="inside"
             withCloseButton={false}
             size="lg">
-            {
-              <ModalListUsers />
-            }
+            {<ModalListUsers />}
           </Modal>
         </aside>
       </section>
