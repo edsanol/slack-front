@@ -14,16 +14,19 @@ import { getChannelsAction } from '../store/actions/actionsChannel';
 import { startChecking } from '../store/actions/actionsAuth';
 import { getUsersAction, getUsersIdAction } from '../store/actions/actionUsers';
 
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+import { LoadingPage } from './LoadingPage';
+
 export const LandingPage = () => {
   const [showProfileOptions, setShowProfileOptions] = useState(false);
   const [showAddChannel, setshowAddChannel] = useState(false);
 
   const showView = useSelector((state) => state.changeViewReducer.hiddenView);
-  const userUid = useSelector((state) => state.authReducer.uid);
+  const { uid } = useSelector((state) => state.authReducer);
   const dispatch = useDispatch();
   useEffect(() => {
-    // TODO: Get:id del usuario logueado
-    dispatch(getUsersIdAction(userUid))
+    dispatch(getUsersIdAction(uid));
     dispatch(startChecking());
     dispatch(getChannelsAction());
     dispatch(getUsersAction());
@@ -83,6 +86,7 @@ export const LandingPage = () => {
               <ProfileLandingPage />
             </div>
           )}
+          <ToastContainer />
         </section>
       </main>
     </>

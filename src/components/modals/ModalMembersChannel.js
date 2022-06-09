@@ -1,4 +1,5 @@
-import React from 'react';
+import React, { useState } from 'react';
+import { useSelector } from 'react-redux';
 import '../../assets/styles/components/modals/ModalMembersChannel.scss';
 import { ListMemberModals } from '../../components/ListMemberModals';
 
@@ -6,6 +7,13 @@ export const ModalMembersChannel = ({ title, paragraph }) => {
   const inputStyle = {
     fontFamily: "'Lato', FontAwesome",
   };
+  const [newFilter, setNewFilter] = useState('');
+
+  const allUsers = useSelector((state) => state.userReducer.users);
+  // Filtro por nombre de usuarios
+  const search = allUsers.filter((user) =>
+    user.fullName.toLowerCase().includes(newFilter.toLowerCase())
+  );
   return (
     <section className="modalMembers">
       <div className="modalMembers__header">
@@ -19,10 +27,20 @@ export const ModalMembersChannel = ({ title, paragraph }) => {
           className="modalMembers__input"
           placeholder="       &#xf002;     Search members"
           style={inputStyle}
+          value={newFilter}
+          onChange={(e) => setNewFilter(e.target.value)}
         />
       </div>
       <div className="modalMembers__div-listPeople">
-        <ListMemberModals />
+        {search.map((data) => (
+          <ListMemberModals
+            key={data._id}
+            name={data.fullName}
+            image={data.image}
+            email={data.email}
+            occupation={data.occupation}
+          />
+        ))}
       </div>
     </section>
   );

@@ -1,22 +1,26 @@
-import React from "react";
-import { Navigate, Route, Routes } from "react-router-dom";
-import { ChangePassword } from "../pages/ChangePassword";
-import { RecoverPassword } from "../pages/RecoverPassword";
-import { Login } from "../pages/Login";
-import { Register } from "../pages/Register";
+import React from 'react';
+import { Navigate, Route, Routes } from 'react-router-dom';
+import { ChangePassword } from '../pages/ChangePassword';
+import { RecoverPassword } from '../pages/RecoverPassword';
+import { Login } from '../pages/Login';
+import { Register } from '../pages/Register';
+import { useSelector } from 'react-redux';
+import { LoadingPage } from '../pages/LoadingPage';
 
 export const AuthRouter = () => {
+  const { checking } = useSelector((state) => state.authReducer);
+
   return (
     <Routes>
-      {/* <Route exact path="login" element={<LoginPage />} />
-      <Route exact path="register" element={<RegisterPage />} />
-      <Route path="*" element={<Navigate to="login" />} /> */}
       <Route exact path="register" element={<Register />} />
-      <Route exact path="login" element={<Login />} />
+      <Route
+        exact
+        path="login"
+        element={checking ? <LoadingPage /> : <Login />}
+      />
       <Route exact path="change-password" element={<ChangePassword />} />
       <Route exact path="recover-password" element={<RecoverPassword />} />
       <Route path="*" element={<Navigate to="login" />} />
-  </Routes>
-  )
-}
-
+    </Routes>
+  );
+};

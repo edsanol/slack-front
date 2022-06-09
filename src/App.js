@@ -10,15 +10,10 @@ import { startChecking } from './store/actions/actionsAuth';
 
 function App() {
   const dispatch = useDispatch();
-  // const checkingState = useSelector((state) => state.authReducer.checking);
-  
+
   useEffect(() => {
     dispatch(startChecking());
   }, [dispatch]);
-
-  // if (checkingState) {
-  //   return <h1>Espere por favor</h1>;
-  // }
 
   return (
     <BrowserRouter>
