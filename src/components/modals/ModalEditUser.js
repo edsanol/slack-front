@@ -4,6 +4,7 @@ import { useForm } from 'react-hook-form';
 import '../../assets/styles/components/modals/ModalEditUser.scss';
 import { updateUserProfileAction } from '../../store/actions/actionUsers';
 import { toast } from 'react-toastify';
+import { ImageProfileUser } from '../ImageProfileUser';
 
 export const ModalEditUser = ({ setOpened }) => {
   const { fullName, description, phone, occupation } = useSelector(
@@ -135,6 +136,7 @@ export const ModalEditUser = ({ setOpened }) => {
             </button>
           </div>
         </div>
+        {/* <ImageProfileUser /> */}
       </div>
       <footer className="button-footer">
         <button type="submit" className="button-submit button-save">

@@ -1,25 +1,14 @@
-import React from 'react';
-import listUsersJson from '../assets/mocks/users.json';
-
-export const DirectMessageUser = () => {
-  const directMessageUser = listUsersJson
-
+export const DirectMessageUser = ({ fullName, image, state }) => {
   return (
-    <>
-      {directMessageUser.map((e) => {
-        return (
-          <li key={e.id} className="list-user-dropdown-direct">
-            <div className="div-direct-message-user">
-              <img src={e.avatar} alt="rec1" />
-              <div className="list-channels-name-directs">{e.name}</div>
-              <span
-                className={
-                  e.state ? 'span-user-active' : 'span-user-desactive'
-                }></span>
-            </div>
-          </li>
-        );
-      })}
-    </>
+    <li className="list-user-dropdown-direct">
+      <div className="div-direct-message-user">
+        <img src={image} alt={fullName} />
+        <div className="list-channels-name-directs">{fullName}</div>
+        <span
+          className={
+            state === 'enable' ? 'span-user-active' : 'span-user-desactive'
+          }></span>
+      </div>
+    </li>
   );
 };
