@@ -17,3 +17,17 @@ export const getAllUserSocketAction = (listUsers) => {
     payload: listUsers,
   };
 };
+
+export const getActiveChatAction = (idChannel) => {
+  return {
+    type: 'GET_ACTIVE_CHAT',
+    payload: idChannel,
+  };
+}
+
+export const newMessage = (message) => {
+  return {
+    type: 'NEW_MESSAGE',
+    payload: message,
+  };
+}

@@ -10,10 +10,10 @@
   position: fixed;
   overflow-y: auto;
   scrollbar-width: none;
-  transition: all .3s ease;
+  transition: all 0.3s ease;
 }
 .aside-container::-webkit-scrollbar {
-	display: none;
+  display: none;
 }
 
 .aside-section-workspace {
@@ -72,7 +72,8 @@
   font-size: 15px;
   line-height: 28px;
 }
-.aside-channels-header p, i {
+.aside-channels-header p,
+i {
   cursor: pointer;
 }
 
@@ -83,7 +84,7 @@
   line-height: 29px;
   overflow-y: auto;
   scrollbar-width: none;
-  transition: all .3s ease;
+  transition: all 0.3s ease;
 }
 .aside-header-channels-hidden {
   overflow-y: auto;
@@ -93,7 +94,7 @@
   overflow-y: hidden;
 }
 .aside-header-channels::-webkit-scrollbar {
-	display: none;
+  display: none;
 }
 #icon__header-aside {
   position: absolute;
@@ -112,7 +113,6 @@
   font-size: 15px;
   font-weight: 400;
   line-height: 29px;
-
 }
 .p-channels-options-subtitles {
   margin-left: 8px;
@@ -135,15 +135,24 @@
 }
 .list-channels-options {
   @include list-channels-styles(8px, 0px);
-  
 }
 .list-channels-dropdown {
-  @include list-channels-styles(8px, 15px);
+  height: 28px;
+  margin-top: 7px;
+  padding-left: 15px;
   cursor: pointer;
   display: flex;
-  span{
+  align-items: center;
+  span {
     padding-right: 15px;
   }
+  &:hover {
+    background-color: #570f63;
+    width: 100%;
+  }
+}
+.list-channel-isActive {
+  background-color: #1164a3;
 }
 .list-channels-dropdown-direct {
   position: relative;
@@ -155,11 +164,9 @@
   cursor: pointer;
 }
 .list-channels-dropdown-direct img {
- 
   height: 21px;
   width: 21px;
 }
-
 
 .list-channels-add-channels {
   @include list-channels-styles(8px, 15px);
@@ -176,8 +183,6 @@
   padding: 2px 6px;
   margin-right: 6px;
 }
-
-
 
 #li__hidden {
   width: 100%;

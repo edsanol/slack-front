@@ -9,15 +9,17 @@ import { ProfileLandingPage } from '../components/ProfileLandingPage';
 import RichInput from '../components/RichInput';
 import { HeaderChatGroup } from '../components/HeaderChatGroup';
 import { useDispatch, useSelector } from 'react-redux';
-import chat from '../assets/mocks/chat.json';
 import { getChannelsAction } from '../store/actions/actionsChannel';
 import { startChecking } from '../store/actions/actionsAuth';
 import { getUsersAction, getUsersIdAction } from '../store/actions/actionUsers';
-
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { useSocket } from '../hooks/useSocket';
-import { actionsSocket, getAllUserSocketAction } from '../store/actions/actionsSocket';
+import {
+  actionsSocket,
+  getAllUserSocketAction,
+  newMessage,
+} from '../store/actions/actionsSocket';
 
 export const LandingPage = () => {
   const dispatch = useDispatch();
@@ -27,24 +29,30 @@ export const LandingPage = () => {
 
   useEffect(() => {
     dispatch(actionsSocket(sockets));
-  }, [sockets]);
+  }, [sockets, dispatch]);
 
   useEffect(() => {
     sockets.socket?.on('emitAllUsers', (allUsers) => {
-      console.log(allUsers);
       dispatch(getAllUserSocketAction(allUsers));
     });
-  }, [sockets.socket]);
+  }, [sockets.socket, dispatch]);
 
   const showView = useSelector((state) => state.changeViewReducer.hiddenView);
   const { uid } = useSelector((state) => state.authReducer);
+  const chatMessage = useSelector((state) => state.socketReducer.messages);
 
   useEffect(() => {
     dispatch(getUsersIdAction(uid));
     dispatch(startChecking());
     dispatch(getChannelsAction());
     dispatch(getUsersAction());
-  }, [dispatch]);
+  }, [dispatch, uid]);
+
+  useEffect(() => {
+    sockets.socket?.on('sendMessage', (messageReceived) => {
+      dispatch(newMessage(messageReceived));
+    });
+  }, [sockets.socket]);
 
   return (
     <>
@@ -66,13 +74,13 @@ export const LandingPage = () => {
             }>
             <HeaderChatGroup />
             <div className="chat__div-message">
-              {chat.map((itemChat) => (
+              {chatMessage.map((itemChat) => (
                 <BoxChatMessage
-                  key={itemChat.id}
-                  name={itemChat.name}
-                  comment={itemChat.comment}
-                  avatar={itemChat.avatar}
-                  time={itemChat.time}
+                  key={itemChat._id}
+                  fullName={itemChat.fullName}
+                  image={itemChat.image}
+                  message={itemChat.message}
+                  createdAt={itemChat.createdAt}
                 />
               ))}
             </div>

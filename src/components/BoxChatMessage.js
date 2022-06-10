@@ -14,22 +14,22 @@ export const BoxChatMessage = (props) => {
       onMouseEnter={() => setIsShown(true)}
       onMouseLeave={() => setIsShown(false)}>
       {isShown && <ReactionChat />}
-      <ChatDate />
+      {/* <ChatDate /> */}
       <div className="">
-        <img className="img-chat-user-img" src={props.avatar} alt="img7" />
+        <img className="img-chat-user-img" src={props.image} alt="img7" />
       </div>
       <div>
         <div className="div-box-chat">
-          <h2 className="h2-chat-user-name">{props.name}</h2>
-          <img className="img-chat-user-description" src={bandera} alt="img7" />
-          <div className="div-chat-fecha">{props.time}</div>
+          <h2 className="h2-chat-user-name">{props.fullName}</h2>
+          {/* <img className="img-chat-user-description" src={bandera} alt="img7" /> */}
+          <div className="div-chat-fecha">{props.createdAt}</div>
         </div>
         <div>
-          <p className="p-chat-text-message">
-            {props.comment}
-          </p>
-          <ReplyMessagesChat />
-          <ChatCountLike />
+          <p
+            className="p-chat-text-message"
+            dangerouslySetInnerHTML={{ __html: props.message }}></p>
+          {/* <ReplyMessagesChat /> */}
+          {/* <ChatCountLike /> */}
         </div>
       </div>
     </div>
