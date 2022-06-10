@@ -17,8 +17,7 @@ import { getUsersAction, getUsersIdAction } from '../store/actions/actionUsers';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { useSocket } from '../hooks/useSocket';
-import { actionsSocket } from '../store/actions/actionsSocket';
-import { actionsChat } from '../store/actions/actionsChat';
+import { actionsSocket, getAllUserSocketAction } from '../store/actions/actionsSocket';
 
 export const LandingPage = () => {
   const dispatch = useDispatch();
@@ -30,13 +29,12 @@ export const LandingPage = () => {
     dispatch(actionsSocket(sockets));
   }, [sockets]);
 
-  const usersSocket = useSelector((state) => state.socketReducer.socket);
-
   useEffect(() => {
-    usersSocket?.on('emitAllUsers', (allUsers) => {
-      dispatch(actionsChat(allUsers));
+    sockets.socket?.on('emitAllUsers', (allUsers) => {
+      console.log(allUsers);
+      dispatch(getAllUserSocketAction(allUsers));
     });
-  }, [usersSocket]);
+  }, [sockets.socket]);
 
   const showView = useSelector((state) => state.changeViewReducer.hiddenView);
   const { uid } = useSelector((state) => state.authReducer);

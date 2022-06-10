@@ -1,6 +1,8 @@
 const initialState = {
   socket: null,
   online: '',
+  users: [],
+  activeChat: null,
 };
 
 export const socketReducer = (state = initialState, action) => {
@@ -16,6 +18,13 @@ export const socketReducer = (state = initialState, action) => {
         ...state,
         socket: null,
         online: 'disable',
+        users: [],
+        activeChat: null,
+      };
+    case 'GET_ALL_USER':
+      return {
+        ...state,
+        users: action.payload,
       };
     default:
       return state;
