@@ -5,10 +5,15 @@
   flex-direction: row;
   align-items: center;
   width: 100%;
+  cursor: pointer;
   &:hover{
     background-color: #570f63;
       width: 100%;
   }
+}
+
+.list-user-isActive {
+  background-color: #1164a3;
 }
 
 .list-channels-name-directs {
@@ -44,7 +49,6 @@
     flex-direction: row;
     align-items: center;
     margin-left: 16px;
-    cursor: pointer;
   }
   .list-user-dropdown-direct img {
    

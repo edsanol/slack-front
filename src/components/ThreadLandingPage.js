@@ -1,9 +1,9 @@
 import React from 'react';
 import { ThreadMessage } from '../components/ThreadMessage';
 import '../assets/styles/components/ThreadLandingPage.scss';
-import RichInput from '../components/RichInput';
 import { useDispatch } from 'react-redux';
 import { actionsChangeView } from '../store/actions/actionsChangeView';
+import RichInput from './RichInput';
 
 export const ThreadLandingPage = () => {
   const dispatch = useDispatch();
