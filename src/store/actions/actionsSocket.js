@@ -10,3 +10,10 @@ export const disconnectActionsSocket = () => {
     type: 'SOCKET_DISCONNECTED',
   };
 };
+
+export const getAllUserSocketAction = (listUsers) => {
+  return {
+    type: 'GET_ALL_USER',
+    payload: listUsers,
+  };
+};

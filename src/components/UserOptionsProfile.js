@@ -6,7 +6,7 @@ import { actionsChangeView } from '../store/actions/actionsChangeView';
 import { useDispatch, useSelector } from 'react-redux';
 import { actionsChangeState } from '../store/actions/actionsChangeState';
 import { logoutUser } from '../store/actions/actionsAuth';
-import { disconnectActionsSocket } from '../store/actions/actionsSocket';
+import { disconnectActionsSocket, getAllUserSocketAction } from '../store/actions/actionsSocket';
 
 export const UserOptionsProfile = () => {
   const dispatch = useDispatch();
@@ -29,9 +29,9 @@ export const UserOptionsProfile = () => {
   const { socket } = useSelector((state) => state.socketReducer);
 
   const handleClickLogout = () => {
+    dispatch(disconnectActionsSocket());
     dispatch(logoutUser());
     socket.disconnect();
-    dispatch(disconnectActionsSocket());
   };
 
   const userProfile = [

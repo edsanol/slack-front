@@ -22,7 +22,7 @@ export const Aside = ({ showAddChannel, setshowAddChannel }) => {
   const channelsByUser = useSelector((state) => state.channelReducer.channels);
   const channelsloading = useSelector((state) => state.channelReducer.loading);
   const memberInChannel = useSelector((state) => state.authReducer.uid);
-  const allUser = useSelector((state) => state.chatReducer.users);
+  const allUser = useSelector((state) => state.socketReducer.users);
 
   return (
     <div className="aside-container">
