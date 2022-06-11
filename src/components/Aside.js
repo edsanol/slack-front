@@ -74,6 +74,7 @@ export const Aside = ({ showAddChannel, setshowAddChannel }) => {
                           return (
                             <ChannelMessageGroup
                               key={channel._id}
+                              channelId={channel._id}
                               name={channel.name}
                             />
                           );
@@ -109,6 +110,7 @@ export const Aside = ({ showAddChannel, setshowAddChannel }) => {
                   {allUser.map((user) => (
                     <DirectMessageUser
                       key={user._id}
+                      userId={user._id}
                       fullName={user.fullName}
                       state={user.state}
                       image={user.image}

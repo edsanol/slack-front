@@ -2,20 +2,37 @@ import React, { useRef, useState } from 'react';
 import '../assets/styles/components/RichInput.scss';
 import tinymce from 'tinymce/tinymce';
 import BundledEditor from '../BundledEditor';
+import { useSelector } from 'react-redux';
 
 export default function RichInput() {
-  const [data, setData] = useState(``);
+  // const [data, setData] = useState(``);
   const editorRef = useRef(null);
+  const { socket, activeChat } = useSelector((state) => state.socketReducer);
+  const { _id, fullName, image } = useSelector((state) => state.userReducer.user);
+
   const log = () => {
     if (editorRef.current) {
       console.log(editorRef.current.getContent());
-      setData(editorRef.current.getContent());
+      // setData(editorRef.current.getContent());
+
+      socket.emit('sendMessage', {
+        to: activeChat,
+        from: _id,
+        fullName: fullName,
+        image: image,
+        message: editorRef.current.getContent(),
+      });
+
     }
+
   };
+
   return (
     <>
       <div className="rich__input-container">
-        <button className="rich__input-btn" onClick={log}><i className='bx bx-send'></i></button>
+        <button className="rich__input-btn" onClick={log}>
+          <i className="bx bx-send"></i>
+        </button>
       </div>
       <div className="container-rich">
         <BundledEditor
