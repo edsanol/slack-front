@@ -3,7 +3,7 @@ import { useSelector } from 'react-redux';
 import '../../assets/styles/components/modals/ModalMembersChannel.scss';
 import { ListChannels } from '../ListChannels';
 
-export const ModalListChannels = ({setOpened}) => {
+export const ModalListChannels = ({ setOpened }) => {
   const [newFilter, setNewFilter] = useState('');
   const inputStyle = {
     fontFamily: "'Lato', FontAwesome",
@@ -12,7 +12,9 @@ export const ModalListChannels = ({setOpened}) => {
   const channels = useSelector((state) => state.channelReducer.channels);
 
   // Filtro por nombre de canales
-  const search = channels.filter(channel => channel.name.toLowerCase().includes(newFilter.toLowerCase()));
+  const search = channels.filter((channel) =>
+    channel.name.toLowerCase().includes(newFilter.toLowerCase())
+  );
 
   return (
     <section className="modalMembers">

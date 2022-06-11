@@ -28,14 +28,17 @@ export const socketReducer = (state = initialState, action) => {
         users: action.payload,
       };
     case 'GET_ACTIVE_CHAT':
-      if(state.activeChat === action.payload) return state;
+      if (state.activeChat === action.payload) return state;
       return {
         ...state,
         activeChat: action.payload,
         messages: [],
       };
     case 'NEW_MESSAGE':
-      if(state.activeChat === action.payload.to || state.activeChat === action.payload.from) {
+      if (
+        state.activeChat === action.payload.to ||
+        state.activeChat === action.payload.from
+      ) {
         return {
           ...state,
           messages: [...state.messages, action.payload],
@@ -43,6 +46,11 @@ export const socketReducer = (state = initialState, action) => {
       } else {
         return state;
       }
+    case 'GET_MESSAGES':
+      return {
+        ...state,
+        messages: [...action.payload],
+      };
     default:
       return state;
   }

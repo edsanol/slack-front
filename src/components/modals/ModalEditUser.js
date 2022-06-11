@@ -62,6 +62,7 @@ export const ModalEditUser = ({ setOpened }) => {
       });
       console.log(err);
     }
+    window.location.reload(true);
   };
   return (
     <form className="modal-user-edit" onSubmit={handleSubmit(onSubmit)}>

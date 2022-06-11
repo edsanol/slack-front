@@ -1,3 +1,6 @@
+import axios from 'axios';
+const BASE_URL = 'http://localhost:8080';
+
 export const actionsSocket = (sockets) => {
   return {
     type: 'SOCKET_CONNECTED',
@@ -23,11 +26,40 @@ export const getActiveChatAction = (idChannel) => {
     type: 'GET_ACTIVE_CHAT',
     payload: idChannel,
   };
-}
+};
 
 export const newMessage = (message) => {
   return {
     type: 'NEW_MESSAGE',
     payload: message,
   };
+};
+
+//  OBTENER MENSAJES DE BASE DE DATOS
+export function getMessagesAction(id) {
+  return async (dispatch) => {
+    try {
+      const token = localStorage.getItem('token') || '';
+      if (!token) {
+        return false;
+      }
+
+      const response = await axios.get(`${BASE_URL}/messages/${id}`, {
+        headers: {
+          'x-token': token,
+        },
+      });
+      if (response.data.ok) {
+        dispatch(getMessageDB(response.data.msg));
+      }
+    } catch (error) {
+      console.log(error);
+      throw new Error('error');
+    }
+  };
 }
+
+const getMessageDB = (messages) => ({
+  type: 'GET_MESSAGES',
+  payload: messages,
+});
