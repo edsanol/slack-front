@@ -72,7 +72,7 @@ export const LandingPage = () => {
                 ? 'main__div-chat-full'
                 : 'main__div-chat'
             }>
-            <HeaderChatGroup />
+            <HeaderChat />
             <div className="chat__div-message">
               {chatMessage.map((itemChat) => (
                 <BoxChatMessage

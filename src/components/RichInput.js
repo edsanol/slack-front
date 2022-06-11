@@ -5,16 +5,14 @@ import BundledEditor from '../BundledEditor';
 import { useSelector } from 'react-redux';
 
 export default function RichInput() {
-  // const [data, setData] = useState(``);
   const editorRef = useRef(null);
   const { socket, activeChat } = useSelector((state) => state.socketReducer);
-  const { _id, fullName, image } = useSelector((state) => state.userReducer.user);
+  const { _id, fullName, image } = useSelector(
+    (state) => state.userReducer.user
+  );
 
   const log = () => {
     if (editorRef.current) {
-      console.log(editorRef.current.getContent());
-      // setData(editorRef.current.getContent());
-
       socket.emit('sendMessage', {
         to: activeChat,
         from: _id,
@@ -22,9 +20,7 @@ export default function RichInput() {
         image: image,
         message: editorRef.current.getContent(),
       });
-
     }
-
   };
 
   return (

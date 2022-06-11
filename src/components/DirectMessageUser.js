@@ -1,20 +1,25 @@
 import { useDispatch, useSelector } from 'react-redux';
-import { getActiveChatAction } from '../store/actions/actionsSocket';
+
+import {
+  getActiveChatAction,
+  getMessagesAction,
+} from '../store/actions/actionsSocket';
 
 export const DirectMessageUser = ({ fullName, image, state, userId }) => {
-
   const dispatch = useDispatch();
   const { activeChat } = useSelector((state) => state.socketReducer);
 
   const handleClick = () => {
-    dispatch(getActiveChatAction(userId))
-  }
+    dispatch(getActiveChatAction(userId));
+    dispatch(getMessagesAction(userId));
+  };
 
   return (
-    // list-user-isActive
     <li className="list-user-dropdown-direct">
-      <div 
-        className={`div-direct-message-user ${activeChat === userId ? 'list-user-isActive' : ''}`}
+      <div
+        className={`div-direct-message-user ${
+          activeChat === userId ? 'list-user-isActive' : ''
+        }`}
         onClick={handleClick}>
         <img src={image} alt={fullName} />
         <div className="list-channels-name-directs">{fullName}</div>

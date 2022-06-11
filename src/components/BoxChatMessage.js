@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import bandera from '../assets/images/mexico.png';
 import { ChatDate } from '../components/ChatDate';
 import { ReactionChat } from '../components/ReactionChat';
@@ -7,9 +7,13 @@ import { ChatCountLike } from './ChatCountLike';
 
 export const BoxChatMessage = (props) => {
   const [isShown, setIsShown] = useState(false);
-
+  const messagesEndRef = useRef(null);
+  useEffect(() => {
+    messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' });
+  }, [props]);
   return (
     <div
+      id="message"
       className="div-box-chat-container"
       onMouseEnter={() => setIsShown(true)}
       onMouseLeave={() => setIsShown(false)}>
@@ -31,6 +35,7 @@ export const BoxChatMessage = (props) => {
           {/* <ReplyMessagesChat /> */}
           {/* <ChatCountLike /> */}
         </div>
+        <div ref={messagesEndRef} />
       </div>
     </div>
   );
