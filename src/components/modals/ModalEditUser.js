@@ -1,18 +1,37 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { useForm } from 'react-hook-form';
 import '../../assets/styles/components/modals/ModalEditUser.scss';
 import { updateUserProfileAction } from '../../store/actions/actionUsers';
 import { toast } from 'react-toastify';
-import { ImageProfileUser } from '../ImageProfileUser';
+import { updateImageAction } from '../../store/actions/actionsImageProfile';
 
 export const ModalEditUser = ({ setOpened }) => {
+  const dispatch = useDispatch();
+  const [image, setImage] = useState(null);
+  const [file, setFile] = useState(null);
+
+  useEffect(() => {
+    if (file) {
+      const reader = new FileReader();
+      reader.onloadend = (e) => setImage(e.target.result);
+      reader.readAsDataURL(file);
+      dispatch(updateImageAction(file));
+    }
+  }, [file]);
+
+  const handleUpdateImageProfile = () => {
+    document.querySelector('#imageSelector').click();
+  };
+  const handleChangeSelectImage = (e) => {
+    setFile(e.target.files[0]);
+  };
+
   const { fullName, description, phone, occupation } = useSelector(
     (state) => state.userReducer.user
   );
   const user = useSelector((state) => state.userReducer.user);
-
-  const dispatch = useDispatch();
+  const { imageProfile } = useSelector((state) => state.updateImageReducer);
 
   const {
     register,
@@ -28,7 +47,7 @@ export const ModalEditUser = ({ setOpened }) => {
   });
 
   const onSubmit = async (data) => {
-    const userUpdated = { ...user, ...data };
+    const userUpdated = { ...user, ...data, image: imageProfile };
     try {
       await dispatch(updateUserProfileAction(userUpdated));
       toast.success('Perfil actualizado', {
@@ -122,18 +141,37 @@ export const ModalEditUser = ({ setOpened }) => {
             )}
           </div>
         </div>
+
         <div className="container-submit-image containerB">
           <div>
-            <p>Profile Image</p>
+            <span
+              type="button"
+              className="span__button-upload"
+              onClick={handleUpdateImageProfile}>
+              Upload Image
+            </span>
+
             <img
-              src="https://images.cults3d.com/yPjnhYzpd_6MZRbXv91lHSk1-Do=/516x516/https://files.cults3d.com/uploaders/19014637/illustration-file/357d0404-63e6-4ef4-91b0-e4dec1bb02ee/4f73455cebdd51062bf02270fc22110a.jpg"
+              className="img__upload-image"
+              src={user.image}
               alt="edit you profile' photo"
             />
           </div>
           <div className="button-edit">
-            <button className="button-upload button-transparent">
-              Update image
-            </button>
+            <input
+              id="imageSelector"
+              type="file"
+              name="file"
+              accept="image/*"
+              style={{ display: 'none' }}
+              onChange={handleChangeSelectImage}
+            />
+            {!!image && (
+              <div className="div__preview-image">
+                <p>Previo Image</p>
+                <img src={image} alt="upload preview" />
+              </div>
+            )}
           </div>
         </div>
         {/* <ImageProfileUser /> */}

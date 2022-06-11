@@ -17,7 +17,10 @@ import { getUsersAction, getUsersIdAction } from '../store/actions/actionUsers';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { useSocket } from '../hooks/useSocket';
-import { actionsSocket, getAllUserSocketAction } from '../store/actions/actionsSocket';
+import {
+  actionsSocket,
+  getAllUserSocketAction,
+} from '../store/actions/actionsSocket';
 
 export const LandingPage = () => {
   const dispatch = useDispatch();
@@ -31,7 +34,6 @@ export const LandingPage = () => {
 
   useEffect(() => {
     sockets.socket?.on('emitAllUsers', (allUsers) => {
-      console.log(allUsers);
       dispatch(getAllUserSocketAction(allUsers));
     });
   }, [sockets.socket]);
