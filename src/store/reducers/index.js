@@ -5,6 +5,7 @@ import { changeViewReducer } from './changeView.reducer';
 import { channelReducer } from './channel.reducer';
 import { userReducer } from './user.reducer';
 import { socketReducer } from './socket.reducer';
+import { updateImageReducer } from './updateImage.reducer';
 
 export default combineReducers({
   changeViewReducer,
@@ -13,4 +14,5 @@ export default combineReducers({
   channelReducer,
   userReducer,
   socketReducer,
+  updateImageReducer,
 });
