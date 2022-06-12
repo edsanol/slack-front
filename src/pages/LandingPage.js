@@ -7,7 +7,6 @@ import { ThreadLandingPage } from '../components/ThreadLandingPage';
 import { HelpLandingPage } from '../components/HelpLandingPage';
 import { ProfileLandingPage } from '../components/ProfileLandingPage';
 import RichInput from '../components/RichInput';
-import { HeaderChatGroup } from '../components/HeaderChatGroup';
 import { useDispatch, useSelector } from 'react-redux';
 import { getChannelsAction } from '../store/actions/actionsChannel';
 import { startChecking } from '../store/actions/actionsAuth';
@@ -17,6 +16,7 @@ import 'react-toastify/dist/ReactToastify.css';
 import { useSocket } from '../hooks/useSocket';
 import {
   actionsSocket,
+  getAllMessagesChannelAction,
   getAllUserSocketAction,
   newMessage,
 } from '../store/actions/actionsSocket';
@@ -49,9 +49,15 @@ export const LandingPage = () => {
   }, [dispatch, uid]);
 
   useEffect(() => {
-    sockets.socket?.on('sendMessage', (messageReceived) => {
+    sockets.socket?.on('sendMessageUser', (messageReceived) => {
       dispatch(newMessage(messageReceived));
     });
+    sockets.socket?.on('sendMessageChannel', (messageReceived) => {
+      dispatch(newMessage(messageReceived));
+    });
+    sockets.socket?.on('getMessagesChannel' , (messageReceivedChannel) => {
+      dispatch(getAllMessagesChannelAction(messageReceivedChannel));
+    })
   }, [sockets.socket]);
 
   return (
@@ -73,7 +79,6 @@ export const LandingPage = () => {
                 : 'main__div-chat'
             }>
             <HeaderChat />
-            {/* <HeaderChatGroup /> */}
             <div className="chat__div-message">
               {chatMessage.map((itemChat) => (
                 <BoxChatMessage

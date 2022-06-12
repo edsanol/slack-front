@@ -38,11 +38,6 @@ export const HeaderChat = () => {
                 : 'Welcome to Slack'}
             </h2>
           </div>
-          {/* {
-            activeChat && channelData.length > 0 ? (
-              
-            ) 
-          } */}
           <Modal
             opened={opened}
             onClose={() => setOpened(false)}
