@@ -15,11 +15,12 @@ export const HeaderChat = () => {
   const userData = users.filter((user) => user._id === activeChat);
   const channelData = channels.filter((channel) => channel._id === activeChat);
 
-  const verifyChatUserOrChannel = users.map((e) => e._id === activeChat);
+  const verifyChatUser = users.map((e) => e._id === activeChat);
+  const verifyChatChannel = channels.map((e) => e._id === activeChat);
 
   return (
     <>
-      {verifyChatUserOrChannel.includes(true) ? (
+      {verifyChatUser.includes(true) ? (
         // CHAT DIRECT
         <div className="chat__header">
           <div className="chat__header-left">
@@ -27,7 +28,7 @@ export const HeaderChat = () => {
           </div>
           <div className="chat__header-right"></div>
         </div>
-      ) : (
+      ) : verifyChatChannel.includes(true) ? (
         // CHAT GRUPAL
         <div className="chat__header">
           <div className="chat__header-left">
@@ -37,6 +38,11 @@ export const HeaderChat = () => {
                 : 'Welcome to Slack'}
             </h2>
           </div>
+          {/* {
+            activeChat && channelData.length > 0 ? (
+              
+            ) 
+          } */}
           <Modal
             opened={opened}
             onClose={() => setOpened(false)}
@@ -64,6 +70,13 @@ export const HeaderChat = () => {
                 onClick={() => setOpened(true)}></i>
             </Group>
           </div>
+        </div>
+      ) : (
+        <div className="chat__header">
+          <div className="chat__header-left">
+            <h2>Welcome to Slack</h2>
+          </div>
+          <div className="chat__header-right"></div>
         </div>
       )}
     </>
