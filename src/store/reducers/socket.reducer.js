@@ -21,6 +21,7 @@ export const socketReducer = (state = initialState, action) => {
         online: 'disable',
         users: [],
         activeChat: null,
+        messages: [],
       };
     case 'GET_ALL_USER':
       return {

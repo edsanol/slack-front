@@ -4,6 +4,7 @@ import { ChatDate } from '../components/ChatDate';
 import { ReactionChat } from '../components/ReactionChat';
 import { ReplyMessagesChat } from './ReplyMessagesChat';
 import { ChatCountLike } from './ChatCountLike';
+import { timeDate } from '../helpers/timeDate';
 
 export const BoxChatMessage = (props) => {
   const [isShown, setIsShown] = useState(false);
@@ -11,6 +12,7 @@ export const BoxChatMessage = (props) => {
   useEffect(() => {
     messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' });
   }, [props]);
+
   return (
     <div
       id="message"
@@ -18,7 +20,7 @@ export const BoxChatMessage = (props) => {
       onMouseEnter={() => setIsShown(true)}
       onMouseLeave={() => setIsShown(false)}>
       {isShown && <ReactionChat />}
-      {/* <ChatDate /> */}
+      <ChatDate date={props.createdAt} />
       <div className="">
         <img className="img-chat-user-img" src={props.image} alt="img7" />
       </div>
@@ -26,7 +28,7 @@ export const BoxChatMessage = (props) => {
         <div className="div-box-chat">
           <h2 className="h2-chat-user-name">{props.fullName}</h2>
           {/* <img className="img-chat-user-description" src={bandera} alt="img7" /> */}
-          <div className="div-chat-fecha">{props.createdAt}</div>
+          <div className="div-chat-fecha">{timeDate(props.createdAt)}</div>
         </div>
         <div>
           <p
