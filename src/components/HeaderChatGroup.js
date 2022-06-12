@@ -5,15 +5,26 @@ import rectangle2 from '../assets/images/Rectangle-2.png';
 import '../assets/styles/components/HeaderChatGroup.scss';
 import { Modal, Group } from '@mantine/core';
 import { ModalMembersChannel } from './modals/ModalMembersChannel';
+import { useSelector } from 'react-redux';
 
 export const HeaderChatGroup = () => {
   const [opened, setOpened] = useState(false);
+
+  const { activeChat } = useSelector((state) => state.socketReducer);
+  const { channels } = useSelector((state) => state.channelReducer);
+
+  const channelData = channels.filter((channel) => channel._id === activeChat);
+
   return (
     <div className="chat__header">
       <div className="chat__header-left">
         <span className="online"></span>
         <h2>
-          id praesentium sint <span>&#x2b50;</span>
+          {activeChat && channelData.length > 0
+            ? channelData[0].name
+            : 'Welcome to Slack'}
+
+          <span>&#x2b50;</span>
         </h2>
         <p>&#x1f60a;</p>
       </div>
@@ -23,7 +34,12 @@ export const HeaderChatGroup = () => {
         overflow="inside"
         withCloseButton={false}
         size="lg">
-        {<ModalMembersChannel title={"1,141 members in talks"} paragraph={"Add people"} />}
+        {
+          <ModalMembersChannel
+            title={'1,141 members in talks'}
+            paragraph={'Add people'}
+          />
+        }
       </Modal>
       <div className="chat__header-right">
         <div className="chat__header-right-users">

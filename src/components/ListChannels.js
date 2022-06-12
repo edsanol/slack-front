@@ -3,7 +3,13 @@ import { useDispatch, useSelector } from 'react-redux';
 import '../assets/styles/components/ListChannels.scss';
 import { addUserToChannelAction } from '../store/actions/actionsChannel';
 
-export const ListChannels = ({ name, description, users, channelId, setOpened }) => {
+export const ListChannels = ({
+  name,
+  description,
+  users,
+  channelId,
+  setOpened,
+}) => {
   const memberInChannel = useSelector((state) => state.authReducer.uid);
   const dispatch = useDispatch();
 
