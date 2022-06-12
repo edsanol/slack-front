@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import rectangle1 from '../assets/images/Rectangle-1.png';
 import { Modal } from '@mantine/core';
 import { ModalEditUser } from './modals/ModalEditUser';
 import { actionsChangeView } from '../store/actions/actionsChangeView';
@@ -25,7 +24,7 @@ export const UserOptionsProfile = () => {
   const stateOption = useSelector(
     (state) => state.changeStateReducer.stateView
   );
-  const { fullName } = useSelector((state) => state.userReducer.user);
+  const { fullName, image } = useSelector((state) => state.userReducer.user);
   const { socket } = useSelector((state) => state.socketReducer);
 
   const handleClickLogout = () => {
@@ -34,35 +33,22 @@ export const UserOptionsProfile = () => {
     socket.disconnect();
   };
 
-  const userProfile = [
-    {
-      id: 123,
-      name: 'Peter Parker',
-      img: rectangle1,
-      state: stateOption,
-    },
-  ];
-
   return (
     <div className="div-user-options-container">
-      <div>
-        {userProfile.map((user) => (
-          <div className="div-user-options-header" key={user.id}>
-            <img src={user.img} alt="rec1" />
-            <div>
-              <h2 className="">{fullName}</h2>
-              <div className="state-container">
-                <span
-                  className={
-                    user.state
-                      ? 'span-user-options-active'
-                      : 'span-user-options-desactive'
-                  }></span>
-                <p>{user.state ? 'Disponible' : 'No disponible'}</p>
-              </div>
-            </div>
+      <div className="div-user-options-header">
+        <img src={image} alt="image profile" />
+        <div>
+          <h2 className="">{fullName}</h2>
+          <div className="state-container">
+            <span
+              className={
+                stateOption
+                  ? 'span-user-options-active'
+                  : 'span-user-options-desactive'
+              }></span>
+            <p>{stateOption ? 'Disponible' : 'No disponible'}</p>
           </div>
-        ))}
+        </div>
       </div>
       <Modal zIndex={1000} opened={opened} onClose={() => setOpened(false)}>
         {<ModalEditUser setOpened={setOpened} />}

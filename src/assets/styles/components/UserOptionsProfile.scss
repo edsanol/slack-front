@@ -10,6 +10,13 @@
   right: -30px;
   top: 4px;
 }
+#p-link {
+  color: #5892d4;
+  cursor: pointer;
+}
+#p-link:hover {
+  color: #3c71ad;
+}
 .div-user-options-header {
   position: relative;
   display: flex;

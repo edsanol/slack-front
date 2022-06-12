@@ -1,6 +1,8 @@
-import React from 'react';
-import { useDispatch } from 'react-redux';
+import React, { useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import { actionsChangeView } from '../store/actions/actionsChangeView';
+import { Modal } from '@mantine/core';
+import { ModalEditUser } from './modals/ModalEditUser';
 import '../assets/styles/components/ProfileLandingPage.scss';
 
 export const ProfileLandingPage = () => {
@@ -8,6 +10,11 @@ export const ProfileLandingPage = () => {
   const handleClickProfileClose = () => {
     dispatch(actionsChangeView('hiddenAll'));
   };
+  const [opened, setOpened] = useState(false);
+
+  const { image, fullName, description, occupation, phone } = useSelector(
+    (state) => state.userReducer.user
+  );
 
   return (
     <div className="div-profile-container">
@@ -23,25 +30,27 @@ export const ProfileLandingPage = () => {
 
       <div className="div-profile-box-container">
         <section className="section-profile-box-image">
-          {/* <figure className="figure-box-image"> */}
-          <img
-            className="profile-image"
-            src="https://images.cults3d.com/yPjnhYzpd_6MZRbXv91lHSk1-Do=/516x516/https://files.cults3d.com/uploaders/19014637/illustration-file/357d0404-63e6-4ef4-91b0-e4dec1bb02ee/4f73455cebdd51062bf02270fc22110a.jpg"
-            alt="imagen de perfil"
-          />
-          {/* </figure> */}
-          <h2>Daniel</h2>
-          <p>
-            <a href=".">Añadir un título</a>
+          <img className="profile-image" src={image} alt="imagen de perfil" />
+          <h2>{fullName}</h2>
+          {occupation && <p>{occupation}</p>}
+          <p id="p-link" onClick={() => setOpened(true)}>
+            Añadir tu ocupación
           </p>
         </section>
         <section className="section-profile-button">
-          <i className="fa-solid fa-pen"></i>
+          <i className="fa-solid fa-pen" onClick={() => setOpened(true)}></i>
           <p>Modificar tu perfil</p>
+          <Modal zIndex={1000} opened={opened} onClose={() => setOpened(false)}>
+            {<ModalEditUser setOpened={setOpened} />}
+          </Modal>
         </section>
         <section className="section-profile-slack">
-          <p className="p-title">Nombre de Slack</p>
-          <p className="p-name">daniel quispe</p>
+          <p className="p-title">Descripción</p>
+          {description && <p>{description}</p>}
+        </section>
+        <section className="section-profile-slack">
+          <p className="p-title">Telefono</p>
+          {phone && <p>{phone}</p>}
           <div className="div-profile-slack-button" />
         </section>
       </div>
