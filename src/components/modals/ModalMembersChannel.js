@@ -41,7 +41,6 @@ export const ModalMembersChannel = ({ title, paragraph, setOpened }) => {
             image={data.image}
             email={data.email}
             occupation={data.occupation}
-            channels={data.channels}
             setOpened={setOpened}
           />
         ))}
