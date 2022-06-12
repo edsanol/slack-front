@@ -10,13 +10,13 @@ export const ListMemberModals = ({
   email,
   occupation,
   uid,
-  channels,
   setOpened,
 }) => {
   const dispatch = useDispatch();
-  const { activeChat } = useSelector((state) => state.socketReducer);
-  const channelId = activeChat;
+  const channelId = useSelector((state) => state.socketReducer.activeChat);
+  const channelsReducer = useSelector((state) => state.channelReducer.channels);
   const memberInChannel = uid;
+
   const handleClickJoin = (e) => {
     e.preventDefault();
     toast.info('added user', {
@@ -27,6 +27,8 @@ export const ListMemberModals = ({
     // window.location.reload(true);
     setOpened(false);
   };
+
+  const channelFilter = channelsReducer.filter((channel) => channel._id === channelId);
 
   return (
     <>
@@ -41,7 +43,7 @@ export const ListMemberModals = ({
           </span>
         </div>
 
-        {channels.includes(channelId) ? (
+        {channelFilter[0].users.includes(memberInChannel) ? (
           <button className="btn__list-channels_member">Member</button>
         ) : (
           <button className="btn__list-channels" onClick={handleClickJoin}>
