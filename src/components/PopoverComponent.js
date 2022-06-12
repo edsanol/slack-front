@@ -2,9 +2,11 @@ import { useState } from 'react';
 import { Popover } from '@mantine/core';
 import { UserOptionsProfile } from './UserOptionsProfile';
 import { useSelector } from 'react-redux';
+import '../assets/styles/components/PopoverComponent.scss';
 
 export const PopoverComponent = () => {
   const [openedPop, setOpenedPop] = useState(false);
+  const { image } = useSelector((state) => state.userReducer.user);
   const stateOption = useSelector(
     (state) => state.changeStateReducer.stateView
   );
@@ -17,6 +19,7 @@ export const PopoverComponent = () => {
           className="header__perfil"
           type="button"
           onClick={() => setOpenedPop((o) => !o)}>
+          <img src={image} alt="image profile" />
           {stateOption ? (
             <span className="header__span-badge-active"> </span>
           ) : (
