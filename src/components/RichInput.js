@@ -20,6 +20,8 @@ export default function RichInput() {
         image: image,
         message: editorRef.current.getContent(),
       });
+
+      editorRef.current.setContent('');
     }
   };
 
@@ -38,7 +40,7 @@ export default function RichInput() {
             selector: 'textarea#file-picker',
             plugins: 'image code lists emoticons autoresize',
             toolbar:
-              'undo redo | emoticons | link image | code | bold italic forecolor | bullist numlist outdent indent ',
+              'undo redo | emoticons | link image | code | bold italic forecolor | outdent indent ',
             menubar: false,
             /* enable title field in the Image dialog*/
             image_title: true,
