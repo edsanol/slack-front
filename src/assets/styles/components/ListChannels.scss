@@ -33,13 +33,31 @@
   display: none;
   width: 56px;
 }
+.btn__list-channels_member {
+  position: absolute;
+  right: 5px;
+  top: 10px;
+  padding: 5px;
+  background-color: #F8F8F8;
+  color: gray;
+  border: none;
+  border-radius: none;
+  cursor: pointer;
+  display: none;
+  width: 60px;
+}
 .list-channels__container:hover {
   .btn__list-channels {
     display: inline;
   }
+  .btn__list-channels_member{
+    display: inline;
+  }
   background-color: #F8F8F8;
+  
 }
 .btn__list-channels:hover {
   background-color: #1ab68c;
   border: 1px solid #1ab68c;
 }
+

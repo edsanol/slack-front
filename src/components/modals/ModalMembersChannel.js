@@ -3,13 +3,14 @@ import { useSelector } from 'react-redux';
 import '../../assets/styles/components/modals/ModalMembersChannel.scss';
 import { ListMemberModals } from '../../components/ListMemberModals';
 
-export const ModalMembersChannel = ({ title, paragraph }) => {
+export const ModalMembersChannel = ({ title, paragraph, setOpened }) => {
   const inputStyle = {
     fontFamily: "'Lato', FontAwesome",
   };
   const [newFilter, setNewFilter] = useState('');
 
   const allUsers = useSelector((state) => state.userReducer.users);
+
   // Filtro por nombre de usuarios
   const search = allUsers.filter((user) =>
     user.fullName.toLowerCase().includes(newFilter.toLowerCase())
@@ -35,10 +36,13 @@ export const ModalMembersChannel = ({ title, paragraph }) => {
         {search.map((data) => (
           <ListMemberModals
             key={data._id}
+            uid={data._id}
             name={data.fullName}
             image={data.image}
             email={data.email}
             occupation={data.occupation}
+            channels={data.channels}
+            setOpened={setOpened}
           />
         ))}
       </div>
