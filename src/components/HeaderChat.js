@@ -1,15 +1,13 @@
 import React, { useState } from 'react';
 import { useSelector } from 'react-redux';
 import '../assets/styles/components/HeaderChat.scss';
-import rectangle from '../assets/images/Rectangle.png';
-import rectangle1 from '../assets/images/Rectangle-1.png';
-import rectangle2 from '../assets/images/Rectangle-2.png';
 import '../assets/styles/components/HeaderChatGroup.scss';
 import { Modal, Group } from '@mantine/core';
 import { ModalMembersChannel } from './modals/ModalMembersChannel';
 
 export const HeaderChat = () => {
   const [opened, setOpened] = useState(false);
+
   const { activeChat, users } = useSelector((state) => state.socketReducer);
   const { channels } = useSelector((state) => state.channelReducer);
   const userData = users.filter((user) => user._id === activeChat);
@@ -17,6 +15,10 @@ export const HeaderChat = () => {
 
   const verifyChatUser = users.map((e) => e._id === activeChat);
   const verifyChatChannel = channels.map((e) => e._id === activeChat);
+
+  const userInChannel = users
+    .filter((user) => user.channels.includes(activeChat))
+    .slice(0, 3);
 
   return (
     <>
@@ -54,9 +56,14 @@ export const HeaderChat = () => {
           </Modal>
           <div className="chat__header-right">
             <div className="chat__header-right-users">
-              <img className="img-right1" src={rectangle} alt="user" />
-              <img className="img-right2" src={rectangle1} alt="user" />
-              <img className="img-right3" src={rectangle2} alt="user" />
+              {userInChannel.map((user, i) => (
+                <img
+                  className={`img-right${i + 1}`}
+                  key={user._id}
+                  src={user.image}
+                  alt={user.fullName}
+                />
+              ))}
             </div>
             <Group>
               <i
