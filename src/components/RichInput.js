@@ -6,14 +6,31 @@ import { useSelector } from 'react-redux';
 
 export default function RichInput() {
   const editorRef = useRef(null);
-  const { socket, activeChat } = useSelector((state) => state.socketReducer);
+  const { socket, activeChat, users } = useSelector((state) => state.socketReducer);
   const { _id, fullName, image } = useSelector(
     (state) => state.userReducer.user
   );
 
+  const { channels } = useSelector((state) => state.channelReducer);
+
+  const verifyChatUser = users.map((e) => e._id === activeChat);
+  const verifyChatChannel = channels.map((e) => e._id === activeChat);
+
   const log = () => {
-    if (editorRef.current) {
-      socket.emit('sendMessage', {
+    if (editorRef.current && verifyChatUser.includes(true)) {
+      socket.emit('sendMessageUser', {
+        to: activeChat,
+        from: _id,
+        fullName: fullName,
+        image: image,
+        message: editorRef.current.getContent(),
+      });
+
+      editorRef.current.setContent('');
+    }
+
+    if (editorRef.current && verifyChatChannel.includes(true)) {
+      socket.emit('sendMessageChannel', {
         to: activeChat,
         from: _id,
         fullName: fullName,
