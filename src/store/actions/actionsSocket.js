@@ -63,8 +63,22 @@ export const getAllMessagesChannelAction = (channelMessages) => {
   return {
     type: 'GET_MESSAGES',
     payload: channelMessages,
-  }
-}
+  };
+};
+
+export const messageToDirectMessage = (directMessage) => {
+  return {
+    type: 'MESSAGE_TO_DIRECT_CHANNEL',
+    payload: directMessage,
+  };
+};
+
+export const messageToChannel = (channelMessage) => {
+  return {
+    type: 'MESSAGE_TO_CHANNEL',
+    payload: channelMessage,
+  };
+};
 
 const getMessageDB = (messages) => ({
   type: 'GET_MESSAGES',

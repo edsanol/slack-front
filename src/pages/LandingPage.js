@@ -18,6 +18,8 @@ import {
   actionsSocket,
   getAllMessagesChannelAction,
   getAllUserSocketAction,
+  messageToChannel,
+  messageToDirectMessage,
   newMessage,
 } from '../store/actions/actionsSocket';
 
@@ -51,14 +53,17 @@ export const LandingPage = () => {
   useEffect(() => {
     sockets.socket?.on('sendMessageUser', (messageReceived) => {
       dispatch(newMessage(messageReceived));
+      dispatch(messageToDirectMessage(messageReceived.from));
+      console.log(messageReceived.from)
     });
     sockets.socket?.on('sendMessageChannel', (messageReceived) => {
       dispatch(newMessage(messageReceived));
+      dispatch(messageToChannel(messageReceived.to));
     });
-    sockets.socket?.on('getMessagesChannel' , (messageReceivedChannel) => {
+    sockets.socket?.on('getMessagesChannel', (messageReceivedChannel) => {
       dispatch(getAllMessagesChannelAction(messageReceivedChannel));
-    })
-  }, [sockets.socket]);
+    });
+  }, [sockets.socket, dispatch]);
 
   return (
     <>
