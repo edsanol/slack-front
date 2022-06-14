@@ -7,6 +7,7 @@ import { PrivateRoute } from './router/PrivateRoute';
 import { useDispatch } from 'react-redux';
 import { useEffect } from 'react';
 import { startChecking } from './store/actions/actionsAuth';
+import { ChangePassword } from './pages/ChangePassword';
 
 function App() {
   const dispatch = useDispatch();
@@ -18,6 +19,15 @@ function App() {
   return (
     <BrowserRouter>
       <Routes>
+        <Route
+          path="/change-password"
+          element={
+            <PrivateRoute>
+              <ChangePassword />
+            </PrivateRoute>
+          }
+        />
+
         <Route
           path="/"
           element={
