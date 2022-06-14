@@ -4,6 +4,8 @@ const initialState = {
   users: [],
   activeChat: null,
   messages: [],
+  messageToDirectMessage: null,
+  messageToChannel: null,
 };
 
 export const socketReducer = (state = initialState, action) => {
@@ -51,6 +53,16 @@ export const socketReducer = (state = initialState, action) => {
       return {
         ...state,
         messages: [...action.payload],
+      };
+    case 'MESSAGE_TO_DIRECT_CHANNEL':
+      return {
+        ...state,
+        messageToDirectMessage: action.payload,
+      };
+    case 'MESSAGE_TO_CHANNEL':
+      return {
+        ...state,
+        messageToChannel: action.payload,
       };
     default:
       return state;

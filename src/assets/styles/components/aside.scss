@@ -15,7 +15,6 @@
 .aside-container::-webkit-scrollbar {
   display: none;
 }
-
 .aside-section-workspace {
   display: flex;
   flex-direction: column;
@@ -24,16 +23,21 @@
   border-top: 1px solid #492451;
   border-right: 1px solid #492451;
 }
-
-.aside-button-workspace-A {
-  @include aside-button-workspace(20px, 8px, 2px, 8px, none);
-}
-.aside-button-workspace-B {
-  @include aside-button-workspace(8px, 8px, 8px, 8px, none);
-}
-
 .aside-button-workspace-selected {
-  @include aside-button-workspace(2px, 2px, 2px, 2px, none);
+  max-width: 33px;
+  max-height: 33px;
+  border-radius: 5px;
+  border: none;
+  color: #fff;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+}
+.aside-button-workspace-selected img {
+  max-width: 94%;
+  max-height: 94%;
+  padding-left: 1px;
+  border-radius: 5px;
 }
 .aside-selected-button {
   border-radius: 8px;
@@ -53,7 +57,6 @@
     opacity: 0.7;
   }
 }
-
 .aside-section-channels {
   display: flex;
   flex-direction: column;
@@ -69,14 +72,9 @@
   color: var(--White);
   padding: 20px;
   font-weight: 700;
-  font-size: 15px;
+  font-size: 18px;
   line-height: 28px;
 }
-.aside-channels-header p,
-i {
-  cursor: pointer;
-}
-
 .aside-header-channels {
   overflow-y: auto;
   border-top: 1px solid #492451;
@@ -138,6 +136,7 @@ i {
 }
 .list-channels-dropdown {
   height: 28px;
+  position: relative;
   margin-top: 7px;
   padding-left: 15px;
   cursor: pointer;
@@ -153,6 +152,15 @@ i {
 }
 .list-channel-isActive {
   background-color: #1164a3;
+}
+.newMessage {
+  width: 0px;
+  height: 14px;
+  border-radius: 50%;
+  background-color: #00bcd4;
+  position: absolute;
+  right: 22px;
+  top: 8px;
 }
 .list-channels-dropdown-direct {
   position: relative;
