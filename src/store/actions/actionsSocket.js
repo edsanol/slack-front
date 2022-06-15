@@ -63,8 +63,8 @@ export const getAllMessagesChannelAction = (channelMessages) => {
   return {
     type: 'GET_MESSAGES',
     payload: channelMessages,
-  }
-}
+  };
+};
 
 const getMessageDB = (messages) => ({
   type: 'GET_MESSAGES',

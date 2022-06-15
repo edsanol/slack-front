@@ -1,5 +1,4 @@
 import React, { useEffect, useRef, useState } from 'react';
-import bandera from '../assets/images/mexico.png';
 import { ChatDate } from '../components/ChatDate';
 import { ReactionChat } from '../components/ReactionChat';
 import { ReplyMessagesChat } from './ReplyMessagesChat';
@@ -19,7 +18,7 @@ export const BoxChatMessage = (props) => {
       className="div-box-chat-container"
       onMouseEnter={() => setIsShown(true)}
       onMouseLeave={() => setIsShown(false)}>
-      {isShown && <ReactionChat />}
+      {isShown && <ReactionChat messageId={props._id} likes={props.likes} />}
       <ChatDate date={props.createdAt} />
       <div className="">
         <img className="img-chat-user-img" src={props.image} alt="img7" />
@@ -27,15 +26,16 @@ export const BoxChatMessage = (props) => {
       <div>
         <div className="div-box-chat">
           <h2 className="h2-chat-user-name">{props.fullName}</h2>
-          {/* <img className="img-chat-user-description" src={bandera} alt="img7" /> */}
           <div className="div-chat-fecha">{timeDate(props.createdAt)}</div>
         </div>
         <div>
           <p
             className="p-chat-text-message"
             dangerouslySetInnerHTML={{ __html: props.message }}></p>
-          {/* <ReplyMessagesChat /> */}
-          {/* <ChatCountLike /> */}
+
+          {props.likes.length > 0 ? (
+            <ChatCountLike likes={props.likes} />
+          ) : null}
         </div>
         <div ref={messagesEndRef} />
       </div>

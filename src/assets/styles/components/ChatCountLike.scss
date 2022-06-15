@@ -1,5 +1,18 @@
 .span-like-count{
-    background-color: rgb(239, 238, 238);
+    background-color: rgb(203, 201, 201);
+    border-radius: 10px;
+    width: 40px;
+    height: 25px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    margin-top: 8px;
+    margin-left: 4px;
+    
+}
+.span-like-count-like{
+    background-color: #c3e5ff;
     border-radius: 10px;
     width: 40px;
     height: 25px;
@@ -19,3 +32,6 @@
 .p-like-count{
     font-size: small;
 }
+// .img-like-container{
+//     background-color: red;
+// }
