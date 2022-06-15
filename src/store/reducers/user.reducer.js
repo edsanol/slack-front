@@ -1,6 +1,7 @@
 const initialState = {
   user: [],
   users: [],
+  changePassword: null,
 };
 
 export const userReducer = (state = initialState, action) => {
@@ -19,6 +20,11 @@ export const userReducer = (state = initialState, action) => {
       return {
         ...state,
         user: action.payload,
+      };
+    case 'CHANGE_PASSWORD':
+      return {
+        ...state,
+        changePassword: action.payload,
       };
     default:
       return state;

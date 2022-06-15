@@ -6,6 +6,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { actionsChangeState } from '../store/actions/actionsChangeState';
 import { logoutUser } from '../store/actions/actionsAuth';
 import { disconnectActionsSocket } from '../store/actions/actionsSocket';
+import { Link } from 'react-router-dom';
 
 export const UserOptionsProfile = () => {
   const dispatch = useDispatch();
@@ -71,6 +72,9 @@ export const UserOptionsProfile = () => {
         </div>
         <div className="hover-user-options" onClick={handleClickProfileShow}>
           <p>Ver Perfil</p>
+        </div>
+        <div className="hover-user-options">
+          <Link to='change-password'>Cambiar contraseña</Link>
         </div>
       </div>
 
