@@ -1,4 +1,5 @@
 import axios from 'axios';
+import { toast } from 'react-toastify';
 const BASE_URL = 'http://localhost:8080';
 
 export function getUsersAction() {
@@ -68,4 +69,42 @@ export function updateUserProfileAction(data) {
 const updateUserProfile = (userUpdated) => ({
   type: 'UPDATE_USER_PROFILE',
   payload: userUpdated,
+});
+
+export const changePasswordAction = (data) => {
+  return async (dispatch) => {
+    try {
+      const token = localStorage.getItem('token') || '';
+      if (!token) {
+        return false;
+      }
+
+      const response = await axios.put(
+        `${BASE_URL}/users/change-password`,
+        data,
+        {
+          headers: {
+            'x-token': token,
+            'Content-type': 'application/json; charset=UTF-8',
+          },
+        }
+      );
+      dispatch(changePassword(response.data.ok));
+      console.log(response.data);
+    } catch (error) {
+      console.log(error.response.data.ok);
+      if (error.response.data.ok === false) {
+        toast.error('Contraseña incorrecta', {
+          position: 'bottom-right',
+          theme: 'colored',
+        });
+        console.log('entre');
+      }
+    }
+  };
+};
+
+const changePassword = (ok) => ({
+  type: 'CHANGE_PASSWORD',
+  payload: ok,
 });

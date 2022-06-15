@@ -1,6 +1,6 @@
 @import '../abstracts/mixins';
 @import '../abstracts/variables';
-.div-direct-message-user{
+.div-direct-message-user {
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -9,11 +9,10 @@
   img {
     border-radius: 3px;
   }
-  &:hover{
+  &:hover {
     background-color: #570f63;
-      width: 100%;
+    width: 100%;
   }
-
 }
 
 .list-user-isActive {
@@ -21,41 +20,50 @@
 }
 
 .list-channels-name-directs {
-    padding: 0px 10px;
-  }
-  .span-user-active {
-    position: absolute;
-    height: 0px;
-    width: 0px;
-    top: 25px;
-    left: 16px;
-    border: 4px solid #56A97A;
-    border-radius: 10px;
-    box-shadow: 0px 0px 0px 2px var(--Purple);
-  }
+  padding: 0px 10px;
+}
+.span-user-active {
+  position: absolute;
+  height: 0px;
+  width: 0px;
+  top: 25px;
+  left: 16px;
+  border: 4px solid #56a97a;
+  border-radius: 10px;
+  box-shadow: 0px 0px 0px 2px var(--Purple);
+}
 
-  .span-user-desactive {
-    position: absolute;
-    background-color: gray;
-    height: 4px;
-    width: 4px;
-    top: 25px;
-    left: 16px;
-    border: 2px solid gray;
-    border-radius: 10px;
-    box-shadow: 0px 0px 0px 2px var(--Purple);
-  }
+.span-user-desactive {
+  position: absolute;
+  background-color: gray;
+  height: 4px;
+  width: 4px;
+  top: 25px;
+  left: 16px;
+  border: 2px solid gray;
+  border-radius: 10px;
+  box-shadow: 0px 0px 0px 2px var(--Purple);
+}
 
-  .list-user-dropdown-direct {
-    position: relative;
-    @include list-channels-styles(8px, 0px);
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    margin-left: 16px;
-  }
-  .list-user-dropdown-direct img {
-   
-    height: 21px;
-    width: 21px;
-  }
+.list-user-dropdown-direct {
+  position: relative;
+  @include list-channels-styles(8px, 0px);
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  margin-left: 16px;
+  position: relative;
+}
+.list-user-dropdown-direct img {
+  height: 21px;
+  width: 21px;
+}
+.newMessageUser {
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  background-color: #00bcd4;
+  position: absolute;
+  right: 22px;
+  top: 16px;
+}

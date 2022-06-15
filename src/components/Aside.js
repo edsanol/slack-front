@@ -1,4 +1,5 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
+import imageMIR from '../assets/images/logoMIR.jpg';
 import { ChannelMessageGroup } from './ChannelMessageGroup';
 import { DirectMessageUser } from './DirectMessageUser';
 import { Collapse } from '@mantine/core';
@@ -22,20 +23,39 @@ export const Aside = ({ showAddChannel, setshowAddChannel }) => {
   const channelsByUser = useSelector((state) => state.channelReducer.channels);
   const channelsloading = useSelector((state) => state.channelReducer.loading);
   const memberInChannel = useSelector((state) => state.authReducer.uid);
-  const allUser = useSelector((state) => state.socketReducer.users);
+  const { users, socket } = useSelector((state) => state.socketReducer);
+  let allUser = users;
+
+  const channelIds = () => {
+    let channelIds = [];
+    channelsByUser
+      .filter((channels) => channels.users.includes(memberInChannel))
+      .forEach((channel) => {
+        channelIds.push(channel._id);
+      });
+    return channelIds;
+  };
+
+  useEffect(() => {
+    if (socket) {
+      socket.emit('join-channel', channelIds());
+    }
+  }, [socket, channelIds()]);
 
   return (
     <div className="aside-container">
       <section className="aside-section-workspace">
         <div className="aside-selected-button">
-          <button className="aside-button-workspace-selected">A</button>
+          <button className="aside-button-workspace-selected">
+            <img src={imageMIR} alt="Logo workspace" />
+          </button>
         </div>
         <button className="aside-button-workspace-plus">+</button>
       </section>
 
       <section className="aside-section-channels">
         <div className="aside-channels-header">
-          <p>DesignersKR ⌵</p>
+          <p>Make It Realㅤ⌵</p>
         </div>
 
         <aside

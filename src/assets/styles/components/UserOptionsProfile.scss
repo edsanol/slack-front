@@ -1,7 +1,7 @@
 .div-user-options-container {
   position: fixed;
   width: 302px;
-  height: 223px;
+  height: 240px;
   border-radius: 8px;
   background-color: #f8f8f8;
   border: 1px solid #d5d5d5;
@@ -73,6 +73,18 @@
       background-color: #2d649e;
     }
     & p:hover {
+      color: #fff;
+    }
+    & a {
+      text-decoration: none;
+      margin-left: 25px;
+      display: block;
+      padding: 4px 0px;
+      font-size: 16px;
+      line-height: 16px;
+      color: #1d1c1d;
+    }
+    & a:hover {
       color: #fff;
     }
   }
