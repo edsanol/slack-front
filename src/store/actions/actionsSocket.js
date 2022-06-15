@@ -80,6 +80,7 @@ export const messageToChannel = (channelMessage) => {
   };
 };
 
+
 const getMessageDB = (messages) => ({
   type: 'GET_MESSAGES',
   payload: messages,

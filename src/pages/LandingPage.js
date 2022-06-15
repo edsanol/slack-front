@@ -63,7 +63,9 @@ export const LandingPage = () => {
     sockets.socket?.on('getMessagesChannel', (messageReceivedChannel) => {
       dispatch(getAllMessagesChannelAction(messageReceivedChannel));
     });
+
   }, [sockets.socket, dispatch]);
+
 
   return (
     <>
@@ -92,6 +94,8 @@ export const LandingPage = () => {
                   image={itemChat.image}
                   message={itemChat.message}
                   createdAt={itemChat.createdAt}
+                  _id={itemChat._id}
+                  likes={itemChat.likes}
                 />
               ))}
             </div>

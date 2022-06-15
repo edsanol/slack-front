@@ -54,6 +54,17 @@ export const socketReducer = (state = initialState, action) => {
         ...state,
         messages: [...action.payload],
       };
+
+    case 'GIVE_OR_REMOVE_LIKE':
+      const messages = state.messages.map((message) =>
+        message._id === action.payload.messageId
+          ? { ...message, likes: action.payload.likes }
+          : message
+      );
+      return {
+        ...state,
+        messages,
+
     case 'MESSAGE_TO_DIRECT_CHANNEL':
       return {
         ...state,
@@ -63,6 +74,7 @@ export const socketReducer = (state = initialState, action) => {
       return {
         ...state,
         messageToChannel: action.payload,
+
       };
     default:
       return state;
