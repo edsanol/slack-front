@@ -1,5 +1,5 @@
 .modal-create-channel {
-  height: 390px;
+  height: 460px;
 }
 .modal-create-channel__title {
   margin-bottom: 20px;
@@ -19,6 +19,25 @@
   margin-bottom: 25px;
   margin-left: 17px;
 }
+.modal-select__select {
+  width: 50%;
+  height: 38px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  padding: 0 10px;
+  margin-top: 4px;
+  font-size: 14px;
+  font-weight: normal;
+  color: #333;
+  background-color: #fff;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+}
+.modal-select__select:focus {
+  box-shadow: 0 0 0 2px #1775f1, 0 0 0 4px #ccdfee;
+  border-color: var(--Purple);
+}
 .modal-form__div p {
   font-size: 13px;
 }
@@ -31,7 +50,7 @@
   width: 90%;
 }
 .form-create-channel__input:focus {
-  box-shadow: 0 0 0 2px #1775F1, 0 0 0 4px #CCDFEE;
+  box-shadow: 0 0 0 2px #1775f1, 0 0 0 4px #ccdfee;
   border-color: var(--Purple);
 }
 .form-create-channel__button {
@@ -40,7 +59,7 @@
   right: 20px;
   background-color: var(--Purple);
   color: var(--White);
-  border: 1px solid #AAA;
+  border: 1px solid #aaa;
   border-radius: 5px;
   cursor: pointer;
 }

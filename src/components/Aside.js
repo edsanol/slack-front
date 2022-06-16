@@ -7,11 +7,13 @@ import { Group, Modal } from '@mantine/core';
 import { PopoverAddChannel } from './PopoverAddChannel';
 import { useSelector } from 'react-redux';
 import { ModalListUsers } from './modals/ModalListUsers';
+import { ModalBecomePremium } from './modals/ModalBecomePremium';
 
 export const Aside = ({ showAddChannel, setshowAddChannel }) => {
   const [openedChannels, setOpenChannels] = useState(true);
   const [openedChats, setOpenChats] = useState(true);
   const [opened, setOpened] = useState(false);
+  const [openedModal, setOpenedModal] = useState(false);
 
   const handleClickChannel = () => {
     showAddChannel ? setshowAddChannel(false) : setshowAddChannel(true);
@@ -24,6 +26,7 @@ export const Aside = ({ showAddChannel, setshowAddChannel }) => {
   const channelsloading = useSelector((state) => state.channelReducer.loading);
   const memberInChannel = useSelector((state) => state.authReducer.uid);
   const { users, socket } = useSelector((state) => state.socketReducer);
+  const userPremium = useSelector((state) => state.userReducer.user.premium);
   let allUser = users;
 
   const channelIds = () => {
@@ -34,6 +37,10 @@ export const Aside = ({ showAddChannel, setshowAddChannel }) => {
         channelIds.push(channel._id);
       });
     return channelIds;
+  };
+
+  const handlePremium = () => {
+    setOpenedModal(true);
   };
 
   useEffect(() => {
@@ -65,11 +72,25 @@ export const Aside = ({ showAddChannel, setshowAddChannel }) => {
               : 'aside-header-channels'
           }>
           <ul className="aside-section-channels-options">
-            <li className="list-channels-options-subtitles">
-              <i className="fa-regular fa-bookmark" id="icon-channel"></i>
-              <p className="p-channels-options-subtitles">Saved items</p>
-            </li>
+            {userPremium === false && (
+              <li
+                className="list-channels-options-subtitles"
+                onClick={handlePremium}>
+                <p className="p-channels-options-subtitles">
+                  Vuelvete usuario premium
+                </p>
+              </li>
+            )}
           </ul>
+
+          <Modal
+            opened={openedModal}
+            onClose={() => setOpenedModal(false)}
+            overflow="inside"
+            size="md"
+            zIndex={999}>
+            <ModalBecomePremium />
+          </Modal>
 
           <ul className="aside-section-channels-channels">
             <li className="list-channels-options">
@@ -96,6 +117,7 @@ export const Aside = ({ showAddChannel, setshowAddChannel }) => {
                               key={channel._id}
                               channelId={channel._id}
                               name={channel.name}
+                              premium={channel.premium}
                             />
                           );
                         })}

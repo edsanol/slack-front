@@ -150,6 +150,22 @@
     width: 100%;
   }
 }
+.list-channels-dropdown-lock {
+  height: 28px;
+  position: relative;
+  margin-top: 7px;
+  padding-left: 12px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  span {
+    padding-right: 15px;
+  }
+  &:hover {
+    background-color: #570f63;
+    width: 100%;
+  }
+}
 .list-channel-isActive {
   background-color: #1164a3;
 }

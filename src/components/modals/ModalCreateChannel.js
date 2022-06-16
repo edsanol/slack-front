@@ -1,10 +1,13 @@
-import React from 'react';
+import React, { useState } from 'react';
 import '../../assets/styles/components/modals/ModalCreateChannel.scss';
 import { useForm } from 'react-hook-form';
 import { useDispatch, useSelector } from 'react-redux';
 import { createChannelAction } from '../../store/actions/actionsChannel';
+import { Modal } from '@mantine/core';
+import { ModalBecomePremium } from './ModalBecomePremium';
 
-export const ModalCreateChannel = ({setOpenedNewChannel}) => {
+export const ModalCreateChannel = ({ setOpenedNewChannel }) => {
+  const [openedModal, setOpenedModal] = useState(false);
   const {
     register,
     formState: { errors },
@@ -12,12 +15,27 @@ export const ModalCreateChannel = ({setOpenedNewChannel}) => {
   } = useForm();
 
   const userId = useSelector((state) => state.authReducer.uid);
+  const userPremium = useSelector((state) => state.userReducer.user.premium);
   const dispatch = useDispatch();
 
   const onSubmit = (data) => {
-    const { name, description } = data;
-    dispatch(createChannelAction({ name, description, userId }));
-    setOpenedNewChannel(false);
+    let { name, description, select } = data;
+
+    if (select === 'private') {
+      select = true;
+    } else {
+      select = false;
+    }
+
+    if (select === true && userPremium === true) {
+      dispatch(createChannelAction({ name, description, select, userId }));
+      setOpenedNewChannel(false);
+    } else if (select === true && userPremium === false) {
+      setOpenedModal(true);
+    } else {
+      dispatch(createChannelAction({ name, description, select, userId }));
+      setOpenedNewChannel(false);
+    }
   };
 
   return (
@@ -66,6 +84,32 @@ export const ModalCreateChannel = ({setOpenedNewChannel}) => {
           )}
           <p>¿De que trata este canal?</p>
         </div>
+        <div className="modal-form__div">
+          <label htmlFor="select">
+            Desea crear un canal publico o privado?
+          </label>
+          <select
+            name="select"
+            id="select"
+            className="modal-select__select"
+            {...register('select', {
+              required: true,
+            })}>
+            <option value="private">Privado</option>
+            <option value="public">Publico</option>
+          </select>
+          {
+            userPremium === false && <p>Debes ser premium para crear canales privados</p>
+          }
+        </div>
+        <Modal
+          opened={openedModal}
+          onClose={() => setOpenedModal(false)}
+          overflow="inside"
+          size="md"
+          zIndex={999}>
+          <ModalBecomePremium />
+        </Modal>
         <input
           type="submit"
           value="Enviar"

@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { getActiveChatAction } from '../store/actions/actionsSocket';
 
-export const ChannelMessageGroup = ({ name, channelId }) => {
+export const ChannelMessageGroup = ({ name, channelId, premium }) => {
   const [notification, setNotification] = useState(false);
   const dispatch = useDispatch();
   const { socket, activeChat, messageToChannel } = useSelector(
@@ -28,12 +28,12 @@ export const ChannelMessageGroup = ({ name, channelId }) => {
 
   return (
     <li
-      className={`list-channels-dropdown ${
+      className={`${premium ? 'list-channels-dropdown-lock' : 'list-channels-dropdown'} ${
         activeChat === channelId ? 'list-channel-isActive' : ''
       }`}
       type="button"
       onClick={onClickChannel}>
-      <span>#</span>
+      <span>{premium ? <i className='bx bxs-lock' id="lock"></i> : '#'}</span>
       <div className="list-channels-name">
         {name}
         <span className={`${notification ? 'newMessage' : ''}`}></span>
