@@ -90,7 +90,6 @@ export const changePasswordAction = (data) => {
         }
       );
       dispatch(changePassword(response.data.ok));
-      console.log(response.data);
     } catch (error) {
       console.log(error.response.data.ok);
       if (error.response.data.ok === false) {
@@ -98,7 +97,6 @@ export const changePasswordAction = (data) => {
           position: 'bottom-right',
           theme: 'colored',
         });
-        console.log('entre');
       }
     }
   };
@@ -108,3 +106,32 @@ const changePassword = (ok) => ({
   type: 'CHANGE_PASSWORD',
   payload: ok,
 });
+
+export const changePremium = (data) => {
+  return async (dispatch) => {
+    try {
+      const token = localStorage.getItem('token') || '';
+      if (!token) {
+        return false;
+      }
+
+      const response = await axios.put(`${BASE_URL}/users/premium`, data, {
+        headers: {
+          'x-token': token,
+          'Content-type': 'application/json; charset=UTF-8',
+        },
+      });
+      console.log(response.data.data);
+      dispatch(getUsersId(response.data.data));
+      toast.success('Compra completada', {
+        position: 'bottom-right',
+        theme: 'colored',
+      });
+    } catch (error) {
+      toast.error('Error de compra', {
+        position: 'bottom-right',
+        theme: 'colored',
+      });
+    }
+  };
+};

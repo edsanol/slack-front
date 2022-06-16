@@ -9,6 +9,7 @@ export function createChannelAction(data) {
         {
           name: data.name,
           description: data.description,
+          premium: data.select,
           userId: data.userId,
         },
         {
@@ -17,6 +18,7 @@ export function createChannelAction(data) {
           },
         }
       );
+      console.log(response.data);
       dispatch(createChannel(response.data));
     } catch (error) {
       console.log(error);

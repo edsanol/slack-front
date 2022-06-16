@@ -34,16 +34,18 @@ export const ModalListChannels = ({ setOpened }) => {
         />
       </div>
       <div className="modalMembers__div-listPeople">
-        {search.map((data) => (
-          <ListChannels
-            key={data._id}
-            name={data.name}
-            description={data.description}
-            users={data.users}
-            channelId={data._id}
-            setOpened={setOpened}
-          />
-        ))}
+        {search
+          .filter((item) => item.premium !== true)
+          .map((data) => (
+            <ListChannels
+              key={data._id}
+              name={data.name}
+              description={data.description}
+              users={data.users}
+              channelId={data._id}
+              setOpened={setOpened}
+            />
+          ))}
       </div>
     </section>
   );

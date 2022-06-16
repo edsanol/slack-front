@@ -8,6 +8,7 @@ import { useDispatch } from 'react-redux';
 import { useEffect } from 'react';
 import { startChecking } from './store/actions/actionsAuth';
 import { ChangePassword } from './pages/ChangePassword';
+import { Response } from './pages/Response';
 
 function App() {
   const dispatch = useDispatch();
@@ -46,6 +47,7 @@ function App() {
           }
         />
 
+        <Route path="/response" element={<Response />} />
         <Route path="*" element={<NotFound />} />
       </Routes>
     </BrowserRouter>

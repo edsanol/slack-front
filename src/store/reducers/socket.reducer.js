@@ -64,6 +64,7 @@ export const socketReducer = (state = initialState, action) => {
       return {
         ...state,
         messages,
+      }
 
     case 'MESSAGE_TO_DIRECT_CHANNEL':
       return {
