@@ -30,6 +30,7 @@ export const UserOptionsProfile = () => {
   const { socket } = useSelector((state) => state.socketReducer);
 
   const handleClickLogout = () => {
+    dispatch(actionsChangeView('hiddenAll'));
     dispatch(disconnectActionsSocket());
     dispatch(logoutResetStateThread());
     dispatch(logoutUser());
