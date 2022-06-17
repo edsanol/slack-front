@@ -18,7 +18,13 @@ export const BoxChatMessage = (props) => {
       className="div-box-chat-container"
       onMouseEnter={() => setIsShown(true)}
       onMouseLeave={() => setIsShown(false)}>
-      {isShown && <ReactionChat messageId={props._id} likes={props.likes} />}
+      {isShown && (
+        <ReactionChat
+          messageId={props._id}
+          likes={props.likes}
+          thread={props.thread}
+        />
+      )}
       <ChatDate date={props.createdAt} />
       <div className="">
         <img className="img-chat-user-img" src={props.image} alt="img7" />
@@ -35,6 +41,9 @@ export const BoxChatMessage = (props) => {
 
           {props.likes.length > 0 ? (
             <ChatCountLike likes={props.likes} />
+          ) : null}
+          {props.thread.length > 0 ? (
+            <ReplyMessagesChat thread={props.thread} />
           ) : null}
         </div>
         <div ref={messagesEndRef} />

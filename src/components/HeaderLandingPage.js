@@ -1,8 +1,8 @@
 import React from 'react';
 import '../assets/styles/components/HeaderLandingPage.scss';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { actionsChangeView } from '../store/actions/actionsChangeView';
-import { PopoverComponent } from './PopoverComponent'
+import { PopoverComponent } from './PopoverComponent';
 
 export const HeaderLandingPage = () => {
   const inputStyle = {
@@ -10,9 +10,14 @@ export const HeaderLandingPage = () => {
   };
 
   const dispatch = useDispatch();
+  const OpenCloseThread = useSelector(
+    (state) => state.changeViewReducer.hiddenView
+  );
 
   const handleClickHelpShow = () => {
-    dispatch(actionsChangeView('showHelp'));
+    OpenCloseThread === 'hiddenAll'
+      ? dispatch(actionsChangeView('showHelp'))
+      : dispatch(actionsChangeView('hiddenAll'));
   };
 
   return (
@@ -29,10 +34,10 @@ export const HeaderLandingPage = () => {
         <div className="header__div-center">
           <div className="header__div-icons">
             <div>
-              <a href="#header" className="header__a-icons"></a>
+              <p href="#header" className="header__a-icons"></p>
             </div>
             <div>
-              <a href="#header" className="header__a-icons"></a>
+              <p href="#header" className="header__a-icons"></p>
             </div>
           </div>
           <div className="header__div-input">

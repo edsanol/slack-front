@@ -4,44 +4,24 @@ import tinymce from 'tinymce/tinymce';
 import BundledEditor from '../BundledEditor';
 import { useSelector } from 'react-redux';
 
-export default function RichInput() {
+export default function RichInputThread() {
   const editorRef = useRef(null);
-  const { socket, activeChat, users } = useSelector(
-    (state) => state.socketReducer
-  );
+  const { socket } = useSelector((state) => state.socketReducer);
   const { _id, fullName, image } = useSelector(
     (state) => state.userReducer.user
   );
 
-  const { channels } = useSelector((state) => state.channelReducer);
-
-  const verifyChatUser = users.map((e) => e._id === activeChat);
-  const verifyChatChannel = channels.map((e) => e._id === activeChat);
+  const { messageId } = useSelector((state) => state.threadReducer);
 
   const log = () => {
-    if (editorRef.current && verifyChatUser.includes(true)) {
-      socket.emit('sendMessageUser', {
-        to: activeChat,
-        from: _id,
-        fullName: fullName,
-        image: image,
-        message: editorRef.current.getContent(),
-      });
-
-      editorRef.current.setContent('');
-    }
-
-    if (editorRef.current && verifyChatChannel.includes(true)) {
-      socket.emit('sendMessageChannel', {
-        to: activeChat,
-        from: _id,
-        fullName: fullName,
-        image: image,
-        message: editorRef.current.getContent(),
-      });
-
-      editorRef.current.setContent('');
-    }
+    socket.emit('sendMessageThread', {
+      to: messageId,
+      from: _id,
+      fullName: fullName,
+      image: image,
+      message: editorRef.current.getContent(),
+    });
+    editorRef.current.setContent('');
   };
 
   return (
