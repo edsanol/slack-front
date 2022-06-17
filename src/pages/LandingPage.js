@@ -22,6 +22,7 @@ import {
   messageToDirectMessage,
   newMessage,
 } from '../store/actions/actionsSocket';
+import { newThreadMessage } from '../store/actions/actionsThread';
 
 export const LandingPage = () => {
   const dispatch = useDispatch();
@@ -54,7 +55,7 @@ export const LandingPage = () => {
     sockets.socket?.on('sendMessageUser', (messageReceived) => {
       dispatch(newMessage(messageReceived));
       dispatch(messageToDirectMessage(messageReceived.from));
-      console.log(messageReceived.from)
+      console.log(messageReceived.from);
     });
     sockets.socket?.on('sendMessageChannel', (messageReceived) => {
       dispatch(newMessage(messageReceived));
@@ -63,9 +64,13 @@ export const LandingPage = () => {
     sockets.socket?.on('getMessagesChannel', (messageReceivedChannel) => {
       dispatch(getAllMessagesChannelAction(messageReceivedChannel));
     });
-
   }, [sockets.socket, dispatch]);
 
+  useEffect(() => {
+    sockets.socket?.on('sendMessageThread', (messageReceived) => {
+      dispatch(newThreadMessage(messageReceived));
+    });
+  }, [sockets.socket]);
 
   return (
     <>
@@ -96,6 +101,7 @@ export const LandingPage = () => {
                   createdAt={itemChat.createdAt}
                   _id={itemChat._id}
                   likes={itemChat.likes}
+                  thread={itemChat.thread}
                 />
               ))}
             </div>

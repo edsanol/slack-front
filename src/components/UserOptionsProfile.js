@@ -7,6 +7,7 @@ import { actionsChangeState } from '../store/actions/actionsChangeState';
 import { logoutUser } from '../store/actions/actionsAuth';
 import { disconnectActionsSocket } from '../store/actions/actionsSocket';
 import { Link } from 'react-router-dom';
+import { logoutResetStateThread } from '../store/actions/actionsThread';
 
 export const UserOptionsProfile = () => {
   const dispatch = useDispatch();
@@ -30,6 +31,7 @@ export const UserOptionsProfile = () => {
 
   const handleClickLogout = () => {
     dispatch(disconnectActionsSocket());
+    dispatch(logoutResetStateThread());
     dispatch(logoutUser());
     socket.disconnect();
   };
@@ -74,7 +76,7 @@ export const UserOptionsProfile = () => {
           <p>Ver Perfil</p>
         </div>
         <div className="hover-user-options">
-          <Link to='change-password'>Cambiar contraseña</Link>
+          <Link to="change-password">Cambiar contraseña</Link>
         </div>
       </div>
 

@@ -1,9 +1,10 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { ThreadMessage } from '../components/ThreadMessage';
 import '../assets/styles/components/ThreadLandingPage.scss';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { actionsChangeView } from '../store/actions/actionsChangeView';
-import RichInput from './RichInput';
+import RichInputThread from './RichInputThread';
+import { ThreadMessageCurrent } from './ThreadMessageCurrent';
 
 export const ThreadLandingPage = () => {
   const dispatch = useDispatch();
@@ -12,12 +13,26 @@ export const ThreadLandingPage = () => {
     dispatch(actionsChangeView('hiddenAll'));
   };
 
+  const { socket, messages } = useSelector((state) => state.socketReducer);
+  const messagesId = messages.map((message) => message._id);
+  const { threadMessages, messageId } = useSelector(
+    (state) => state.threadReducer
+  );
+  useEffect(() => {
+    if (socket) {
+      socket.emit('join-thread-message', messagesId);
+    }
+  }, [socket, messagesId]);
+
+  const messageThreadCurrent = messages.filter(
+    (messageCurrent) => messageCurrent._id === messageId
+  );
+
   return (
     <section className="thread__section-container">
       <div className="main__thread-header">
         <div className="thread-header-left">
-          <h2>Thread</h2>
-          <p>#uxui_design</p>
+          <h2>Threads</h2>
         </div>
         <div className="thread-header-right">
           <button
@@ -29,16 +44,20 @@ export const ThreadLandingPage = () => {
       </div>
 
       <div className="main__thread-content">
-        <ThreadMessage />
-        <ThreadMessage />
-        <ThreadMessage />
-        <ThreadMessage />
-        <ThreadMessage />
-        <ThreadMessage />
+        <ThreadMessageCurrent threadCurrent={messageThreadCurrent} />
+        {threadMessages.map((threadMessage) => (
+          <ThreadMessage
+            key={threadMessage._id}
+            fullName={threadMessage.fullName}
+            image={threadMessage.image}
+            message={threadMessage.message}
+            createdAt={threadMessage.createdAt}
+          />
+        ))}
       </div>
 
       <div className="chat-input-thread">
-        <RichInput />
+        <RichInputThread />
       </div>
     </section>
   );

@@ -6,6 +6,7 @@ import { channelReducer } from './channel.reducer';
 import { userReducer } from './user.reducer';
 import { socketReducer } from './socket.reducer';
 import { updateImageReducer } from './updateImage.reducer';
+import { threadReducer } from './thread.reducer';
 
 export default combineReducers({
   changeViewReducer,
@@ -15,4 +16,5 @@ export default combineReducers({
   userReducer,
   socketReducer,
   updateImageReducer,
+  threadReducer,
 });

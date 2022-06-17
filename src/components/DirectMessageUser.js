@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import { actionsChangeView } from '../store/actions/actionsChangeView';
 
 import {
   getActiveChatAction,
@@ -17,14 +18,15 @@ export const DirectMessageUser = ({ fullName, image, state, userId }) => {
   const handleClick = () => {
     dispatch(getActiveChatAction(userId));
     dispatch(getMessagesAction(userId));
-    console.log(userId);
+    dispatch(actionsChangeView('hiddenAll'));
   };
 
   useEffect(() => {
     if (messageToDirectMessage === userId && myId !== userId) {
       setNotification(true);
     }
-  }, [messageToDirectMessage, userId]);
+    dispatch(actionsChangeView('hiddenAll'));
+  }, [messageToDirectMessage, userId, dispatch]);
 
   useEffect(() => {
     if (activeChat === userId) {

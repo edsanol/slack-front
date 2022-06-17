@@ -12,6 +12,7 @@
     border-top: 1px solid lightgray;
     border-left: 1px solid lightgray;
     border-right: 1px solid lightgray;
+    border-bottom: 1px solid lightgray;
     padding: 20px;
     display: flex;
     flex-direction: row;
@@ -107,5 +108,21 @@
         font-size: 11px;
         color: gray;
         
+    }
+}
+
+.div-info-thread-message-container{
+    // background-color: red;
+    text-align: center;
+   
+    p{
+        margin-top: 5px;
+        font-size: 12px;
+        color: gray;
+    }
+    span{
+        margin-top: 5px;
+        font-size: 12px;
+        color: gray;
     }
 }

@@ -3,17 +3,18 @@ import '../assets/styles/components/ReactionChat.scss';
 import { useDispatch, useSelector } from 'react-redux';
 import { actionsChangeView } from '../store/actions/actionsChangeView';
 import { LikeMessageAction } from '../store/actions/actionsLikes';
+import {
+  actionsGetIdmessage,
+  actionsGetmessagesDB,
+} from '../store/actions/actionsThread';
 
-export const ReactionChat = ({ messageId, likes }) => {
+export const ReactionChat = ({ messageId, likes, thread }) => {
   const dispatch = useDispatch();
-  const OpenCloseThread = useSelector(
-    (state) => state.changeViewReducer.hiddenView
-  );
 
   const handleClickThreadShow = () => {
-    OpenCloseThread === 'hiddenAll'
-      ? dispatch(actionsChangeView('showThread'))
-      : dispatch(actionsChangeView('hiddenAll'));
+    dispatch(actionsChangeView('showThread'));
+    dispatch(actionsGetIdmessage(messageId));
+    dispatch(actionsGetmessagesDB(thread));
   };
 
   const giveOfRemoveLike = () => {
@@ -26,12 +27,17 @@ export const ReactionChat = ({ messageId, likes }) => {
     <div className="reaction__div-chat">
       <div
         className={
-          verifiLikeToUser.includes(true) ? 'button_like_container' : ''
+          verifiLikeToUser.includes(true)
+            ? 'button_like_container'
+            : 'button_outlike_container'
         }>
         <i onClick={giveOfRemoveLike} className="bx bx-like"></i>
       </div>
 
-      <div type="button" onClick={handleClickThreadShow}>
+      <div
+        className="button_thread_message"
+        type="button"
+        onClick={handleClickThreadShow}>
         <i className="bx bx-message-rounded-dots"></i>
       </div>
     </div>
