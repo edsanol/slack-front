@@ -43,6 +43,7 @@ export const LandingPage = () => {
   const showView = useSelector((state) => state.changeViewReducer.hiddenView);
   const { uid } = useSelector((state) => state.authReducer);
   const chatMessage = useSelector((state) => state.socketReducer.messages);
+  const activeChat = useSelector((state) => state.socketReducer.activeChat);
 
   useEffect(() => {
     dispatch(getUsersIdAction(uid));
@@ -55,7 +56,6 @@ export const LandingPage = () => {
     sockets.socket?.on('sendMessageUser', (messageReceived) => {
       dispatch(newMessage(messageReceived));
       dispatch(messageToDirectMessage(messageReceived.from));
-      console.log(messageReceived.from);
     });
     sockets.socket?.on('sendMessageChannel', (messageReceived) => {
       dispatch(newMessage(messageReceived));

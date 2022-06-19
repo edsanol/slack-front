@@ -33,6 +33,21 @@ export default function RichInputThread() {
       </div>
       <div className="container-rich">
         <BundledEditor
+          onKeyDown={(e) => {
+            if(e.shiftKey && e.key === 'Enter') {
+
+            }
+            else if (e.key === 'Enter') {
+              log();
+            }
+          }}
+          onKeyUp={(e) => {
+            if(e.shiftKey && e.key === 'Enter') {
+            }
+            else if (e.key === 'Enter') {
+              editorRef.current.setContent('');
+            }
+          }}
           onInit={(evt, editor) => (editorRef.current = editor)}
           initialValue=""
           init={{

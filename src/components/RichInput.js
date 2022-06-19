@@ -53,6 +53,21 @@ export default function RichInput() {
       </div>
       <div className="container-rich">
         <BundledEditor
+          onKeyDown={(e) => {
+            if(e.shiftKey && e.key === 'Enter') {
+
+            }
+            else if (e.key === 'Enter') {
+              log();
+            }
+          }}
+          onKeyUp={(e) => {
+            if(e.shiftKey && e.key === 'Enter') {
+            }
+            else if (e.key === 'Enter') {
+              editorRef.current.setContent('');
+            }
+          }}
           onInit={(evt, editor) => (editorRef.current = editor)}
           initialValue=""
           init={{
@@ -66,7 +81,7 @@ export default function RichInput() {
             /* enable automatic uploads of images represented by blob or data URIs*/
             automatic_uploads: true,
             autoresize_bottom_margin: 0,
-            max_height: 150,
+            max_height: 130,
             autoresize_overflow_padding: 0,
             /*
               URL of our upload handler (for more details check: https://www.tiny.cloud/docs/configure/file-image-upload/#images_upload_url)
