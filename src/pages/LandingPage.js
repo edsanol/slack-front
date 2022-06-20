@@ -91,6 +91,13 @@ export const LandingPage = () => {
                 : 'main__div-chat'
             }>
             <HeaderChat />
+            {!activeChat && (
+              <img
+                className="main__img-chat"
+                src="https://i.postimg.cc/WpKGM5CJ/background.png"
+                alt="background slack"
+              />
+            )}
             <div className="chat__div-message">
               {chatMessage.map((itemChat) => (
                 <BoxChatMessage
@@ -111,7 +118,7 @@ export const LandingPage = () => {
                   ? 'main__div-input-full'
                   : 'main__div-input'
               }>
-              <RichInput />
+              {activeChat && <RichInput />}
             </div>
           </div>
           {showView === 'showThread' && (

@@ -4,7 +4,9 @@ import { useForm } from 'react-hook-form';
 import { HeaderLoginRegister } from '../components/HeaderLoginRegister';
 import { FooterLoginRegister } from '../components/FooterLoginRegister';
 import { loginUserAction } from '../store/actions/actionsAuth';
+import { ToastContainer } from 'react-toastify';
 import { useDispatch } from 'react-redux';
+import { Link } from 'react-router-dom';
 
 export const Login = () => {
   const {
@@ -86,14 +88,13 @@ export const Login = () => {
         </form>
         <div className="mainForm__link">
           <p className="pin__magic">
-            Te enviaremos un código mágico por correo electrónico para que
-            puedas conectarte sin contraseña. Si lo prefieres, también puedesㅤ
-            <a href="#header">conectarte de forma manual.</a>
+            <Link to="/recover-password">¿Olvidaste tu contraseña?</Link>
           </p>
         </div>
       </main>
 
       <FooterLoginRegister />
+      <ToastContainer />
     </>
   );
 };
