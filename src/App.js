@@ -9,6 +9,8 @@ import { useEffect } from 'react';
 import { startChecking } from './store/actions/actionsAuth';
 import { ChangePassword } from './pages/ChangePassword';
 import { Response } from './pages/Response';
+import { RecoverPassword } from './pages/RecoverPassword';
+import { ResetPassword } from './pages/ResetPassword';
 
 function App() {
   const dispatch = useDispatch();
@@ -28,6 +30,7 @@ function App() {
             </PrivateRoute>
           }
         />
+        <Route path="/recover-password" element={<RecoverPassword />} />
 
         <Route
           path="/"
@@ -48,6 +51,8 @@ function App() {
         />
 
         <Route path="/response" element={<Response />} />
+        <Route path="/reset-password/*" element={<ResetPassword />} />
+
         <Route path="*" element={<NotFound />} />
       </Routes>
     </BrowserRouter>

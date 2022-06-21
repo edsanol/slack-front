@@ -107,6 +107,40 @@ const changePassword = (ok) => ({
   payload: ok,
 });
 
+export const forgotPasswordAction = (data) => {
+  return async (dispatch) => {
+    try {
+      const response = await axios.post(
+        `${BASE_URL}/users/forgot-password`,
+        { email: data },
+        {
+          headers: {
+            'Content-type': 'application/json; charset=UTF-8',
+          },
+        }
+      );
+      dispatch(forgotPassword(response.data.ok));
+
+      if (response.data.ok) {
+        toast.info('Se ha enviado un correo con las instrucciones', {
+          position: 'bottom-right',
+          theme: 'colored',
+        });
+      }
+    } catch (error) {
+      toast.error('El correo no existe', {
+        position: 'bottom-right',
+        theme: 'colored',
+      });
+    }
+  };
+};
+
+const forgotPassword = (ok) => ({
+  type: 'FORGOT_PASSWORD',
+  payload: ok,
+});
+
 export const changePremium = (data) => {
   return async (dispatch) => {
     try {
@@ -136,8 +170,46 @@ export const changePremium = (data) => {
   };
 };
 
+
 export const logoutResetUserReducer = () => {
   return {
     type: 'LOGOUT_RESET_USER_REDUCER',
   };
 };
+
+export const resetPasswordAction = (data) => {
+  return async (dispatch) => {
+    try {
+      const response = await axios.put(
+        `${BASE_URL}/users/reset-password`,
+        data,
+        {
+          headers: {
+            'Content-type': 'application/json; charset=UTF-8',
+          },
+        }
+      );
+      dispatch(resetPassword(response.data.ok));
+      if (response.data.ok) {
+        toast.success('Se ha restablecido la contraseña', {
+          position: 'bottom-right',
+          theme: 'colored',
+        });
+      }
+    } catch (error) {
+      console.log(error);
+      if (error.response.data.ok === false) {
+        toast.error('Contraseña incorrecta', {
+          position: 'bottom-right',
+          theme: 'colored',
+        });
+      }
+    }
+  };
+};
+
+const resetPassword = (ok) => ({
+  type: 'RESET_PASSWORD',
+  payload: ok,
+});
+

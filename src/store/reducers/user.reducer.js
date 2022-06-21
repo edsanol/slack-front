@@ -2,6 +2,7 @@ const initialState = {
   user: [],
   users: [],
   changePassword: null,
+  resetPassword: null,
 };
 
 export const userReducer = (state = initialState, action) => {
@@ -26,11 +27,17 @@ export const userReducer = (state = initialState, action) => {
         ...state,
         changePassword: action.payload,
       };
+
     case 'LOGOUT_RESET_USER_REDUCER':
       return {
         user: [],
         users: [],
         changePassword: null,
+      };
+    case 'RESET_PASSWORD':
+      return {
+        ...state,
+        resetPassword: action.payload,
       };
     default:
       return state;

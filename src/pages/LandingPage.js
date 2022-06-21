@@ -46,6 +46,7 @@ export const LandingPage = () => {
   const showView = useSelector((state) => state.changeViewReducer.hiddenView);
   const { uid } = useSelector((state) => state.authReducer);
   const chatMessage = useSelector((state) => state.socketReducer.messages);
+  const activeChat = useSelector((state) => state.socketReducer.activeChat);
 
   useEffect(() => {
     dispatch(getUsersIdAction(uid));
@@ -58,7 +59,6 @@ export const LandingPage = () => {
     sockets.socket?.on('sendMessageUser', (messageReceived) => {
       dispatch(newMessage(messageReceived));
       dispatch(messageToDirectMessage(messageReceived.from));
-      console.log(messageReceived.from);
     });
     sockets.socket?.on('sendMessageChannel', (messageReceived) => {
       dispatch(newMessage(messageReceived));
@@ -95,6 +95,13 @@ export const LandingPage = () => {
                 : 'main__div-chat'
             }>
             <HeaderChat />
+            {!activeChat && (
+              <img
+                className="main__img-chat"
+                src="https://i.postimg.cc/WpKGM5CJ/background.png"
+                alt="background slack"
+              />
+            )}
             <div className="chat__div-message">
               {chatMessage.map((itemChat) => (
                 <BoxChatMessage
@@ -115,7 +122,7 @@ export const LandingPage = () => {
                   ? 'main__div-input-full'
                   : 'main__div-input'
               }>
-              <RichInput />
+              {activeChat && <RichInput />}
             </div>
           </div>
           {showView === 'showThread' && (
