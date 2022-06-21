@@ -9,24 +9,20 @@ import { ThreadMessageCurrent } from './ThreadMessageCurrent';
 export const ThreadLandingPage = () => {
   const dispatch = useDispatch();
 
+  const { socket, messages, threadMessages } = useSelector(
+    (state) => state.socketReducer
+  );
+
   const handleClickThread = () => {
     dispatch(actionsChangeView('hiddenAll'));
   };
 
-  const { socket, messages } = useSelector((state) => state.socketReducer);
   const messagesId = messages.map((message) => message._id);
-  const { threadMessages, messageId } = useSelector(
-    (state) => state.threadReducer
-  );
   useEffect(() => {
     if (socket) {
       socket.emit('join-thread-message', messagesId);
     }
   }, [socket, messagesId]);
-
-  const messageThreadCurrent = messages.filter(
-    (messageCurrent) => messageCurrent._id === messageId
-  );
 
   return (
     <section className="thread__section-container">
@@ -44,7 +40,7 @@ export const ThreadLandingPage = () => {
       </div>
 
       <div className="main__thread-content">
-        <ThreadMessageCurrent threadCurrent={messageThreadCurrent} />
+        <ThreadMessageCurrent />
         {threadMessages.map((threadMessage) => (
           <ThreadMessage
             key={threadMessage._id}

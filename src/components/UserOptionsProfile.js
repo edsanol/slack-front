@@ -5,9 +5,13 @@ import { actionsChangeView } from '../store/actions/actionsChangeView';
 import { useDispatch, useSelector } from 'react-redux';
 import { actionsChangeState } from '../store/actions/actionsChangeState';
 import { logoutUser } from '../store/actions/actionsAuth';
-import { disconnectActionsSocket } from '../store/actions/actionsSocket';
+import {
+  disconnectActionsSocket,
+  logoutResetStatemessage,
+} from '../store/actions/actionsSocket';
 import { Link } from 'react-router-dom';
 import { logoutResetStateThread } from '../store/actions/actionsThread';
+import { logoutResetUserReducer } from '../store/actions/actionUsers';
 
 export const UserOptionsProfile = () => {
   const dispatch = useDispatch();
@@ -33,7 +37,10 @@ export const UserOptionsProfile = () => {
     dispatch(actionsChangeView('hiddenAll'));
     dispatch(disconnectActionsSocket());
     dispatch(logoutResetStateThread());
+    dispatch(logoutResetStatemessage());
+    dispatch(logoutResetUserReducer());
     dispatch(logoutUser());
+    window.location.reload(true);
     socket.disconnect();
   };
 

@@ -32,7 +32,6 @@ export const ModalEditUser = ({ setOpened }) => {
   );
   const user = useSelector((state) => state.userReducer.user);
   const { imageProfile } = useSelector((state) => state.updateImageReducer);
-  console.log(imageProfile);
 
   const {
     register,

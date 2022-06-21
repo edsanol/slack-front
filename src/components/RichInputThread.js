@@ -6,12 +6,10 @@ import { useSelector } from 'react-redux';
 
 export default function RichInputThread() {
   const editorRef = useRef(null);
-  const { socket } = useSelector((state) => state.socketReducer);
+  const { socket, messageId } = useSelector((state) => state.socketReducer);
   const { _id, fullName, image } = useSelector(
     (state) => state.userReducer.user
   );
-
-  const { messageId } = useSelector((state) => state.threadReducer);
 
   const log = () => {
     socket.emit('sendMessageThread', {

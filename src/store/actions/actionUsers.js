@@ -170,6 +170,13 @@ export const changePremium = (data) => {
   };
 };
 
+
+export const logoutResetUserReducer = () => {
+  return {
+    type: 'LOGOUT_RESET_USER_REDUCER',
+  };
+};
+
 export const resetPasswordAction = (data) => {
   return async (dispatch) => {
     try {
@@ -205,3 +212,4 @@ const resetPassword = (ok) => ({
   type: 'RESET_PASSWORD',
   payload: ok,
 });
+

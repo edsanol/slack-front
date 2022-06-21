@@ -3,18 +3,17 @@ import '../assets/styles/components/ReactionChat.scss';
 import { useDispatch, useSelector } from 'react-redux';
 import { actionsChangeView } from '../store/actions/actionsChangeView';
 import { LikeMessageAction } from '../store/actions/actionsLikes';
-import {
-  actionsGetIdmessage,
-  actionsGetmessagesDB,
-} from '../store/actions/actionsThread';
+import { actionsGetIdmessage } from '../store/actions/actionsThread';
 
 export const ReactionChat = ({ messageId, likes, thread }) => {
   const dispatch = useDispatch();
 
+  const { socket } = useSelector((state) => state.socketReducer);
+
   const handleClickThreadShow = () => {
     dispatch(actionsChangeView('showThread'));
     dispatch(actionsGetIdmessage(messageId));
-    dispatch(actionsGetmessagesDB(thread));
+    socket.emit('getThreadMessages', messageId);
   };
 
   const giveOfRemoveLike = () => {

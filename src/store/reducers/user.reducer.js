@@ -27,6 +27,13 @@ export const userReducer = (state = initialState, action) => {
         ...state,
         changePassword: action.payload,
       };
+
+    case 'LOGOUT_RESET_USER_REDUCER':
+      return {
+        user: [],
+        users: [],
+        changePassword: null,
+      };
     case 'RESET_PASSWORD':
       return {
         ...state,
