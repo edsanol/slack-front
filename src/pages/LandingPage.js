@@ -22,7 +22,10 @@ import {
   messageToDirectMessage,
   newMessage,
 } from '../store/actions/actionsSocket';
-import { newThreadMessage } from '../store/actions/actionsThread';
+import {
+  actionsGetmessagesDB,
+  newThreadMessage,
+} from '../store/actions/actionsThread';
 
 export const LandingPage = () => {
   const dispatch = useDispatch();
@@ -64,13 +67,14 @@ export const LandingPage = () => {
     sockets.socket?.on('getMessagesChannel', (messageReceivedChannel) => {
       dispatch(getAllMessagesChannelAction(messageReceivedChannel));
     });
-  }, [sockets.socket, dispatch]);
-
-  useEffect(() => {
     sockets.socket?.on('sendMessageThread', (messageReceived) => {
       dispatch(newThreadMessage(messageReceived));
     });
-  }, [sockets.socket]);
+
+    sockets.socket?.on('getThreadMessages', (ThreadMessageReceived) => {
+      dispatch(actionsGetmessagesDB(ThreadMessageReceived));
+    });
+  }, [sockets.socket, dispatch]);
 
   return (
     <>

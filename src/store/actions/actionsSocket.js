@@ -65,6 +65,11 @@ export const getAllMessagesChannelAction = (channelMessages) => {
     payload: channelMessages,
   };
 };
+export const logoutResetStatemessage = () => {
+  return {
+    type: 'LOGOUT_RESET_MESSAGE',
+  };
+};
 
 export const messageToDirectMessage = (directMessage) => {
   return {
@@ -79,7 +84,6 @@ export const messageToChannel = (channelMessage) => {
     payload: channelMessage,
   };
 };
-
 
 const getMessageDB = (messages) => ({
   type: 'GET_MESSAGES',

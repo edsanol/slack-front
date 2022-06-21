@@ -6,6 +6,8 @@ const initialState = {
   messages: [],
   messageToDirectMessage: null,
   messageToChannel: null,
+  messageId: '',
+  threadMessages: [],
 };
 
 export const socketReducer = (state = initialState, action) => {
@@ -75,6 +77,45 @@ export const socketReducer = (state = initialState, action) => {
       return {
         ...state,
         messageToChannel: action.payload,
+      };
+    // thread
+
+    case 'GET_MESSAGE_ID':
+      return {
+        ...state,
+        messageId: action.payload,
+      };
+    case 'NEW_THREAD_MESSAGE':
+      if (state.messageId === action.payload.to) {
+        const messages = state.messages.map((message) =>
+          message._id === action.payload.to
+            ? { ...message, thread: [...state.threadMessages, action.payload] }
+            : message
+        );
+        return {
+          ...state,
+          threadMessages: [...state.threadMessages, action.payload],
+          messages,
+        };
+      } else {
+        return state;
+      }
+
+    case 'GET_THREAD_MESSAGE_DB':
+      return {
+        ...state,
+        threadMessages: [...action.payload],
+      };
+
+    case 'LOGOUT_RESET_THREAD':
+      return {
+        messageId: '',
+        threadMessages: [],
+      };
+
+    case 'LOGOUT_RESET_MESSAGE':
+      return {
+        messages: [],
       };
     default:
       return state;

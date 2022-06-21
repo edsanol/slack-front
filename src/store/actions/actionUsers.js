@@ -135,3 +135,9 @@ export const changePremium = (data) => {
     }
   };
 };
+
+export const logoutResetUserReducer = () => {
+  return {
+    type: 'LOGOUT_RESET_USER_REDUCER',
+  };
+};
