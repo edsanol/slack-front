@@ -34,7 +34,7 @@ export const Response = () => {
 
   return (
     <div>
-      <h1>Procesando el pago...</h1>
+      <h1>Processing the payment...</h1>
     </div>
   );
 };

@@ -12,7 +12,9 @@ export const ModalListUsers = () => {
   const allUsers = useSelector((state) => state.userReducer.users);
 
   // Filtro por nombre de usuarios
-  const search = allUsers.filter(user => user.fullName.toLowerCase().includes(newFilter.toLowerCase()));
+  const search = allUsers.filter((user) =>
+    user.fullName.toLowerCase().includes(newFilter.toLowerCase())
+  );
 
   return (
     <section className="modalMembers">
@@ -21,7 +23,7 @@ export const ModalListUsers = () => {
       </div>
 
       <div className="modalMembers__div-search">
-        <p className="modalMembers__p-add">Add new teammate</p>
+        <p className="modalMembers__p-add">view user information</p>
         <input
           type="text"
           className="modalMembers__input"
@@ -38,7 +40,7 @@ export const ModalListUsers = () => {
             name={data.fullName}
             image={data.image}
             email={data.email}
-            description={data.description}
+            phone={data.phone}
           />
         ))}
       </div>

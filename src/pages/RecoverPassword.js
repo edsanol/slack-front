@@ -23,9 +23,9 @@ export const RecoverPassword = () => {
   return (
     <>
       <HeaderRecoverChangePassword
-        title={'Restablecer tu contraseña'}
+        title={'Recover your password'}
         text={
-          'Para restablecer la contraseña, introduce la dirección de correo que usas para conectarte a'
+          'To recover your password, enter the email address you use to connect to'
         }
         textSlack={' Slack'}
       />
@@ -41,11 +41,11 @@ export const RecoverPassword = () => {
             name="email"
             id="email"
             value={email}
-            placeholder="Ingresa tu email"
+            placeholder="Enter your email"
             onChange={(e) => setEmail(e.target.value)}
           />
           <button type="submit" className="button-form-login-register">
-            Recuperar contraseña
+            Recover password
           </button>
         </form>
       </main>

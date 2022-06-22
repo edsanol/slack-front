@@ -57,7 +57,7 @@ export const UserOptionsProfile = () => {
                   ? 'span-user-options-active'
                   : 'span-user-options-desactive'
               }></span>
-            <p>{stateOption ? 'Disponible' : 'No disponible'}</p>
+            <p>{stateOption ? 'Active' : 'Away'}</p>
           </div>
         </div>
       </div>
@@ -67,24 +67,20 @@ export const UserOptionsProfile = () => {
       <div className="div-user-options-body">
         <div className="hover-user-options" onClick={handleChangeStatus}>
           <p>
-            Cambiar tu estado a{' '}
-            {stateOption ? (
-              <strong>ausente</strong>
-            ) : (
-              <strong>disponible</strong>
-            )}
+            Change your status to{' '}
+            {stateOption ? <strong>Away</strong> : <strong>Active</strong>}
           </p>
         </div>
         <div className="hover-user-options">
           <p type="button" onClick={() => setOpened(true)}>
-            Editar Perfil
+            Edit Profile
           </p>
         </div>
         <div className="hover-user-options" onClick={handleClickProfileShow}>
-          <p>Ver Perfil</p>
+          <p>View Profile</p>
         </div>
         <div className="hover-user-options">
-          <Link to="change-password">Cambiar contraseña</Link>
+          <Link to="change-password">change Password</Link>
         </div>
       </div>
 
@@ -93,7 +89,7 @@ export const UserOptionsProfile = () => {
           type="button"
           className="hover-user-options"
           onClick={handleClickLogout}>
-          <p>Salir</p>
+          <p>Logout</p>
         </div>
       </div>
     </div>

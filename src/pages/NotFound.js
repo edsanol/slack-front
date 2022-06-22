@@ -16,12 +16,12 @@ export const NotFound = () => {
             <ul className="nav__list">
               <li className="nav__item">
                 <Link to="/login" className="nav__link">
-                  Inicio
+                  Login
                 </Link>
               </li>
               <li className="nav__item">
                 <Link to="/register" className="nav__link">
-                  Registro
+                  Register
                 </Link>
               </li>
             </ul>
@@ -35,10 +35,10 @@ export const NotFound = () => {
             <div className="home__data">
               <h1 className="home__title">ERROR 404</h1>
               <p className="home__description">
-                No podemos encontrar la página <br /> que estás buscando.
+                We can't find the page <br /> you are looking for.
               </p>
               <Link to="/login" className="home__button">
-                Inicio
+                Login
               </Link>
             </div>
 

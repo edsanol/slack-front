@@ -77,7 +77,7 @@ export const Aside = ({ showAddChannel, setshowAddChannel }) => {
                 className="list-channels-options-subtitles"
                 onClick={handlePremium}>
                 <p className="p-channels-options-subtitles">
-                  Vuelvete usuario premium
+                  Become a premium user
                 </p>
               </li>
             )}
@@ -163,7 +163,7 @@ export const Aside = ({ showAddChannel, setshowAddChannel }) => {
                     <button className="button-add-channels">+</button>{' '}
                     <Group>
                       <p type="button" onClick={() => setOpened(true)}>
-                        Add Teammates
+                        View user information
                       </p>
                     </Group>
                   </li>

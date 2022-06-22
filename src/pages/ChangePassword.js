@@ -53,9 +53,9 @@ export const ChangePassword = () => {
   return (
     <>
       <HeaderRecoverChangePassword
-        title={'Cambiar tu contraseña'}
+        title={'Change your password'}
         text={
-          'Para cambiar la contraseña, introduce la contraseña que usas para conectarte a'
+          'To change the password, enter the password you use to connect to'
         }
         textSlack={' Slack'}
       />
@@ -63,14 +63,14 @@ export const ChangePassword = () => {
       <main className="mainForm">
         <form className="mainForm__form" onSubmit={handleSubmit(onSubmit)}>
           <label htmlFor="oldPassword" className="mainForm__form-label">
-            Escribe tu contraseña
+            Enter your password
           </label>
           <input
             className="mainForm__form-input"
             type="password"
             name="oldPassword"
             id="oldPassword"
-            placeholder="Ingresa tu antigua contraseña"
+            placeholder="Enter your old password"
             {...register('oldPassword', {
               required: true,
               minLength: 8,
@@ -79,29 +79,29 @@ export const ChangePassword = () => {
             })}
           />
           {errors.oldPassword?.type === 'required' && (
-            <p className="input__error">⚠ El campo contraseña es requerido</p>
+            <p className="input__error">⚠ The password field is required</p>
           )}
           {errors.oldPassword?.type === 'minLength' && (
             <p className="input__error">
-              ⚠ La contraseña debe tener minimo 8 carácteres
+              ⚠ The password must have at least 8 characters
             </p>
           )}
           {errors.oldPassword?.type === 'pattern' && (
             <p className="input__error">
-              ⚠ La contraseña debe tener por lo menos una letra mayúscula, una
-              letra minúscula, un número o carácter especial y una longitud
-              minima de 8 carácteres
+              ⚠ The password must have at least one uppercase letter, one
+              lowercase letter, a number or special character, and a length
+              minimum of 8 characters
             </p>
           )}
           <label htmlFor="newPassword" className="mainForm__form-label">
-            Escribe tu nueva contraseña
+            Enter your new password
           </label>
           <input
             className="mainForm__form-input"
             type="password"
             name="newPassword"
             id="newPassword"
-            placeholder="Ingresa tu nueva contraseña"
+            placeholder=" Enter your new password"
             {...register('newPassword', {
               required: true,
               minLength: 8,
@@ -110,29 +110,29 @@ export const ChangePassword = () => {
             })}
           />
           {errors.newPassword?.type === 'required' && (
-            <p className="input__error">⚠ El campo contraseña es requerido</p>
+            <p className="input__error">⚠ The password field is required</p>
           )}
           {errors.newPassword?.type === 'minLength' && (
             <p className="input__error">
-              ⚠ La contraseña debe tener minimo 8 carácteres
+              ⚠ The password must have at least 8 characters
             </p>
           )}
           {errors.newPassword?.type === 'pattern' && (
             <p className="input__error">
-              ⚠ La contraseña debe tener por lo menos una letra mayúscula, una
-              letra minúscula, un número o carácter especial y una longitud
-              minima de 8 carácteres
+              ⚠ The password must have at least one uppercase letter, one
+              lowercase letter, a number or special character, and a length
+              minimum of 8 characters
             </p>
           )}
           <label htmlFor="repeatPassword" className="mainForm__form-label">
-            Repite la contraseña
+            Repeat password
           </label>
           <input
             className="mainForm__form-input"
             type="password"
             name="repeatPassword"
             id="repeatPassword"
-            placeholder="Repite la nueva contraseña"
+            placeholder="Repeat password"
             {...register('repeatPassword', {
               required: true,
               minLength: 8,
@@ -141,26 +141,29 @@ export const ChangePassword = () => {
             })}
           />
           {errors.repeatPassword?.type === 'required' && (
-            <p className="input__error">⚠ El campo contraseña es requerido</p>
+            <p className="input__error">⚠ The password field is required</p>
           )}
           {errors.repeatPassword?.type === 'minLength' && (
             <p className="input__error">
-              ⚠ La contraseña debe tener minimo 8 carácteres
+              ⚠ The password must have at least 8 characters
             </p>
           )}
           {errors.repeatPassword?.type === 'pattern' && (
             <p className="input__error">
-              ⚠ La contraseña debe tener por lo menos una letra mayúscula, una
-              letra minúscula, un número o carácter especial y una longitud
-              minima de 8 carácteres
+              ⚠ The password must have at least one uppercase letter, one
+              lowercase letter, a number or special character, and a length
+              minimum of 8 characters
             </p>
           )}
           <input
             type="submit"
-            value="Enviar"
+            value="Change"
             className="button-form-login-register"
           />
         </form>
+        <div className="mainForm__link">
+          <a href="#header">Back to Home Page</a>
+        </div>
       </main>
       <FooterLoginRegister />
       <ToastContainer />
