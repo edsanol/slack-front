@@ -7,11 +7,12 @@ import { ModalListChannels } from './modals/ModalListChannels';
 export const AddChannelOptions = () => {
   const [opened, setOpened] = useState(false);
   const [openedNewChannel, setOpenedNewChannel] = useState(false);
+
   return (
     <div className="channel-options__container">
       <div className="channel-options__options">
         <p type="button" onClick={() => setOpenedNewChannel(true)}>
-          Crear nuevo canal
+          Create a new channel
         </p>
       </div>
       <Modal
@@ -21,13 +22,11 @@ export const AddChannelOptions = () => {
         withCloseButton={false}
         size="md"
         zIndex={999}>
-        {
-          <ModalCreateChannel setOpenedNewChannel={setOpenedNewChannel}/>
-        }
+        {<ModalCreateChannel setOpenedNewChannel={setOpenedNewChannel} />}
       </Modal>
       <div className="channel-options__options">
         <p type="button" onClick={() => setOpened(true)}>
-          Explorar la lista de canales
+          Browse channel list
         </p>
       </div>
       <Modal
@@ -37,9 +36,7 @@ export const AddChannelOptions = () => {
         withCloseButton={false}
         size="lg"
         zIndex={999}>
-        {
-          <ModalListChannels setOpened={setOpened}/>
-        }
+        {<ModalListChannels setOpened={setOpened} />}
       </Modal>
     </div>
   );

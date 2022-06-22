@@ -19,8 +19,8 @@ export const ListMemberModals = ({
 
   const handleClickJoin = (e) => {
     e.preventDefault();
-    toast.info('added user', {
-      position: 'bottom-right',
+    toast.info(`${name} joined this channel`, {
+      position: 'top-center',
       theme: 'colored',
     });
     dispatch(addUserToChannelAction({ channelId, memberInChannel }));
@@ -28,7 +28,9 @@ export const ListMemberModals = ({
     setOpened(false);
   };
 
-  const channelFilter = channelsReducer.filter((channel) => channel._id === channelId);
+  const channelFilter = channelsReducer.filter(
+    (channel) => channel._id === channelId
+  );
 
   return (
     <>

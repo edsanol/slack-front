@@ -2,6 +2,7 @@ import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import '../assets/styles/components/ListChannels.scss';
 import { addUserToChannelAction } from '../store/actions/actionsChannel';
+import { toast } from 'react-toastify';
 
 export const ListChannels = ({
   name,
@@ -17,6 +18,10 @@ export const ListChannels = ({
     e.preventDefault();
     dispatch(addUserToChannelAction({ channelId, memberInChannel }));
     setOpened(false);
+    toast.info(`You joined the ${name} successfully`, {
+      position: 'top-center',
+      theme: 'colored',
+    });
   };
 
   return (
@@ -26,10 +31,10 @@ export const ListChannels = ({
         <span>{`${users.length} members ▪️ `}</span> {description}
       </p>
       {users.includes(memberInChannel) ? (
-        <button className="btn__list-channels">Salir</button>
+        <button className="btn__list-channels_member">Member</button>
       ) : (
         <button className="btn__list-channels" onClick={handleClickJoin}>
-          Unirse
+          Join
         </button>
       )}
     </div>

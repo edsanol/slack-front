@@ -3,8 +3,11 @@ import '../assets/styles/pages/Register.scss';
 import { useForm } from 'react-hook-form';
 import { HeaderLoginRegister } from '../components/HeaderLoginRegister';
 import { FooterLoginRegister } from '../components/FooterLoginRegister';
-import { useDispatch, useSelector } from 'react-redux'
-import { getWorkspaceAction, registerUserAction } from '../store/actions/actionsAuth';
+import { useDispatch, useSelector } from 'react-redux';
+import {
+  getWorkspaceAction,
+  registerUserAction,
+} from '../store/actions/actionsAuth';
 
 export const Register = () => {
   const {
@@ -14,44 +17,44 @@ export const Register = () => {
   } = useForm();
 
   const dispatch = useDispatch();
-  const workspaceid = useSelector(state => state.authReducer.workspaceId)
+  const workspaceid = useSelector((state) => state.authReducer.workspaceId);
 
   const onSubmit = (data) => {
     const { fullName, email, password } = data;
-    dispatch(registerUserAction({fullName, email, password, workspaceid }))
+    dispatch(registerUserAction({ fullName, email, password, workspaceid }));
   };
 
   useEffect(() => {
-    const workspace = () => dispatch(getWorkspaceAction())
-    workspace()
-  }, [dispatch])
+    const workspace = () => dispatch(getWorkspaceAction());
+    workspace();
+  }, [dispatch]);
 
   return (
     <>
-      <HeaderLoginRegister title={'Registrarse'} text={'O BIEN'} />
+      <HeaderLoginRegister title={'Register'} text={'O'} />
 
       <main className="mainForm">
         <form className="mainForm__form" onSubmit={handleSubmit(onSubmit)}>
           <label htmlFor="fullName" className="mainForm__form-label">
-            Nombre y Apellido
+            Full Name
           </label>
           <input
             className="mainForm__form-input"
             type="text"
             name="fullName"
             id="fullName"
-            placeholder="Ingresa tu nombre y apellido"
+            placeholder="Enter your first and last name"
             {...register('fullName', {
               required: true,
               pattern: /^[a-z\d A-Z\d]{6,30}$/i,
             })}
           />
           {errors.nombre?.type === 'required' && (
-            <p className="input__error">⚠ El campo nombre es requerido</p>
+            <p className="input__error">⚠ The name field is required</p>
           )}
           {errors.nombre?.type === 'pattern' && (
             <p className="input__error">
-              ⚠ Ingresa un nombre de minimo 6 carácteres y maximo 30
+              ⚠ Enter a name of minimum 6 characters and maximum 30
             </p>
           )}
           <label htmlFor="email" className="mainForm__form-label">
@@ -62,27 +65,27 @@ export const Register = () => {
             type="email"
             name="email"
             id="email"
-            placeholder="Ingresa tu email"
+            placeholder="Enter your email"
             {...register('email', {
               required: true,
               pattern: /^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/,
             })}
           />
           {errors.email?.type === 'required' && (
-            <p className="input__error">⚠ El campo email es requerido</p>
+            <p className="input__error">⚠ The email field is required</p>
           )}
           {errors.email?.type === 'pattern' && (
-            <p className="input__error">⚠ El formato del email es incorrecto</p>
+            <p className="input__error">⚠ The email format is incorrect</p>
           )}
           <label htmlFor="name" className="mainForm__form-label">
-            Contraseña
+            Password
           </label>
           <input
             className="mainForm__form-input"
             type="password"
             name="password"
             id="password"
-            placeholder="Ingresa tu contraseña"
+            placeholder="Enter your password"
             {...register('password', {
               required: true,
               minLength: 8,
@@ -91,32 +94,30 @@ export const Register = () => {
             })}
           />
           {errors.password?.type === 'required' && (
-            <p className="input__error">⚠ El campo contraseña es requerido</p>
+            <p className="input__error">⚠ The password field is required</p>
           )}
           {errors.password?.type === 'minLength' && (
             <p className="input__error">
-              ⚠ La contraseña debe tener minimo 8 carácteres
+              ⚠ The password must have at least 8 characters
             </p>
           )}
           {errors.password?.type === 'pattern' && (
             <p className="input__error">
-              ⚠ La contraseña debe tener por lo menos una letra mayúscula, una
-              letra minúscula, un número o carácter especial y una longitud
-              minima de 8 carácteres
+              ⚠ The password must have at least one uppercase letter, one
+              lowercase letter, a number or special character, and a length
+              minimum of 8 characters
             </p>
           )}
           <input
             type="submit"
-            value="Enviar"
+            value="Register"
             className="button-form-login-register"
           />
         </form>
 
         <div className="mainForm__link">
-          <p>¿Ya estás usando Slack?</p>
-          <a href="#header">
-            Iniciar sesión en un espacio de trabajo existente
-          </a>
+          <p>Already using Slack?</p>
+          <span href="#header">Go to the login page to start</span>
         </div>
       </main>
 

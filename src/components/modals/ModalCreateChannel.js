@@ -5,6 +5,8 @@ import { useDispatch, useSelector } from 'react-redux';
 import { createChannelAction } from '../../store/actions/actionsChannel';
 import { Modal } from '@mantine/core';
 import { ModalBecomePremium } from './ModalBecomePremium';
+import { ToastContainer } from 'react-toastify';
+import { toast } from 'react-toastify';
 
 export const ModalCreateChannel = ({ setOpenedNewChannel }) => {
   const [openedModal, setOpenedModal] = useState(false);
@@ -36,27 +38,32 @@ export const ModalCreateChannel = ({ setOpenedNewChannel }) => {
       dispatch(createChannelAction({ name, description, select, userId }));
       setOpenedNewChannel(false);
     }
+
+    toast.info('channel created successfully', {
+      position: 'top-center',
+      theme: 'colored',
+    });
   };
 
   return (
     <div className="modal-create-channel">
       <div className="modal-create-channel__title">
-        <h2>Crear un nuevo canal</h2>
+        <h2>Create a new channel</h2>
       </div>
       <div className="modal-create-channel__p">
         <p>
-          Los canales son el lugar donde se comunica tu equipo. Funcionan mejor
-          cuando se organizan en torno a un tema, por ejemplo #programming.
+          Channels are a place where your team communicates. They work best when
+          organized around a topic, for example #programming.
         </p>
       </div>
       <form
         className="modal-create-channel__form"
         onSubmit={handleSubmit(onSubmit)}>
         <div className="modal-form__div">
-          <label htmlFor="channel">Nombre</label>
+          <label htmlFor="channel">Name</label>
           <input
             type="text"
-            placeholder="Nombre del canal"
+            placeholder="Channel name"
             className="form-create-channel__input"
             name="channel"
             id="channel"
@@ -65,11 +72,11 @@ export const ModalCreateChannel = ({ setOpenedNewChannel }) => {
             })}
           />
           {errors.name?.type === 'required' && (
-            <p className="input__error">⚠ El campo nombre es requerido</p>
+            <p className="input__error">⚠ The name field is required</p>
           )}
         </div>
         <div className="modal-form__div">
-          <label htmlFor="channelDescription">Descripción (opcional)</label>
+          <label htmlFor="channelDescription">Description</label>
           <input
             type="text"
             className="form-create-channel__input"
@@ -80,13 +87,13 @@ export const ModalCreateChannel = ({ setOpenedNewChannel }) => {
             })}
           />
           {errors.description?.type === 'required' && (
-            <p className="input__error">⚠ El campo nombre es requerido</p>
+            <p className="input__error">⚠ The description field is required</p>
           )}
-          <p>¿De que trata este canal?</p>
+          <p>What is this channel about?</p>
         </div>
         <div className="modal-form__div">
           <label htmlFor="select">
-            Desea crear un canal publico o privado?
+            Do you want to create a public or private channel?
           </label>
           <select
             name="select"
@@ -95,12 +102,12 @@ export const ModalCreateChannel = ({ setOpenedNewChannel }) => {
             {...register('select', {
               required: true,
             })}>
-            <option value="private">Privado</option>
-            <option value="public">Publico</option>
+            <option value="private">Private</option>
+            <option value="public">Public</option>
           </select>
-          {
-            userPremium === false && <p>Debes ser premium para crear canales privados</p>
-          }
+          {userPremium === false && (
+            <p>You must be premium to create private channels</p>
+          )}
         </div>
         <Modal
           opened={openedModal}
@@ -112,10 +119,11 @@ export const ModalCreateChannel = ({ setOpenedNewChannel }) => {
         </Modal>
         <input
           type="submit"
-          value="Enviar"
+          value="Create"
           className="form-create-channel__button"
         />
       </form>
+      <ToastContainer />
     </div>
   );
 };

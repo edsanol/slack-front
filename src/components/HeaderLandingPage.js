@@ -32,22 +32,17 @@ export const HeaderLandingPage = () => {
         </div>
 
         <div className="header__div-center">
-          <div className="header__div-icons">
-            <div>
-              <p href="#header" className="header__a-icons"></p>
-            </div>
-            <div>
-              <p href="#header" className="header__a-icons"></p>
-            </div>
-          </div>
-          <div className="header__div-input">
+          {/* <div className="header__div-input">
             <input
               type="text"
               placeholder=" &#xf002;   Search DesignersKR"
               className="header__input-search"
               style={inputStyle}
             />
-          </div>
+          </div> */}
+        </div>
+
+        <div className="header__div-right">
           <div
             className="header__div-question"
             type="button"
@@ -55,9 +50,6 @@ export const HeaderLandingPage = () => {
             <p>?</p>
             <span className="header__span-badge"> </span>
           </div>
-        </div>
-
-        <div className="header__div-right">
           <PopoverComponent />
         </div>
       </nav>

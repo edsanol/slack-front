@@ -25,7 +25,7 @@ export const Login = () => {
 
   return (
     <>
-      <HeaderLoginRegister title={'Conectarse a Slack'} text={'O'} />
+      <HeaderLoginRegister title={'Connect to Slack'} text={'O'} />
 
       <main className="mainForm">
         <form className="mainForm__form" onSubmit={handleSubmit(onSubmit)}>
@@ -37,20 +37,20 @@ export const Login = () => {
             type="email"
             name="email"
             id="email"
-            placeholder="Ingresa tu email"
+            placeholder="Enter your email"
             {...register('email', {
               required: true,
               pattern: /^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/,
             })}
           />
           {errors.email?.type === 'required' && (
-            <p className="input__error">⚠ El campo email es requerido</p>
+            <p className="input__error">⚠ The email field is required</p>
           )}
           {errors.email?.type === 'pattern' && (
-            <p className="input__error">⚠ El formato del email es incorrecto</p>
+            <p className="input__error">⚠ The email format is incorrect</p>
           )}
           <label htmlFor="name" className="mainForm__form-label">
-            Contraseña
+            password
           </label>
           <input
             className="mainForm__form-input"
@@ -66,29 +66,29 @@ export const Login = () => {
             })}
           />
           {errors.password?.type === 'required' && (
-            <p className="input__error">⚠ El campo contraseña es requerido</p>
+            <p className="input__error">⚠ The password field is required</p>
           )}
           {errors.password?.type === 'minLength' && (
             <p className="input__error">
-              ⚠ La contraseña debe tener minimo 8 carácteres
+              ⚠ The password must have at least 8 characters
             </p>
           )}
           {errors.password?.type === 'pattern' && (
             <p className="input__error">
-              ⚠ La contraseña debe tener por lo menos una letra mayúscula, una
-              letra minúscula, un número o carácter especial y una longitud
-              minima de 8 carácteres
+              ⚠ The password must have at least one uppercase letter, one
+              lowercase letter, a number or special character, and a length
+              minimum of 8 characters
             </p>
           )}
           <input
             type="submit"
-            value="Enviar"
+            value="Login"
             className="button-form-login-register"
           />
         </form>
         <div className="mainForm__link">
           <p className="pin__magic">
-            <Link to="/recover-password">¿Olvidaste tu contraseña?</Link>
+            <Link to="/recover-password">Forgot your password?</Link>
           </p>
         </div>
       </main>

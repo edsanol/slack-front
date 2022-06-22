@@ -48,7 +48,7 @@ export const HeaderChat = () => {
             size="lg">
             {
               <ModalMembersChannel
-                title={'1,141 members in talks'}
+                title={`${users.length} members in talks`}
                 paragraph={'Add people'}
                 setOpened={setOpened}
               />
