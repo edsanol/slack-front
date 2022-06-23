@@ -88,10 +88,10 @@
   font-size: 12px;
   padding: 5px;
   cursor: pointer;
-  background-color: #007a5a;
+  background-color: var(--Purple);
   
   &:hover{
-    background-color: #005f46;
+    background-color: var(--Purple-navbar);
   }
 }
 
@@ -126,9 +126,17 @@
   background-color: rgb(239, 239, 239);
 }
 .button-save {
-  background-color: #007a5a;
+  background-color: var(--Purple);
   color: #fff;
   &:hover{
-    background-color: #005f46;
+    background-color: var(--Purple-navbar);
   }
+}
+.button-nosave {
+  background-color: rgb(195, 120, 218);
+  color: #fff;
+  cursor: default;
+  padding: 4px;
+  border: 1px solid #FFF;
+  border-radius: 3px;
 }

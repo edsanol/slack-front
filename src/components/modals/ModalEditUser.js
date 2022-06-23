@@ -10,6 +10,7 @@ export const ModalEditUser = ({ setOpened }) => {
   const dispatch = useDispatch();
   const [image, setImage] = useState(null);
   const [file, setFile] = useState(null);
+  const { imageProfile } = useSelector((state) => state.updateImageReducer);
 
   useEffect(() => {
     if (file) {
@@ -18,7 +19,7 @@ export const ModalEditUser = ({ setOpened }) => {
       reader.readAsDataURL(file);
       dispatch(updateImageAction(file));
     }
-  }, [file]);
+  }, [file, imageProfile, dispatch]);
 
   const handleUpdateImageProfile = () => {
     document.querySelector('#imageSelector').click();
@@ -31,7 +32,7 @@ export const ModalEditUser = ({ setOpened }) => {
     (state) => state.userReducer.user
   );
   const user = useSelector((state) => state.userReducer.user);
-  const { imageProfile } = useSelector((state) => state.updateImageReducer);
+  
 
   const {
     register,
@@ -47,8 +48,13 @@ export const ModalEditUser = ({ setOpened }) => {
   });
 
   const onSubmit = async (data) => {
-    const userUpdated = { ...user, ...data, image: imageProfile };
     try {
+      let userUpdated
+      if (imageProfile) {
+        userUpdated = { ...user, ...data, image: imageProfile };
+      } else {
+        userUpdated = { ...user, ...data };
+      }
       await dispatch(updateUserProfileAction(userUpdated));
       toast.success('Perfil actualizado', {
         position: 'bottom-right',
@@ -62,7 +68,7 @@ export const ModalEditUser = ({ setOpened }) => {
       });
       console.log(err);
     }
-    window.location.reload(true);
+    // window.location.reload(true);
   };
   return (
     <form className="modal-user-edit" onSubmit={handleSubmit(onSubmit)}>
@@ -155,7 +161,7 @@ export const ModalEditUser = ({ setOpened }) => {
             <img
               className="img__upload-image"
               src={user.image}
-              alt="edit you profile' photo"
+              alt="edit you profile"
             />
           </div>
           <div className="button-edit">
@@ -178,9 +184,19 @@ export const ModalEditUser = ({ setOpened }) => {
         {/* <ImageProfileUser /> */}
       </div>
       <footer className="button-footer">
-        <button type="submit" className="button-submit button-save">
-          Save Changes
-        </button>
+        {
+          (image && imageProfile) ? 
+          (<button type="submit" className="button-submit button-save">
+            Save Changes
+          </button>) : (image && !imageProfile) ?
+          (<p className="button-submit button-nosave">
+            Save Changes
+          </p>) : 
+          (<button type="submit" className="button-submit button-save">
+            Save Changes
+          </button>)
+        }
+        
       </footer>
     </form>
   );
