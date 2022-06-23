@@ -180,7 +180,7 @@ export const Aside = ({ showAddChannel, setshowAddChannel }) => {
             overflow="inside"
             withCloseButton={false}
             size="lg">
-            {<ModalListUsers />}
+            {<ModalListUsers setOpened={setOpened} />}
           </Modal>
         </aside>
       </section>

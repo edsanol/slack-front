@@ -24,7 +24,6 @@ export const ListMemberModals = ({
       theme: 'colored',
     });
     dispatch(addUserToChannelAction({ channelId, memberInChannel }));
-    // window.location.reload(true);
     setOpened(false);
   };
 

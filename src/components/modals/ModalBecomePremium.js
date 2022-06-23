@@ -15,8 +15,8 @@ export const ModalBecomePremium = () => {
       external: 'false',
 
       //Parametros compra (obligatorio)
-      name: 'Usuario Premium',
-      description: 'Usuario premium en Clone Slack',
+      name: 'Premium User',
+      description: 'Premium user on Clone Slack',
       invoice: user._id,
       currency: 'cop',
       amount: '50000',
@@ -35,17 +35,17 @@ export const ModalBecomePremium = () => {
 
   return (
     <div className="modal-become-premium__container">
-      <h1 className="modal-become-premium__title">Pasate a usuario premium</h1>
+      <h1 className="modal-become-premium__title">Go to premium user</h1>
       <p className="modal-become-premium__text">
-        Para crear canales privados debes ser usuario premium
+        To create private channels you must be a premium user
       </p>
       <p className="modal-become-premium__text">
-        Los canales privados no están disponibles en la lista de canales, por lo
-        que solo accederán al canal los miembros que tu invites
+        Private channels are not available in the channel list, so only members
+        you invite will access the channel
       </p>
       <div>
         <button className="form-create-channel__button" onClick={handleClick}>
-          Pasate a premium
+          Go Premium
         </button>
       </div>
     </div>

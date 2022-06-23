@@ -3,7 +3,7 @@ import { useSelector } from 'react-redux';
 import '../../assets/styles/components/modals/ModalMembersChannel.scss';
 import { ListUsers } from '../ListUsers';
 
-export const ModalListUsers = () => {
+export const ModalListUsers = ({ setOpened }) => {
   const [newFilter, setNewFilter] = useState('');
   const inputStyle = {
     fontFamily: "'Lato', FontAwesome",
@@ -41,6 +41,8 @@ export const ModalListUsers = () => {
             image={data.image}
             email={data.email}
             phone={data.phone}
+            uid={data._id}
+            setOpened={setOpened}
           />
         ))}
       </div>
