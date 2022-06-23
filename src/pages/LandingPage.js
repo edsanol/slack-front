@@ -98,7 +98,7 @@ export const LandingPage = () => {
             {!activeChat && (
               <img
                 className="main__img-chat"
-                src="https://i.postimg.cc/WpKGM5CJ/background.png"
+                src="https://i.postimg.cc/zfKs6z4n/background-slackkk.png"
                 alt="background slack"
               />
             )}

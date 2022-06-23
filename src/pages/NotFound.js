@@ -15,12 +15,12 @@ export const NotFound = () => {
           <div className="nav__menu" id="nav-menu">
             <ul className="nav__list">
               <li className="nav__item">
-                <Link to="/login" className="nav__link">
+                <Link to="/auth/login" className="nav__link">
                   Login
                 </Link>
               </li>
               <li className="nav__item">
-                <Link to="/register" className="nav__link">
+                <Link to="/auth/register" className="nav__link">
                   Register
                 </Link>
               </li>

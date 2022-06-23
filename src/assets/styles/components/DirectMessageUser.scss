@@ -45,6 +45,18 @@
   box-shadow: 0px 0px 0px 2px var(--Purple);
 }
 
+.span-user-away {
+  position: absolute;
+  background-color: rgb(224, 209, 123);
+  height: 4px;
+  width: 4px;
+  top: 25px;
+  left: 16px;
+  border: 2px solid rgb(224, 209, 123);
+  border-radius: 10px;
+  box-shadow: 0px 0px 0px 2px var(--Purple);
+}
+
 .list-user-dropdown-direct {
   position: relative;
   @include list-channels-styles(8px, 0px);
