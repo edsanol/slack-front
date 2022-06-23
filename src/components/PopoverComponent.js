@@ -19,7 +19,7 @@ export const PopoverComponent = () => {
           className="header__perfil"
           type="button"
           onClick={() => setOpenedPop((o) => !o)}>
-          <img src={image} alt="image profile" />
+          <img src={image} alt="profile" />
           {stateOption ? (
             <span className="header__span-badge-active"> </span>
           ) : (
@@ -32,7 +32,7 @@ export const PopoverComponent = () => {
       gutter={6}
       position="top"
       closeOnClickOutside={false}>
-      <UserOptionsProfile />
+      <UserOptionsProfile setOpenedPop={setOpenedPop}/>
     </Popover>
   );
 };

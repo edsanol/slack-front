@@ -90,6 +90,9 @@ export const Login = () => {
           <p className="pin__magic">
             <Link to="/recover-password">Forgot your password?</Link>
           </p>
+          <p className="pin__magic">
+            Don't have an account yet? <Link to="/auth/register"> Sign up</Link>
+          </p>
         </div>
       </main>
 

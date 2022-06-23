@@ -8,6 +8,7 @@ import {
   getWorkspaceAction,
   registerUserAction,
 } from '../store/actions/actionsAuth';
+import { Link } from 'react-router-dom';
 
 export const Register = () => {
   const {
@@ -117,7 +118,7 @@ export const Register = () => {
 
         <div className="mainForm__link">
           <p>Already using Slack?</p>
-          <span href="#header">Go to the login page to start</span>
+          <Link to="/auth/login">Go to the login page to start</Link>
         </div>
       </main>
 

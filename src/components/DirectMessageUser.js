@@ -49,7 +49,7 @@ export const DirectMessageUser = ({ fullName, image, state, userId }) => {
         </div>
         <span
           className={
-            state === 'enable' ? 'span-user-active' : 'span-user-desactive'
+            state === 'enable' ? 'span-user-active' : state === 'disable' ? 'span-user-desactive' : 'span-user-away'
           }></span>
       </div>
     </li>

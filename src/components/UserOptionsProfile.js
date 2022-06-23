@@ -13,23 +13,31 @@ import { Link } from 'react-router-dom';
 import { logoutResetStateThread } from '../store/actions/actionsThread';
 import { logoutResetUserReducer } from '../store/actions/actionUsers';
 
-export const UserOptionsProfile = () => {
+export const UserOptionsProfile = ({setOpenedPop}) => {
   const dispatch = useDispatch();
   const handleClickProfileShow = () => {
+    setOpenedPop(false)
     dispatch(actionsChangeView('showProfile'));
   };
 
   const [changeState, setChangeState] = useState(false);
   const [opened, setOpened] = useState(false);
 
-  const handleChangeStatus = () => {
-    setChangeState(!changeState);
-    dispatch(actionsChangeState(changeState));
-  };
-
   const stateOption = useSelector(
     (state) => state.changeStateReducer.stateView
   );
+
+  const handleChangeStatus = () => {
+    setChangeState(!changeState);
+    dispatch(actionsChangeState(changeState));
+    if (changeState === true) {
+      socket.emit('statusChange', 'enable')
+    }
+    if (changeState === false) {
+      socket.emit('statusChange', 'away')
+    }
+  };
+
   const { fullName, image } = useSelector((state) => state.userReducer.user);
   const { socket } = useSelector((state) => state.socketReducer);
 
@@ -47,7 +55,7 @@ export const UserOptionsProfile = () => {
   return (
     <div className="div-user-options-container">
       <div className="div-user-options-header">
-        <img src={image} alt="image profile" />
+        <img src={image} alt="profile" />
         <div>
           <h2 className="">{fullName}</h2>
           <div className="state-container">
