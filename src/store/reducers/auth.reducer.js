@@ -7,14 +7,15 @@ const initialState = {
   image: null,
   description: null,
   workspaceId: null,
+  workspace: []
 };
 
 export const authReducer = (state = initialState, action) => {
   switch (action.type) {
-    case 'GET_WORKSPACE_ID':
+    case 'GET_WORKSPACE':
       return {
         ...state,
-        workspaceId: action.payload,
+        workspace: action.payload,
       };
     case 'LOADING_REVALIDATE':
       return {

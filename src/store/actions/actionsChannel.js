@@ -11,6 +11,7 @@ export function createChannelAction(data) {
           description: data.description,
           premium: data.select,
           userId: data.userId,
+          workSpaceId: data.workspaceId
         },
         {
           headers: {

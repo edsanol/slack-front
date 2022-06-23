@@ -10,7 +10,7 @@ import { ShowUsersProfile } from '../components/ShowUsersProfile';
 import RichInput from '../components/RichInput';
 import { useDispatch, useSelector } from 'react-redux';
 import { getChannelsAction } from '../store/actions/actionsChannel';
-import { startChecking } from '../store/actions/actionsAuth';
+import { getWorkspaceAction, startChecking } from '../store/actions/actionsAuth';
 import { getUsersAction, getUsersIdAction } from '../store/actions/actionUsers';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
@@ -32,6 +32,7 @@ export const LandingPage = () => {
   const dispatch = useDispatch();
   const [showProfileOptions, setShowProfileOptions] = useState(false);
   const [showAddChannel, setshowAddChannel] = useState(false);
+  const [showAddWorkspace, setShowAddWorkspace] = useState(false);
   const sockets = useSocket('http://localhost:8080');
 
   useEffect(() => {
@@ -54,6 +55,7 @@ export const LandingPage = () => {
     dispatch(startChecking());
     dispatch(getChannelsAction());
     dispatch(getUsersAction());
+    dispatch(getWorkspaceAction())
   }, [dispatch, uid]);
 
   useEffect(() => {
@@ -87,6 +89,8 @@ export const LandingPage = () => {
         <Aside
           showAddChannel={showAddChannel}
           setshowAddChannel={setshowAddChannel}
+          setShowAddWorkspace={setShowAddWorkspace}
+          showAddWorkspace={showAddWorkspace}
         />
         <section className="main__section-main">
           <div
@@ -114,6 +118,7 @@ export const LandingPage = () => {
                   _id={itemChat._id}
                   likes={itemChat.likes}
                   thread={itemChat.thread}
+                  showDate={itemChat.showDate}
                 />
               ))}
             </div>

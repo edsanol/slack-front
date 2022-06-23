@@ -5,7 +5,6 @@ import { HeaderLoginRegister } from '../components/HeaderLoginRegister';
 import { FooterLoginRegister } from '../components/FooterLoginRegister';
 import { useDispatch, useSelector } from 'react-redux';
 import {
-  getWorkspaceAction,
   registerUserAction,
 } from '../store/actions/actionsAuth';
 import { Link } from 'react-router-dom';
@@ -24,11 +23,6 @@ export const Register = () => {
     const { fullName, email, password } = data;
     dispatch(registerUserAction({ fullName, email, password, workspaceid }));
   };
-
-  useEffect(() => {
-    const workspace = () => dispatch(getWorkspaceAction());
-    workspace();
-  }, [dispatch]);
 
   return (
     <>

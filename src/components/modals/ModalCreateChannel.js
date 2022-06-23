@@ -17,6 +17,7 @@ export const ModalCreateChannel = ({ setOpenedNewChannel }) => {
   } = useForm();
 
   const userId = useSelector((state) => state.authReducer.uid);
+  const workspaceId = useSelector((state) => state.authReducer.workspaceId);
   const userPremium = useSelector((state) => state.userReducer.user.premium);
   const dispatch = useDispatch();
 
@@ -30,12 +31,12 @@ export const ModalCreateChannel = ({ setOpenedNewChannel }) => {
     }
 
     if (select === true && userPremium === true) {
-      dispatch(createChannelAction({ name, description, select, userId }));
+      dispatch(createChannelAction({ name, description, select, userId, workspaceId }));
       setOpenedNewChannel(false);
     } else if (select === true && userPremium === false) {
       setOpenedModal(true);
     } else {
-      dispatch(createChannelAction({ name, description, select, userId }));
+      dispatch(createChannelAction({ name, description, select, userId, workspaceId }));
       setOpenedNewChannel(false);
     }
 
