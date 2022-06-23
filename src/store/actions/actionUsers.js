@@ -170,7 +170,6 @@ export const changePremium = (data) => {
   };
 };
 
-
 export const logoutResetUserReducer = () => {
   return {
     type: 'LOGOUT_RESET_USER_REDUCER',
@@ -213,3 +212,7 @@ const resetPassword = (ok) => ({
   payload: ok,
 });
 
+export const getUserIdProfileAction = (userId) => ({
+  type: 'GET_USER_ID_PROFILE',
+  payload: userId,
+});

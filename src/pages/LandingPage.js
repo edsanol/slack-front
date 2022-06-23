@@ -6,6 +6,7 @@ import { BoxChatMessage } from '../components/BoxChatMessage';
 import { ThreadLandingPage } from '../components/ThreadLandingPage';
 import { HelpLandingPage } from '../components/HelpLandingPage';
 import { ProfileLandingPage } from '../components/ProfileLandingPage';
+import { ShowUsersProfile } from '../components/ShowUsersProfile';
 import RichInput from '../components/RichInput';
 import { useDispatch, useSelector } from 'react-redux';
 import { getChannelsAction } from '../store/actions/actionsChannel';
@@ -140,6 +141,12 @@ export const LandingPage = () => {
               <ProfileLandingPage />
             </div>
           )}
+          {showView === 'showUsersProfile' && (
+            <div className="main__div-thread">
+              <ShowUsersProfile />
+            </div>
+          )}
+
           <ToastContainer />
         </section>
       </main>

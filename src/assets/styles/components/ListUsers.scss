@@ -42,6 +42,22 @@
   display: none;
   width: 56px;
 }
+.btn_view_profile{
+  position: absolute;
+  right: 5px;
+  top: 18px;
+  background-color: #148567;
+  color: #fff;
+  border: 1px solid #148567;
+  border-radius: 5px;
+  cursor: pointer;
+  width: 80px;
+  padding: 1px;
+  &:hover {
+    background-color: #1ab68c;
+    border: 1px solid #1ab68c;
+  }
+}
 .btn__list-users {
   position: absolute;
   right: 5px;
