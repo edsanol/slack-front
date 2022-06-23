@@ -1,3 +1,5 @@
+import { timeDateGeneral } from "../../helpers/timeDate";
+
 const initialState = {
   socket: null,
   online: '',
@@ -52,9 +54,17 @@ export const socketReducer = (state = initialState, action) => {
         return state;
       }
     case 'GET_MESSAGES':
+      console.log(action.payload)
+      const messagesDate = action.payload.map((item, index) => {
+        const date = timeDateGeneral(item.createdAt)
+        if(index === 0 || date !== timeDateGeneral(action.payload[index-1].createdAt)) {
+          return { ...item, showDate: true }
+        } 
+        return { ...item, showDate: false }
+      })
       return {
         ...state,
-        messages: [...action.payload],
+        messages: messagesDate,
       };
 
     case 'GIVE_OR_REMOVE_LIKE':

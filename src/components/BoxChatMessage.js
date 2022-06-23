@@ -25,7 +25,9 @@ export const BoxChatMessage = (props) => {
           thread={props.thread}
         />
       )}
-      <ChatDate date={props.createdAt} />
+      {
+        props.showDate && (<ChatDate date={props.createdAt} />)
+      }
       <div className="">
         <img className="img-chat-user-img" src={props.image} alt="img7" />
       </div>

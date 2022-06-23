@@ -1,13 +1,22 @@
 import axios from 'axios';
 import jwt_decode from 'jwt-decode';
+import { toast } from 'react-toastify';
 const BASE_URL = 'http://localhost:8080';
 
 export function getWorkspaceAction() {
   return async (dispatch) => {
     try {
-      const response = await axios.get(`${BASE_URL}/workSpace`);
-      dispatch(getWorkspace(response.data.data[0]._id));
-      // console.log(response.data.data[0]._id);
+      const token = localStorage.getItem('token') || '';
+      if (!token) {
+        return false;
+      }
+      const response = await axios.get(`${BASE_URL}/workSpace`, {
+        headers: {
+          'x-token': token,
+        },
+      });
+      dispatch(getWorkspace(response.data.data));
+      console.log(response.data.data);
     } catch (error) {
       // dispatch(getProductsError())
       console.log(error);
@@ -16,9 +25,40 @@ export function getWorkspaceAction() {
 }
 
 const getWorkspace = (res) => ({
-  type: 'GET_WORKSPACE_ID',
+  type: 'GET_WORKSPACE',
   payload: res,
 });
+
+export const createWorkspaceAction = ({name}) => {
+  return async () => {
+    try {
+      const token = localStorage.getItem('token') || '';
+      if (!token) {
+        return false;
+      }
+      const response = await axios.post(
+        `${BASE_URL}/workSpace`,
+        {
+          name
+        },
+        {
+          headers: {
+            'Content-type': 'application/json; charset=UTF-8',
+            'x-token': token,
+          },
+        }
+      );
+      console.log(response.data)
+
+    } catch (error) {
+      console.log(error)
+      toast.error('an error occurred', {
+        position: 'top-center',
+        theme: 'colored',
+      });
+    }
+  }
+}
 
 export function loginUserAction(data) {
   return async (dispatch) => {

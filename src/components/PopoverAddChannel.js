@@ -3,8 +3,9 @@ import { Popover } from '@mantine/core';
 import { AddChannelOptions } from './AddChannelOptions';
 import { useDispatch } from 'react-redux';
 import { actionsHiddenScroll } from '../store/actions/actionsChangeState';
+import { AddWorkspaceOption } from './addWorkspaceOption';
 
-export const PopoverAddChannel = () => {
+export const PopoverAddChannel = ({name}) => {
   const [opened, setOpened] = useState(false);
 
   const dispatch = useDispatch();
@@ -22,14 +23,18 @@ export const PopoverAddChannel = () => {
       opened={opened}
       onClose={() => setOpened(false)}
       target={
-        <p type="button" onClick={handleClick}>
-          Add channels
+        <p type="button" className={(name === '+') ? 'aside-button-workspace-plus' : ''} onClick={handleClick}>
+          {name}
         </p>
       }
       width={240}
       position="right"
       closeOnClickOutside={false}>
-      <AddChannelOptions />
+      {
+        (name === 'add channel') 
+          ? <AddChannelOptions />
+          : <AddWorkspaceOption />
+      }
     </Popover>
   );
 };

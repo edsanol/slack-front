@@ -9,7 +9,7 @@ import { useSelector } from 'react-redux';
 import { ModalListUsers } from './modals/ModalListUsers';
 import { ModalBecomePremium } from './modals/ModalBecomePremium';
 
-export const Aside = ({ showAddChannel, setshowAddChannel }) => {
+export const Aside = ({ showAddChannel, setshowAddChannel, setShowAddWorkspace, showAddWorkspace }) => {
   const [openedChannels, setOpenChannels] = useState(true);
   const [openedChats, setOpenChats] = useState(true);
   const [opened, setOpened] = useState(false);
@@ -18,6 +18,10 @@ export const Aside = ({ showAddChannel, setshowAddChannel }) => {
   const handleClickChannel = () => {
     showAddChannel ? setshowAddChannel(false) : setshowAddChannel(true);
   };
+
+  const handleWorkspace = () => {
+    showAddWorkspace ? setShowAddWorkspace(false) : setShowAddWorkspace(true);
+  }
 
   const hiddenScroll = useSelector(
     (state) => state.changeStateReducer.hiddenScroll
@@ -53,11 +57,17 @@ export const Aside = ({ showAddChannel, setshowAddChannel }) => {
     <div className="aside-container">
       <section className="aside-section-workspace">
         <div className="aside-selected-button">
-          <button className="aside-button-workspace-selected">
+          <span className="aside-button-workspace-selected">
             <img src={imageMIR} alt="Logo workspace" />
-          </button>
+          </span>
         </div>
-        <button className="aside-button-workspace-plus">+</button>
+        <div className="aside-noselected-button">
+          <span className="aside-button-workspace-selected">
+            <img src={imageMIR} alt="Logo workspace" />
+          </span>
+        </div>
+        <div type='button'onClick={handleWorkspace}></div>
+        <PopoverAddChannel name={'+'} />
       </section>
 
       <section className="aside-section-channels">
@@ -129,7 +139,7 @@ export const Aside = ({ showAddChannel, setshowAddChannel }) => {
                       onClick={handleClickChannel}>
                       +
                     </button>
-                    <PopoverAddChannel />
+                    <PopoverAddChannel name={'add channel'} />
                   </li>
                 </ul>
               </Collapse>
