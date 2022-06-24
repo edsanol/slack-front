@@ -1,16 +1,14 @@
 import React from 'react';
-import '../assets/styles/components/ButtonGoogle.scss'
-import iconGoogle from '../assets/icon/icon-google.svg'
+import '../assets/styles/components/ButtonGoogle.scss';
 
 export const ButtonGoogle = () => {
   return (
-    <button className="buttonGoogle-login-google">
+    <>
       <img
-        className="buttonGoogle__logo-google"
-        src={iconGoogle}
-        alt="google icon"
+        className="button-users__icon"
+        src="https://i.postimg.cc/pL3dQh9K/users.png"
+        alt="icon google"
       />
-      Continuar con Google
-    </button>
+    </>
   );
-}
+};

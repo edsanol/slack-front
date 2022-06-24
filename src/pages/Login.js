@@ -25,7 +25,7 @@ export const Login = () => {
 
   return (
     <>
-      <HeaderLoginRegister title={'Connect to Slack'} text={'O'} />
+      <HeaderLoginRegister title={'Connect to Slack'} />
 
       <main className="mainForm">
         <form className="mainForm__form" onSubmit={handleSubmit(onSubmit)}>
@@ -50,7 +50,7 @@ export const Login = () => {
             <p className="input__error">⚠ The email format is incorrect</p>
           )}
           <label htmlFor="name" className="mainForm__form-label">
-            password
+            Password
           </label>
           <input
             className="mainForm__form-input"
