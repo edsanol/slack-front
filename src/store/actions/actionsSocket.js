@@ -78,6 +78,13 @@ export const messageToDirectMessage = (directMessage) => {
   };
 };
 
+export const messageToDirectMessageCurrent = (directMessage) => {
+  return {
+    type: 'MESSAGE_TO_DIRECT_CHANNEL_CURRENT',
+    payload: directMessage,
+  };
+}
+
 export const messageToChannel = (channelMessage) => {
   return {
     type: 'MESSAGE_TO_CHANNEL',

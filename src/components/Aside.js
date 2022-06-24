@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from 'react';
-import imageMIR from '../assets/images/logoMIR.jpg';
 import { ChannelMessageGroup } from './ChannelMessageGroup';
 import { DirectMessageUser } from './DirectMessageUser';
 import { Collapse } from '@mantine/core';
@@ -8,12 +7,19 @@ import { PopoverAddChannel } from './PopoverAddChannel';
 import { useSelector } from 'react-redux';
 import { ModalListUsers } from './modals/ModalListUsers';
 import { ModalBecomePremium } from './modals/ModalBecomePremium';
+import { AsideWorkspace } from './AsideWorkspace';
 
-export const Aside = ({ showAddChannel, setshowAddChannel, setShowAddWorkspace, showAddWorkspace }) => {
+export const Aside = ({
+  showAddChannel,
+  setshowAddChannel,
+  setShowAddWorkspace,
+  showAddWorkspace,
+}) => {
   const [openedChannels, setOpenChannels] = useState(true);
   const [openedChats, setOpenChats] = useState(true);
   const [opened, setOpened] = useState(false);
   const [openedModal, setOpenedModal] = useState(false);
+  const [openedPopover, setOpenedPopover] = useState(false);
 
   const handleClickChannel = () => {
     showAddChannel ? setshowAddChannel(false) : setshowAddChannel(true);
@@ -21,14 +27,16 @@ export const Aside = ({ showAddChannel, setshowAddChannel, setShowAddWorkspace, 
 
   const handleWorkspace = () => {
     showAddWorkspace ? setShowAddWorkspace(false) : setShowAddWorkspace(true);
-  }
+  };
 
   const hiddenScroll = useSelector(
     (state) => state.changeStateReducer.hiddenScroll
   );
   const channelsByUser = useSelector((state) => state.channelReducer.channels);
+  const workspaceByUser = useSelector((state) => state.authReducer.workspace);
   const channelsloading = useSelector((state) => state.channelReducer.loading);
   const memberInChannel = useSelector((state) => state.authReducer.uid);
+  const workspaceActive = useSelector((state) => state.authReducer.workspaceId);
   const { users, socket } = useSelector((state) => state.socketReducer);
   const userPremium = useSelector((state) => state.userReducer.user.premium);
   let allUser = users;
@@ -56,23 +64,33 @@ export const Aside = ({ showAddChannel, setshowAddChannel, setShowAddWorkspace, 
   return (
     <div className="aside-container">
       <section className="aside-section-workspace">
-        <div className="aside-selected-button">
-          <span className="aside-button-workspace-selected">
-            <img src={imageMIR} alt="Logo workspace" />
-          </span>
-        </div>
-        <div className="aside-noselected-button">
-          <span className="aside-button-workspace-selected">
-            <img src={imageMIR} alt="Logo workspace" />
-          </span>
-        </div>
-        <div type='button'onClick={handleWorkspace}></div>
-        <PopoverAddChannel name={'+'} />
+        {workspaceByUser
+          .filter((workspace) => workspace.users.includes(memberInChannel))
+          .map((workspace) => {
+            return (
+              <AsideWorkspace 
+                key={workspace._id}
+                name={workspace.name}
+                workspaceId={workspace._id}
+              />
+            );
+          })}
+        <div type="button" onClick={handleWorkspace}></div>
+        <PopoverAddChannel name={'+'} setOpenedPopover={setOpenedPopover} openedPopover={openedPopover}/>
       </section>
 
       <section className="aside-section-channels">
         <div className="aside-channels-header">
-          <p>Make It Realㅤ⌵</p>
+          {
+            workspaceByUser
+              .filter((workspace) => workspace._id === workspaceActive)
+              .map((workspace) => {
+              return (
+                <p key={workspace._id}>{workspace.name}ㅤ⌵</p>
+              );
+            })
+          }
+          
         </div>
 
         <aside
@@ -121,6 +139,9 @@ export const Aside = ({ showAddChannel, setshowAddChannel, setShowAddWorkspace, 
                         .filter((channels) =>
                           channels.users.includes(memberInChannel)
                         )
+                        .filter((channels) =>
+                          channels.workSpaceId === workspaceActive
+                        )
                         .map((channel) => {
                           return (
                             <ChannelMessageGroup
@@ -159,13 +180,15 @@ export const Aside = ({ showAddChannel, setshowAddChannel, setShowAddWorkspace, 
                 transitionDuration={0}
                 transitionTimingFunction="linear">
                 <ul>
-                  {allUser.map((user) => (
-                    <DirectMessageUser
-                      key={user._id}
-                      userId={user._id}
-                      fullName={user.fullName}
-                      state={user.state}
-                      image={user.image}
+                  {allUser
+                    .filter((user) => user.workSpaceId.includes(workspaceActive))
+                    .map((user) => (
+                      <DirectMessageUser
+                        key={user._id}
+                        userId={user._id}
+                        fullName={user.fullName}
+                        state={user.state}
+                        image={user.image}
                     />
                   ))}
 

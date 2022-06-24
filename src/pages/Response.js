@@ -18,7 +18,6 @@ export const Response = () => {
       .then(({ data }) => {
         setConfirmation(data.data.x_response);
       });
-    console.log(confirmation);
     if (confirmation === 'Rechazada') {
       navigation('/');
       toast.error('Error de compra', {
@@ -27,7 +26,6 @@ export const Response = () => {
       });
     } else if (confirmation === 'Aceptada') {
       dispatch(changePremium());
-      console.log('premium');
       navigation('/');
     }
   }, [params, confirmation, dispatch, navigation]);

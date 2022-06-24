@@ -12,7 +12,7 @@ export default function RichInput() {
   const { _id, fullName, image } = useSelector(
     (state) => state.userReducer.user
   );
-
+  const workspaceActive = useSelector((state) => state.authReducer.workspaceId);
   const { channels } = useSelector((state) => state.channelReducer);
 
   const verifyChatUser = users.map((e) => e._id === activeChat);
@@ -26,6 +26,7 @@ export default function RichInput() {
         fullName: fullName,
         image: image,
         message: editorRef.current.getContent(),
+        workSpaceId: workspaceActive,
       });
 
       editorRef.current.setContent('');

@@ -5,15 +5,21 @@ import { actionsChangeView } from '../store/actions/actionsChangeView';
 import {
   getActiveChatAction,
   getMessagesAction,
+  messageToDirectMessage,
 } from '../store/actions/actionsSocket';
 
 export const DirectMessageUser = ({ fullName, image, state, userId }) => {
   const [notification, setNotification] = useState(false);
   const dispatch = useDispatch();
-  const { activeChat, messageToDirectMessage } = useSelector(
-    (state) => state.socketReducer
+  const { activeChat } = useSelector((state) => state.socketReducer);
+  const ToDirectMessage = useSelector(
+    (state) => state.socketReducer.messageToDirectMessage
   );
   const myId = useSelector((state) => state.authReducer.uid);
+  const workspaceActive = useSelector((state) => state.authReducer.workspaceId);
+  const messageCurrent = useSelector(
+    (state) => state.socketReducer.newMessageCurrent
+  );
 
   const handleClick = () => {
     dispatch(getActiveChatAction(userId));
@@ -22,17 +28,37 @@ export const DirectMessageUser = ({ fullName, image, state, userId }) => {
   };
 
   useEffect(() => {
-    if (messageToDirectMessage === userId && myId !== userId) {
+    if (
+      ToDirectMessage === userId &&
+      myId !== userId &&
+      messageCurrent.workSpaceId === workspaceActive
+    ) {
       setNotification(true);
     }
+
     dispatch(actionsChangeView('hiddenAll'));
-  }, [messageToDirectMessage, userId, dispatch]);
+  }, [ToDirectMessage, userId, dispatch, workspaceActive, messageCurrent]);
 
   useEffect(() => {
-    if (activeChat === userId) {
+    if (
+      activeChat === userId &&
+      messageCurrent.workSpaceId !== workspaceActive
+    ) {
       setNotification(false);
     }
-  }, [activeChat, userId]);
+    else if (
+      activeChat !== userId &&
+      messageCurrent.workSpaceId !== workspaceActive
+    ) {
+      setNotification(false);
+    } else if (
+      activeChat === userId &&
+      messageCurrent.workSpaceId === workspaceActive
+    ) {
+      setNotification(false);
+      dispatch(messageToDirectMessage(''));
+    }
+  }, [activeChat, userId, workspaceActive, messageCurrent]);
 
   return (
     <li className="list-user-dropdown-direct">
@@ -49,7 +75,11 @@ export const DirectMessageUser = ({ fullName, image, state, userId }) => {
         </div>
         <span
           className={
-            state === 'enable' ? 'span-user-active' : state === 'disable' ? 'span-user-desactive' : 'span-user-away'
+            state === 'enable'
+              ? 'span-user-active'
+              : state === 'disable'
+              ? 'span-user-desactive'
+              : 'span-user-away'
           }></span>
       </div>
     </li>

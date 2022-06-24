@@ -10,7 +10,7 @@ import { ShowUsersProfile } from '../components/ShowUsersProfile';
 import RichInput from '../components/RichInput';
 import { useDispatch, useSelector } from 'react-redux';
 import { getChannelsAction } from '../store/actions/actionsChannel';
-import { getWorkspaceAction, startChecking } from '../store/actions/actionsAuth';
+import { getActiveWorkspaceAction, getWorkspaceAction, startChecking } from '../store/actions/actionsAuth';
 import { getUsersAction, getUsersIdAction } from '../store/actions/actionUsers';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
@@ -19,8 +19,10 @@ import {
   actionsSocket,
   getAllMessagesChannelAction,
   getAllUserSocketAction,
+  getMessagesAction,
   messageToChannel,
   messageToDirectMessage,
+  messageToDirectMessageCurrent,
   newMessage,
 } from '../store/actions/actionsSocket';
 import {
@@ -49,6 +51,7 @@ export const LandingPage = () => {
   const { uid } = useSelector((state) => state.authReducer);
   const chatMessage = useSelector((state) => state.socketReducer.messages);
   const activeChat = useSelector((state) => state.socketReducer.activeChat);
+  const workspaceActive = useSelector((state) => state.authReducer.workspaceId);
 
   useEffect(() => {
     dispatch(getUsersIdAction(uid));
@@ -56,12 +59,14 @@ export const LandingPage = () => {
     dispatch(getChannelsAction());
     dispatch(getUsersAction());
     dispatch(getWorkspaceAction())
+    dispatch(getActiveWorkspaceAction());
   }, [dispatch, uid]);
 
   useEffect(() => {
     sockets.socket?.on('sendMessageUser', (messageReceived) => {
       dispatch(newMessage(messageReceived));
       dispatch(messageToDirectMessage(messageReceived.from));
+      dispatch(messageToDirectMessageCurrent(messageReceived));
     });
     sockets.socket?.on('sendMessageChannel', (messageReceived) => {
       dispatch(newMessage(messageReceived));
@@ -108,17 +113,19 @@ export const LandingPage = () => {
               />
             )}
             <div className="chat__div-message">
-              {chatMessage.map((itemChat) => (
-                <BoxChatMessage
-                  key={itemChat._id}
-                  fullName={itemChat.fullName}
-                  image={itemChat.image}
-                  message={itemChat.message}
-                  createdAt={itemChat.createdAt}
-                  _id={itemChat._id}
-                  likes={itemChat.likes}
-                  thread={itemChat.thread}
-                  showDate={itemChat.showDate}
+              {chatMessage
+                .filter(item => item.workSpaceId === workspaceActive)
+                .map((itemChat) => (
+                  <BoxChatMessage
+                    key={itemChat._id}
+                    fullName={itemChat.fullName}
+                    image={itemChat.image}
+                    message={itemChat.message}
+                    createdAt={itemChat.createdAt}
+                    _id={itemChat._id}
+                    likes={itemChat.likes}
+                    thread={itemChat.thread}
+                    showDate={itemChat.showDate}
                 />
               ))}
             </div>

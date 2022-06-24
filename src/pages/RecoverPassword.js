@@ -14,7 +14,6 @@ export const RecoverPassword = () => {
 
   const onSubmit = (e) => {
     e.preventDefault();
-    console.log(email);
 
     dispatch(forgotPasswordAction(email));
     setEmail('');
