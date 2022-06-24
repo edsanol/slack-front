@@ -1,14 +1,12 @@
 import React from 'react';
-import logoSlack from '../assets/img/logo-slack.svg';
 import '../assets/styles/components/HeaderLoginRegister.scss';
-import { ButtonGoogle } from './ButtonGoogle';
 
-export const HeaderLoginRegister = ({ title, text }) => {
+export const HeaderLoginRegister = ({ title }) => {
   return (
     <header className="headerForm">
       <img
         className="headerForm__logo-slack"
-        src={logoSlack}
+        src="https://i.postimg.cc/SsSbckGW/slackmove.gif"
         alt="slack icon"
       />
       <h1 className="headerForm__title">{title}</h1>
@@ -16,12 +14,13 @@ export const HeaderLoginRegister = ({ title, text }) => {
         We suggest you use the
         <strong> address you use at work.</strong>
       </p>
-
-      <ButtonGoogle />
-
       <div className="headerForm__decoration">
         <div className="headerForm__decoration-line"></div>
-        <p className="headerForm__decoration-text">{text}</p>
+        <img
+          className="button-users__icon"
+          src="https://i.postimg.cc/pL3dQh9K/users.png"
+          alt="icon google"
+        />
         <div className="headerForm__decoration-line"></div>
       </div>
     </header>
