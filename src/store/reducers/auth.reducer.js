@@ -7,7 +7,7 @@ const initialState = {
   image: null,
   description: null,
   workspaceId: null,
-  workspace: []
+  workspace: [],
 };
 
 export const authReducer = (state = initialState, action) => {
@@ -16,6 +16,29 @@ export const authReducer = (state = initialState, action) => {
       return {
         ...state,
         workspace: action.payload,
+      };
+    case 'CREATE_WORKSPACE':
+      return {
+        ...state,
+        workspace: [...state.workspace, action.payload],
+      };
+    case 'ADD_USER_TO_WORKSPACE':
+      return {
+        ...state,
+        workspace: state.workspace.map((workspace) => {
+          if (workspace._id === action.payload.workspaceId) {
+            return {
+              ...workspace,
+              users: [...workspace.users, action.payload.userId],
+            };
+          }
+          return workspace;
+        }),
+      };
+    case 'GET_ACTIVE_WORKSPACE':
+      return {
+        ...state,
+        workspaceId: action.payload,
       };
     case 'LOADING_REVALIDATE':
       return {

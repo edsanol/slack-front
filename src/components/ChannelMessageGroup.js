@@ -5,13 +5,15 @@ import { getActiveChatAction } from '../store/actions/actionsSocket';
 
 export const ChannelMessageGroup = ({ name, channelId, premium }) => {
   const [notification, setNotification] = useState(false);
+  const [notificationFlag, setNotificationFlag] = useState('');
   const dispatch = useDispatch();
   const { socket, activeChat, messageToChannel } = useSelector(
     (state) => state.socketReducer
   );
 
   useEffect(() => {
-    if (messageToChannel === channelId && activeChat !== channelId) {
+    setNotificationFlag(messageToChannel)
+    if (notificationFlag === channelId && activeChat !== channelId) {
       setNotification(true);
     }
     dispatch(actionsChangeView('hiddenAll'));
@@ -20,6 +22,7 @@ export const ChannelMessageGroup = ({ name, channelId, premium }) => {
   useEffect(() => {
     if (activeChat === channelId) {
       setNotification(false);
+      setNotificationFlag('');
     }
   }, [activeChat, channelId]);
 

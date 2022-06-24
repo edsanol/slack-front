@@ -23,6 +23,16 @@
   border-top: 1px solid #492451;
   border-right: 1px solid #492451;
 }
+.aside-selected-button {
+  width: 34px;
+  height: 34px;
+  border-radius: 8px;
+  margin-top: 15px;
+  display: flex;
+}
+.aside-selected {
+  border: 2px solid white;
+}
 .aside-button-workspace-selected {
   max-width: 33px;
   max-height: 33px;
@@ -30,24 +40,15 @@
   border: none;
   color: #fff;
   cursor: pointer;
-  display: flex;
+  justify-content: center;
   align-items: center;
 }
 .aside-button-workspace-selected img {
-  max-width: 94%;
-  max-height: 94%;
-  padding-left: 1px;
+  width: 90%;
+  padding: 2px;
   border-radius: 5px;
-}
-.aside-selected-button {
-  border-radius: 8px;
-  border: 2px solid white;
-  margin-top: 20px;
-}
-.aside-noselected-button {
-  border-radius: 8px;
-  border: 2px solid var(--Purple);
-  margin-top: 20px;
+  justify-content: center;
+  align-items: center;
 }
 .aside-button-workspace-plus {
   cursor: pointer;

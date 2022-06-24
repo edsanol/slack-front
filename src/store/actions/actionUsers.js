@@ -91,7 +91,6 @@ export const changePasswordAction = (data) => {
       );
       dispatch(changePassword(response.data.ok));
     } catch (error) {
-      console.log(error.response.data.ok);
       if (error.response.data.ok === false) {
         toast.error('Contraseña incorrecta', {
           position: 'bottom-right',
@@ -155,7 +154,6 @@ export const changePremium = (data) => {
           'Content-type': 'application/json; charset=UTF-8',
         },
       });
-      console.log(response.data.data);
       dispatch(getUsersId(response.data.data));
       toast.success('Compra completada', {
         position: 'bottom-right',

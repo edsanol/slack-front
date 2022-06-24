@@ -5,6 +5,7 @@ const initialState = {
   online: '',
   users: [],
   activeChat: null,
+  newMessageCurrent: {},
   messages: [],
   messageToDirectMessage: null,
   messageToChannel: null,
@@ -54,7 +55,6 @@ export const socketReducer = (state = initialState, action) => {
         return state;
       }
     case 'GET_MESSAGES':
-      console.log(action.payload)
       const messagesDate = action.payload.map((item, index) => {
         const date = timeDateGeneral(item.createdAt)
         if(index === 0 || date !== timeDateGeneral(action.payload[index-1].createdAt)) {
@@ -82,6 +82,11 @@ export const socketReducer = (state = initialState, action) => {
       return {
         ...state,
         messageToDirectMessage: action.payload,
+      };
+    case 'MESSAGE_TO_DIRECT_CHANNEL_CURRENT':
+      return {
+        ...state,
+        newMessageCurrent: action.payload,
       };
     case 'MESSAGE_TO_CHANNEL':
       return {

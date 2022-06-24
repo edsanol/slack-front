@@ -10,6 +10,7 @@ export const ModalMembersChannel = ({ title, paragraph, setOpened }) => {
   const [newFilter, setNewFilter] = useState('');
 
   const allUsers = useSelector((state) => state.userReducer.users);
+  const workspaceActive = useSelector((state) => state.authReducer.workspaceId);
 
   // Filtro por nombre de usuarios
   const search = allUsers.filter((user) =>
@@ -33,15 +34,17 @@ export const ModalMembersChannel = ({ title, paragraph, setOpened }) => {
         />
       </div>
       <div className="modalMembers__div-listPeople">
-        {search.map((data) => (
-          <ListMemberModals
-            key={data._id}
-            uid={data._id}
-            name={data.fullName}
-            image={data.image}
-            email={data.email}
-            occupation={data.occupation}
-            setOpened={setOpened}
+        {search
+          .filter((user) => user.workSpaceId.includes(workspaceActive))
+          .map((data) => (
+            <ListMemberModals
+              key={data._id}
+              uid={data._id}
+              name={data.fullName}
+              image={data.image}
+              email={data.email}
+              occupation={data.occupation}
+              setOpened={setOpened}
           />
         ))}
       </div>

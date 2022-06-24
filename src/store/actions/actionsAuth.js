@@ -16,7 +16,6 @@ export function getWorkspaceAction() {
         },
       });
       dispatch(getWorkspace(response.data.data));
-      console.log(response.data.data);
     } catch (error) {
       // dispatch(getProductsError())
       console.log(error);
@@ -29,8 +28,8 @@ const getWorkspace = (res) => ({
   payload: res,
 });
 
-export const createWorkspaceAction = ({name}) => {
-  return async () => {
+export const createWorkspaceAction = ({ name }) => {
+  return async (dispatch) => {
     try {
       const token = localStorage.getItem('token') || '';
       if (!token) {
@@ -39,7 +38,7 @@ export const createWorkspaceAction = ({name}) => {
       const response = await axios.post(
         `${BASE_URL}/workSpace`,
         {
-          name
+          name,
         },
         {
           headers: {
@@ -48,17 +47,67 @@ export const createWorkspaceAction = ({name}) => {
           },
         }
       );
-      console.log(response.data)
-
+      dispatch(createWorkspace(response.data.workspace));
     } catch (error) {
-      console.log(error)
+      console.log(error);
       toast.error('an error occurred', {
         position: 'top-center',
         theme: 'colored',
       });
     }
-  }
+  };
+};
+
+const createWorkspace = (workspace) => ({
+  type: 'CREATE_WORKSPACE',
+  payload: workspace,
+});
+
+export function addUserToWorkspaceAction(data) {
+  return async (dispatch) => {
+    try {
+      const token = localStorage.getItem('token') || '';
+      if (!token) {
+        return false;
+      }
+      const response = await axios.put(
+        `${BASE_URL}/workSpace`,
+        {
+          workspaceId: data.workspaceId,
+        },
+        {
+          headers: {
+            'Content-type': 'application/json; charset=UTF-8',
+            'x-token': token,
+          },
+        }
+      );
+      dispatch(addUserToWorkspace(response.data));
+    } catch (error) {
+      console.log(error);
+    }
+  };
 }
+
+const addUserToWorkspace = (workspace) => ({
+  type: 'ADD_USER_TO_WORKSPACE',
+  payload: workspace,
+});
+
+export const getActiveWorkspaceAction = () => {
+  const workspace = localStorage.getItem('workspace') || '';
+  if (!workspace) {
+    return {
+      type: 'GET_ACTIVE_WORKSPACE',
+      payload: '629a2552587275ec49d069cd',
+    };
+  } else {
+    return {
+      type: 'GET_ACTIVE_WORKSPACE',
+      payload: workspace,
+    };
+  }
+};
 
 export function loginUserAction(data) {
   return async (dispatch) => {

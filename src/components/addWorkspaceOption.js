@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import '../assets/styles/components/addWorkspaceOption.scss';
 import { Modal } from '@mantine/core';
-import { ModalListChannels } from './modals/ModalListChannels';
 import { ModalCreateWorkspace } from './modals/ModalCreateWorkspace';
+import { ModalListWorkspace } from './modals/ModalListWorkspace';
 
 export const AddWorkspaceOption = () => {
   const [opened, setOpened] = useState(false);
@@ -36,7 +36,7 @@ export const AddWorkspaceOption = () => {
         withCloseButton={false}
         size="lg"
         zIndex={999}>
-        {<ModalListChannels setOpened={setOpened} />}
+        {<ModalListWorkspace setOpened={setOpened} />}
       </Modal>
     </div>
   );

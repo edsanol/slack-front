@@ -1,12 +1,14 @@
 import { useEffect, useState } from 'react';
 import { Popover } from '@mantine/core';
 import { AddChannelOptions } from './AddChannelOptions';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { actionsHiddenScroll } from '../store/actions/actionsChangeState';
 import { AddWorkspaceOption } from './addWorkspaceOption';
 
 export const PopoverAddChannel = ({name}) => {
   const [opened, setOpened] = useState(false);
+  const hiddenPopover = useSelector((state) => state.changeStateReducer.hiddenScroll);
+  const workspaceActive = useSelector((state) => state.authReducer.workspaceId);
 
   const dispatch = useDispatch();
 
@@ -17,6 +19,10 @@ export const PopoverAddChannel = ({name}) => {
   useEffect(() => {
     dispatch(actionsHiddenScroll(opened));
   }, [opened, dispatch]);
+
+  useEffect(() => {
+    setOpened(hiddenPopover);
+  }, [workspaceActive]);
 
   return (
     <Popover
