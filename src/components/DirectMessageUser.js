@@ -45,8 +45,7 @@ export const DirectMessageUser = ({ fullName, image, state, userId }) => {
       messageCurrent.workSpaceId !== workspaceActive
     ) {
       setNotification(false);
-    }
-    else if (
+    } else if (
       activeChat !== userId &&
       messageCurrent.workSpaceId !== workspaceActive
     ) {

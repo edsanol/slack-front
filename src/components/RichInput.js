@@ -39,6 +39,7 @@ export default function RichInput() {
         fullName: fullName,
         image: image,
         message: editorRef.current.getContent(),
+        workSpaceId: workspaceActive,
       });
 
       editorRef.current.setContent('');
