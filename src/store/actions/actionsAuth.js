@@ -17,7 +17,6 @@ export function getWorkspaceAction() {
       });
       dispatch(getWorkspace(response.data.data));
     } catch (error) {
-      // dispatch(getProductsError())
       console.log(error);
     }
   };

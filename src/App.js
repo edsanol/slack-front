@@ -11,6 +11,8 @@ import { ChangePassword } from './pages/ChangePassword';
 import { Response } from './pages/Response';
 import { RecoverPassword } from './pages/RecoverPassword';
 import { ResetPassword } from './pages/ResetPassword';
+import { AboutUs } from './pages/AboutUs';
+import { AboutProject } from './pages/AboutProject';
 
 function App() {
   const dispatch = useDispatch();
@@ -52,6 +54,8 @@ function App() {
 
         <Route path="/response" element={<Response />} />
         <Route path="/reset-password/*" element={<ResetPassword />} />
+        <Route path="/aboutus" element={<AboutUs />} />
+        <Route path="/project" element={<AboutProject />} />
 
         <Route path="*" element={<NotFound />} />
       </Routes>

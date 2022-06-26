@@ -8,6 +8,7 @@ import { logoutUser } from '../store/actions/actionsAuth';
 import { disconnectActionsSocket } from '../store/actions/actionsSocket';
 import { toast } from 'react-toastify';
 import { ToastContainer } from 'react-toastify';
+import { Link } from 'react-router-dom';
 
 export const ChangePassword = () => {
   const {
@@ -26,7 +27,7 @@ export const ChangePassword = () => {
     const { oldPassword, newPassword, repeatPassword } = data;
 
     if (newPassword !== repeatPassword) {
-      toast.error('Las contraseñas no coinciden', {
+      toast.error('Passwords do not match', {
         position: 'bottom-right',
         theme: 'colored',
       });
@@ -39,7 +40,7 @@ export const ChangePassword = () => {
   };
 
   if (passValidator) {
-    toast.success('Perfil actualizado', {
+    toast.success('Updated profile', {
       position: 'bottom-right',
       theme: 'colored',
     });
@@ -162,7 +163,7 @@ export const ChangePassword = () => {
           />
         </form>
         <div className="mainForm__link">
-          <a href="#header">Back to Home Page</a>
+          <Link to="/">Back to Home Page</Link>
         </div>
       </main>
       <FooterLoginRegister />

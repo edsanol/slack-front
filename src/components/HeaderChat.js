@@ -26,8 +26,12 @@ export const HeaderChat = () => {
         // CHAT DIRECT
         <div className="chat__header">
           <div className="chat__header-left">
-          <img className="chat__header-left-image" src={userData[0].image} alt="user" />
-          <span className={`user-${userData[0].state}`}></span>
+            <img
+              className="chat__header-left-image"
+              src={userData[0].image}
+              alt="user"
+            />
+            <span className={`user-${userData[0].state}`}></span>
             <h2>{userData[0].fullName}</h2>
           </div>
           <div className="chat__header-right"></div>
@@ -36,11 +40,14 @@ export const HeaderChat = () => {
         // CHAT GRUPAL
         <div className="chat__header">
           <div className="chat__header-left">
-            <h2>
-              {activeChat && channelData.length > 0
-                ? channelData[0].name
-                : 'Welcome to Slack'}
-            </h2>
+            {activeChat && channelData.length > 0 ? (
+              <>
+                <h2>{channelData[0].name}</h2>
+                <p>{channelData[0].description}</p>
+              </>
+            ) : (
+              'Welcome to Slack'
+            )}
           </div>
           <Modal
             opened={opened}

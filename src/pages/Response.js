@@ -20,7 +20,7 @@ export const Response = () => {
       });
     if (confirmation === 'Rechazada') {
       navigation('/');
-      toast.error('Error de compra', {
+      toast.error('purchase error', {
         position: 'bottom-right',
         theme: 'colored',
       });
