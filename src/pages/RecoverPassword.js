@@ -1,11 +1,10 @@
 import React, { useState } from 'react';
 import { HeaderRecoverChangePassword } from '../components/HeaderRecoverChangePassword';
-import { InputLoginRegister } from '../components/InputLoginRegister';
 import { forgotPasswordAction } from '../store/actions/actionUsers';
-import { ButtonFormLoginRegister } from '../components/ButtonFormLoginRegister';
 import { FooterLoginRegister } from '../components/FooterLoginRegister';
 import { ToastContainer } from 'react-toastify';
 import { useDispatch } from 'react-redux';
+import { Link } from 'react-router-dom';
 
 export const RecoverPassword = () => {
   const dispatch = useDispatch();
@@ -47,7 +46,11 @@ export const RecoverPassword = () => {
             Recover password
           </button>
         </form>
+        <div className="mainForm__link">
+          <Link to="/auth/login">Go to login</Link>
+        </div>
       </main>
+
       <FooterLoginRegister />
       <ToastContainer />
     </>

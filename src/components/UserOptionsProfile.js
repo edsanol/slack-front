@@ -13,10 +13,10 @@ import { Link } from 'react-router-dom';
 import { logoutResetStateThread } from '../store/actions/actionsThread';
 import { logoutResetUserReducer } from '../store/actions/actionUsers';
 
-export const UserOptionsProfile = ({setOpenedPop}) => {
+export const UserOptionsProfile = ({ setOpenedPop }) => {
   const dispatch = useDispatch();
   const handleClickProfileShow = () => {
-    setOpenedPop(false)
+    setOpenedPop(false);
     dispatch(actionsChangeView('showProfile'));
   };
 
@@ -31,10 +31,10 @@ export const UserOptionsProfile = ({setOpenedPop}) => {
     setChangeState(!changeState);
     dispatch(actionsChangeState(changeState));
     if (changeState === true) {
-      socket.emit('statusChange', 'enable')
+      socket.emit('statusChange', 'enable');
     }
     if (changeState === false) {
-      socket.emit('statusChange', 'away')
+      socket.emit('statusChange', 'away');
     }
   };
 

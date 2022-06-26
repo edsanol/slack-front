@@ -34,7 +34,7 @@ export const ResetPassword = () => {
     const { newPassword, repeatPassword } = data;
 
     if (newPassword !== repeatPassword) {
-      toast.error('Las contraseñas no coinciden', {
+      toast.error('Passwords do not match', {
         position: 'bottom-right',
         theme: 'colored',
       });
@@ -47,7 +47,7 @@ export const ResetPassword = () => {
   };
 
   if (passValidator) {
-    toast.success('Perfil actualizado', {
+    toast.success('Updated profile', {
       position: 'bottom-right',
       theme: 'colored',
     });
@@ -94,9 +94,9 @@ export const ResetPassword = () => {
           )}
           {errors.newPassword?.type === 'pattern' && (
             <p className="input__error">
-              ⚠ La contraseña debe tener por lo menos una letra mayúscula, una
-              letra minúscula, un número o carácter especial y una longitud
-              minima de 8 carácteres
+              ⚠ The password must have at least one uppercase letter, one
+              lowercase letter, a number or special character, and a length
+              minimum of 8 characters
             </p>
           )}
           <label htmlFor="repeatPassword" className="mainForm__form-label">

@@ -92,7 +92,7 @@ export const changePasswordAction = (data) => {
       dispatch(changePassword(response.data.ok));
     } catch (error) {
       if (error.response.data.ok === false) {
-        toast.error('Contraseña incorrecta', {
+        toast.error('Incorrect password', {
           position: 'bottom-right',
           theme: 'colored',
         });
@@ -121,13 +121,13 @@ export const forgotPasswordAction = (data) => {
       dispatch(forgotPassword(response.data.ok));
 
       if (response.data.ok) {
-        toast.info('Se ha enviado un correo con las instrucciones', {
+        toast.info('An email with instructions has been sent.', {
           position: 'bottom-right',
           theme: 'colored',
         });
       }
     } catch (error) {
-      toast.error('El correo no existe', {
+      toast.error('The mail does not exist', {
         position: 'bottom-right',
         theme: 'colored',
       });
@@ -155,12 +155,12 @@ export const changePremium = (data) => {
         },
       });
       dispatch(getUsersId(response.data.data));
-      toast.success('Compra completada', {
+      toast.success('purchase completed', {
         position: 'bottom-right',
         theme: 'colored',
       });
     } catch (error) {
-      toast.error('Error de compra', {
+      toast.error('purchase error', {
         position: 'bottom-right',
         theme: 'colored',
       });
@@ -188,7 +188,7 @@ export const resetPasswordAction = (data) => {
       );
       dispatch(resetPassword(response.data.ok));
       if (response.data.ok) {
-        toast.success('Se ha restablecido la contraseña', {
+        toast.success('Password has been reset', {
           position: 'bottom-right',
           theme: 'colored',
         });
@@ -196,7 +196,7 @@ export const resetPasswordAction = (data) => {
     } catch (error) {
       console.log(error);
       if (error.response.data.ok === false) {
-        toast.error('Contraseña incorrecta', {
+        toast.error('Incorrect password', {
           position: 'bottom-right',
           theme: 'colored',
         });

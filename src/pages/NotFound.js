@@ -37,7 +37,7 @@ export const NotFound = () => {
               <p className="home__description">
                 We can't find the page <br /> you are looking for.
               </p>
-              <Link to="/login" className="home__button">
+              <Link to="/auth/login" className="home__button">
                 Login
               </Link>
             </div>

@@ -12,8 +12,10 @@ export const AuthRouter = () => {
   return (
     <Routes>
       <Route exact path="register" element={<Register />} />
+
       <Route
-        exact path="login"
+        exact
+        path="login"
         element={!checking ? <LoadingPage /> : <Login />}
       />
       <Route exact path="recover-password" element={<RecoverPassword />} />

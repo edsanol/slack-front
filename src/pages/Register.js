@@ -1,12 +1,10 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import '../assets/styles/pages/Register.scss';
 import { useForm } from 'react-hook-form';
 import { HeaderLoginRegister } from '../components/HeaderLoginRegister';
 import { FooterLoginRegister } from '../components/FooterLoginRegister';
 import { useDispatch, useSelector } from 'react-redux';
-import {
-  registerUserAction,
-} from '../store/actions/actionsAuth';
+import { registerUserAction } from '../store/actions/actionsAuth';
 import { Link } from 'react-router-dom';
 
 export const Register = () => {
@@ -112,7 +110,7 @@ export const Register = () => {
 
         <div className="mainForm__link">
           <p>Already using Slack?</p>
-          <Link to="/auth/login">Go to the login page to start</Link>
+          <Link to="/auth/login">Go to login page to start</Link>
         </div>
       </main>
 

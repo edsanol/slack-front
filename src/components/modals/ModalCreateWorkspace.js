@@ -23,7 +23,7 @@ export const ModalCreateWorkspace = ({ setopenedNewWorkspace }) => {
       position: 'top-center',
       theme: 'colored',
     });
-    setopenedNewWorkspace(false)
+    setopenedNewWorkspace(false);
   };
 
   return (
@@ -33,12 +33,17 @@ export const ModalCreateWorkspace = ({ setopenedNewWorkspace }) => {
       </div>
       <div className="modal-create-channel__p">
         <p>
-          Channels created in a workspace will only be available in that workspace. 
-          This gives you more privacy and you can better manage your projects and teams.
+          Channels created in a workspace will only be available in that
+          workspace. This gives you more privacy and you can better manage your
+          projects and teams.
         </p>
       </div>
       <div className="modal-create-channel__p">
-        <img className="modal_image-workspace" src="https://i.postimg.cc/SKg5wmpR/como-usar-slack.png" alt="slackteam" />
+        <img
+          className="modal_image-workspace"
+          src="https://i.postimg.cc/SKg5wmpR/como-usar-slack.png"
+          alt="slackteam"
+        />
       </div>
       <form
         className="modal-create-channel__form"
@@ -53,10 +58,22 @@ export const ModalCreateWorkspace = ({ setopenedNewWorkspace }) => {
             id="channel"
             {...register('name', {
               required: true,
+              maxLength: 12,
+              minLength: 4,
             })}
           />
           {errors.name?.type === 'required' && (
             <p className="input__error">⚠ The name field is required</p>
+          )}
+          {errors.name?.type === 'maxLength' && (
+            <p className="input__error">
+              ⚠ The name must have a maximum of 12 characters.
+            </p>
+          )}
+          {errors.name?.type === 'minLength' && (
+            <p className="input__error">
+              ⚠ The password must have at least 4 characters
+            </p>
           )}
         </div>
         <input
