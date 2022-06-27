@@ -69,7 +69,12 @@ export const UserOptionsProfile = ({ setOpenedPop }) => {
           </div>
         </div>
       </div>
-      <Modal zIndex={1000} opened={opened} onClose={() => setOpened(false)}>
+      <Modal
+        zIndex={1000}
+        opened={opened}
+        size="sm"
+        title="Edit your profile"
+        onClose={() => setOpened(false)}>
         {<ModalEditUser setOpened={setOpened} />}
       </Modal>
       <div className="div-user-options-body">
