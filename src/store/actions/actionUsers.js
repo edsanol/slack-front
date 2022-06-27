@@ -1,6 +1,6 @@
 import axios from 'axios';
 import { toast } from 'react-toastify';
-const BASE_URL = 'http://localhost:8080';
+const BASE_URL = process.env.REACT_APP_URL_BACKEND;
 
 export function getUsersAction() {
   return async (dispatch) => {

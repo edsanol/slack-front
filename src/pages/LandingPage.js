@@ -39,7 +39,7 @@ export const LandingPage = () => {
   const [showProfileOptions, setShowProfileOptions] = useState(false);
   const [showAddChannel, setshowAddChannel] = useState(false);
   const [showAddWorkspace, setShowAddWorkspace] = useState(false);
-  const sockets = useSocket('http://localhost:8080');
+  const sockets = useSocket(process.env.REACT_APP_URL_BACKEND);
 
   useEffect(() => {
     dispatch(actionsSocket(sockets));
@@ -101,7 +101,10 @@ export const LandingPage = () => {
           setShowAddWorkspace={setShowAddWorkspace}
           showAddWorkspace={showAddWorkspace}
         />
-        <section className={`main__section-main ${activeChat && 'section-main__view'}`}>
+        <section
+          className={`main__section-main ${
+            activeChat && 'section-main__view'
+          }`}>
           <div
             className={
               showView === 'hiddenAll'
