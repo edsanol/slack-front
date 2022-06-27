@@ -10,7 +10,11 @@ import { ShowUsersProfile } from '../components/ShowUsersProfile';
 import RichInput from '../components/RichInput';
 import { useDispatch, useSelector } from 'react-redux';
 import { getChannelsAction } from '../store/actions/actionsChannel';
-import { getActiveWorkspaceAction, getWorkspaceAction, startChecking } from '../store/actions/actionsAuth';
+import {
+  getActiveWorkspaceAction,
+  getWorkspaceAction,
+  startChecking,
+} from '../store/actions/actionsAuth';
 import { getUsersAction, getUsersIdAction } from '../store/actions/actionUsers';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
@@ -58,7 +62,7 @@ export const LandingPage = () => {
     dispatch(startChecking());
     dispatch(getChannelsAction());
     dispatch(getUsersAction());
-    dispatch(getWorkspaceAction())
+    dispatch(getWorkspaceAction());
     dispatch(getActiveWorkspaceAction());
   }, [dispatch, uid]);
 
@@ -114,7 +118,7 @@ export const LandingPage = () => {
             )}
             <div className="chat__div-message">
               {chatMessage
-                .filter(item => item.workSpaceId === workspaceActive)
+                .filter((item) => item.workSpaceId === workspaceActive)
                 .map((itemChat) => (
                   <BoxChatMessage
                     key={itemChat._id}
@@ -126,8 +130,8 @@ export const LandingPage = () => {
                     likes={itemChat.likes}
                     thread={itemChat.thread}
                     showDate={itemChat.showDate}
-                />
-              ))}
+                  />
+                ))}
             </div>
             <div
               className={

@@ -1,7 +1,7 @@
-import React, { useState } from 'react';
+import React from 'react';
 import '../../assets/styles/components/modals/ModalCreateChannel.scss';
 import { useForm } from 'react-hook-form';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { toast } from 'react-toastify';
 import { createWorkspaceAction } from '../../store/actions/actionsAuth';
 

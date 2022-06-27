@@ -131,6 +131,10 @@ export function loginUserAction(data) {
       dispatch(loginUser(response.data));
     } catch (error) {
       console.log(error);
+      toast.error('the email or password is not correct', {
+        position: 'top-center',
+        theme: 'colored',
+      });
     }
   };
 }

@@ -32,7 +32,6 @@ export const ModalEditUser = ({ setOpened }) => {
     (state) => state.userReducer.user
   );
   const user = useSelector((state) => state.userReducer.user);
-  
 
   const {
     register,
@@ -49,7 +48,7 @@ export const ModalEditUser = ({ setOpened }) => {
 
   const onSubmit = async (data) => {
     try {
-      let userUpdated
+      let userUpdated;
       if (imageProfile) {
         userUpdated = { ...user, ...data, image: imageProfile };
       } else {
@@ -78,6 +77,7 @@ export const ModalEditUser = ({ setOpened }) => {
           <div className="subcontainer-input">
             <label htmlFor="fullName">Fullname</label>
             <input
+              data-cy="edit-fullName"
               className="mainForm__form-input"
               type="text"
               name="fullName"
@@ -100,6 +100,7 @@ export const ModalEditUser = ({ setOpened }) => {
           <div className="subcontainer-input">
             <label htmlFor="occupation">Occupation</label>
             <input
+              data-cy="edit-occupation"
               type="text"
               name="occupation"
               id="occupation"
@@ -118,6 +119,7 @@ export const ModalEditUser = ({ setOpened }) => {
           <div className="subcontainer-input">
             <label htmlFor="description">Description</label>
             <input
+              data-cy="edit-description"
               type="description"
               name="description"
               id="description"
@@ -135,6 +137,7 @@ export const ModalEditUser = ({ setOpened }) => {
           <div className="subcontainer-input">
             <label htmlFor="phone">Phone</label>
             <input
+              data-cy="edit-phone"
               type="text"
               name="phone"
               id="phone"
@@ -184,19 +187,20 @@ export const ModalEditUser = ({ setOpened }) => {
         {/* <ImageProfileUser /> */}
       </div>
       <footer className="button-footer">
-        {
-          (image && imageProfile) ? 
-          (<button type="submit" className="button-submit button-save">
+        {image && imageProfile ? (
+          <button type="submit" className="button-submit button-save">
             Save Changes
-          </button>) : (image && !imageProfile) ?
-          (<p className="button-submit button-nosave">
+          </button>
+        ) : image && !imageProfile ? (
+          <p className="button-submit button-nosave">Save Changes</p>
+        ) : (
+          <button
+            data-cy="save-edit-click-event"
+            type="submit"
+            className="button-submit button-save">
             Save Changes
-          </p>) : 
-          (<button type="submit" className="button-submit button-save">
-            Save Changes
-          </button>)
-        }
-        
+          </button>
+        )}
       </footer>
     </form>
   );

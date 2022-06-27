@@ -3,10 +3,7 @@ import { HeaderRecoverChangePassword } from '../components/HeaderRecoverChangePa
 import { useForm } from 'react-hook-form';
 import { FooterLoginRegister } from '../components/FooterLoginRegister';
 import { useDispatch, useSelector } from 'react-redux';
-import {
-  changePasswordAction,
-  resetPasswordAction,
-} from '../store/actions/actionUsers';
+import { resetPasswordAction } from '../store/actions/actionUsers';
 import { useNavigate } from 'react-router-dom';
 
 import { logoutUser } from '../store/actions/actionsAuth';
