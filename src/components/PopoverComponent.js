@@ -16,6 +16,7 @@ export const PopoverComponent = () => {
       onClose={() => setOpenedPop(false)}
       target={
         <div
+          data-cy="option-click-event"
           className="header__perfil"
           type="button"
           onClick={() => setOpenedPop((o) => !o)}>
@@ -32,7 +33,7 @@ export const PopoverComponent = () => {
       gutter={6}
       position="top"
       closeOnClickOutside={false}>
-      <UserOptionsProfile setOpenedPop={setOpenedPop}/>
+      <UserOptionsProfile setOpenedPop={setOpenedPop} />
     </Popover>
   );
 };

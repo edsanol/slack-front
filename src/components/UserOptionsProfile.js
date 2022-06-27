@@ -65,7 +65,9 @@ export const UserOptionsProfile = ({ setOpenedPop }) => {
                   ? 'span-user-options-active'
                   : 'span-user-options-desactive'
               }></span>
-            <p>{stateOption ? 'Active' : 'Away'}</p>
+            <p data-cy="user-status-profile">
+              {stateOption ? 'Active' : 'Away'}
+            </p>
           </div>
         </div>
       </div>
@@ -78,14 +80,20 @@ export const UserOptionsProfile = ({ setOpenedPop }) => {
         {<ModalEditUser setOpened={setOpened} />}
       </Modal>
       <div className="div-user-options-body">
-        <div className="hover-user-options" onClick={handleChangeStatus}>
+        <div
+          data-cy="status-click-event"
+          className="hover-user-options"
+          onClick={handleChangeStatus}>
           <p>
             Change your status to{' '}
             {stateOption ? <strong>Away</strong> : <strong>Active</strong>}
           </p>
         </div>
         <div className="hover-user-options">
-          <p type="button" onClick={() => setOpened(true)}>
+          <p
+            data-cy="edit-click-event"
+            type="button"
+            onClick={() => setOpened(true)}>
             Edit Profile
           </p>
         </div>
@@ -93,7 +101,7 @@ export const UserOptionsProfile = ({ setOpenedPop }) => {
           <p>View Profile</p>
         </div>
         <div className="hover-user-options">
-          <Link to="change-password">change Password</Link>
+          <Link to="change-password">Change Password</Link>
         </div>
       </div>
 

@@ -32,6 +32,7 @@ export const Register = () => {
             Full Name
           </label>
           <input
+            data-cy="full-name"
             className="mainForm__form-input"
             type="text"
             name="fullName"
@@ -42,11 +43,11 @@ export const Register = () => {
               pattern: /^[a-z\d A-Z\d]{6,30}$/i,
             })}
           />
-          {errors.nombre?.type === 'required' && (
+          {errors.fullName?.type === 'required' && (
             <p className="input__error">⚠ The name field is required</p>
           )}
-          {errors.nombre?.type === 'pattern' && (
-            <p className="input__error">
+          {errors.fullName?.type === 'pattern' && (
+            <p className="input__error" data-cy="error-fullName-input">
               ⚠ Enter a name of minimum 6 characters and maximum 30
             </p>
           )}
@@ -54,6 +55,7 @@ export const Register = () => {
             Email
           </label>
           <input
+            data-cy="email"
             className="mainForm__form-input"
             type="email"
             name="email"
@@ -65,15 +67,20 @@ export const Register = () => {
             })}
           />
           {errors.email?.type === 'required' && (
-            <p className="input__error">⚠ The email field is required</p>
+            <p className="input__error" data-cy="error-email-input">
+              ⚠ The email field is required
+            </p>
           )}
           {errors.email?.type === 'pattern' && (
-            <p className="input__error">⚠ The email format is incorrect</p>
+            <p className="input__error" data-cy="error-email-format-input">
+              ⚠ The email format is incorrect
+            </p>
           )}
           <label htmlFor="name" className="mainForm__form-label">
             Password
           </label>
           <input
+            data-cy="password"
             className="mainForm__form-input"
             type="password"
             name="password"
@@ -87,21 +94,24 @@ export const Register = () => {
             })}
           />
           {errors.password?.type === 'required' && (
-            <p className="input__error">⚠ The password field is required</p>
+            <p className="input__error" data-cy="error-password-input">
+              ⚠ The password field is required
+            </p>
           )}
           {errors.password?.type === 'minLength' && (
-            <p className="input__error">
+            <p className="input__error" data-cy="error-password-2-input">
               ⚠ The password must have at least 8 characters
             </p>
           )}
           {errors.password?.type === 'pattern' && (
-            <p className="input__error">
+            <p className="input__error" data-cy="error-password-3-input">
               ⚠ The password must have at least one uppercase letter, one
               lowercase letter, a number or special character, and a length
               minimum of 8 characters
             </p>
           )}
           <input
+            data-cy="register-click-event"
             type="submit"
             value="Register"
             className="button-form-login-register"

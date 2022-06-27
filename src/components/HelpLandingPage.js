@@ -2,9 +2,7 @@ import React, { useState } from 'react';
 import cohete from '../assets/images/cohete.png';
 import emoti from '../assets/images/emoti.png';
 import notification from '../assets/images/notification.png';
-import time from '../assets/images/time.png';
 import user from '../assets/images/user.png';
-import video from '../assets/images/video.png';
 import { useDispatch } from 'react-redux';
 import { actionsChangeView } from '../store/actions/actionsChangeView';
 import { Modal } from '@mantine/core';
@@ -57,7 +55,7 @@ export const HelpLandingPage = () => {
                 <img
                   className="help-images"
                   src="https://i.postimg.cc/jdXZWzdz/chat.png"
-                  alt="chat image"
+                  alt="chat"
                 />
                 <li>✔️ Search user´s profile</li>
                 <img

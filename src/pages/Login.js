@@ -33,6 +33,7 @@ export const Login = () => {
             Email
           </label>
           <input
+            data-cy="email"
             className="mainForm__form-input"
             type="email"
             name="email"
@@ -47,12 +48,15 @@ export const Login = () => {
             <p className="input__error">⚠ The email field is required</p>
           )}
           {errors.email?.type === 'pattern' && (
-            <p className="input__error">⚠ The email format is incorrect</p>
+            <p className="input__error" data-cy="error-email-format-input">
+              ⚠ The email format is incorrect
+            </p>
           )}
           <label htmlFor="name" className="mainForm__form-label">
             Password
           </label>
           <input
+            data-cy="password"
             className="mainForm__form-input"
             type="password"
             name="password"
@@ -69,18 +73,19 @@ export const Login = () => {
             <p className="input__error">⚠ The password field is required</p>
           )}
           {errors.password?.type === 'minLength' && (
-            <p className="input__error">
+            <p className="input__error" data-cy="error-password-2-input">
               ⚠ The password must have at least 8 characters
             </p>
           )}
           {errors.password?.type === 'pattern' && (
-            <p className="input__error">
+            <p className="input__error" data-cy="error-password-3-input">
               ⚠ The password must have at least one uppercase letter, one
               lowercase letter, a number or special character, and a length
               minimum of 8 characters
             </p>
           )}
           <input
+            data-cy="login-click-event"
             type="submit"
             value="Login"
             className="button-form-login-register"
