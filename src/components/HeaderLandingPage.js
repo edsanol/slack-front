@@ -1,15 +1,31 @@
 import React from 'react';
 import '../assets/styles/components/HeaderLandingPage.scss';
 import { useDispatch, useSelector } from 'react-redux';
-import { actionsChangeView } from '../store/actions/actionsChangeView';
+import {
+  actionsChangeView,
+  actionsChangeViewAside,
+} from '../store/actions/actionsChangeView';
 import { PopoverComponent } from './PopoverComponent';
+import { getActiveChatAction } from '../store/actions/actionsSocket';
 
 export const HeaderLandingPage = () => {
-
   const dispatch = useDispatch();
   const OpenCloseThread = useSelector(
     (state) => state.changeViewReducer.hiddenView
   );
+  const OpenCloseAside = useSelector(
+    (state) => state.changeViewReducer.hiddenAside
+  );
+
+  const handleClickAside = () => {
+    OpenCloseAside === 'hiddenAside'
+      ? dispatch(actionsChangeViewAside('showAside'))
+      : dispatch(actionsChangeViewAside('hiddenAside'));
+  };
+
+  const handleClickBack = () => {
+    dispatch(getActiveChatAction(null));
+  }
 
   const handleClickHelpShow = () => {
     OpenCloseThread === 'hiddenAll'
@@ -21,15 +37,15 @@ export const HeaderLandingPage = () => {
     <header className="header">
       <nav className="header__nav">
         <div className="header__div-left">
-          <div>
-            <a href="#header" className="header__a">
-              <i className="bx bxs-circle"></i>
-            </a>
-          </div>
+          <i
+            type="button"
+            className="bx bx-menu"
+            onClick={handleClickAside}
+            id="menu-aside"></i>
+          <i className="bx bx-arrow-back" id="menu-back" type="button" onClick={handleClickBack}></i>
         </div>
 
-        <div className="header__div-center">
-        </div>
+        <div className="header__div-center"></div>
 
         <div className="header__div-right">
           <div

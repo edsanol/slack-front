@@ -7,11 +7,26 @@
   flex-direction: row;
   width: 300px;
   height: 100%;
+  z-index: 100;
   position: fixed;
   overflow-y: auto;
   scrollbar-width: none;
   transition: all 0.3s ease;
 }
+
+.aside-container-open {
+  background-color: var(--Purple);
+  display: flex;
+  flex-direction: row;
+  width: 300px;
+  height: 100%;
+  z-index: 100;
+  position: fixed;
+  overflow-y: auto;
+  scrollbar-width: none;
+  transition: all 0.3s ease;
+}
+
 .aside-container::-webkit-scrollbar {
   display: none;
 }
@@ -233,9 +248,9 @@
   }
 }
 @media (max-width: 620px) {
-  // .aside-container {
-  //   display: none;
-  // }
+  .aside-container {
+    display: none;
+  }
 }
 @media (max-width: 450px) {
   .aside-container {
@@ -248,7 +263,6 @@
     max-width: 100%;
   }
   .aside-section-channels {
-    // max-width: calc(100vw - 150px);
     width: calc(100% - 50px);
     max-width: 100%;
   }
@@ -258,6 +272,6 @@
 }
 @media (max-height: 450px) {
   .aside-container {
-    display: none;
+    display: block;
   }
 }

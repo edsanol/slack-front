@@ -101,7 +101,7 @@ export const LandingPage = () => {
           setShowAddWorkspace={setShowAddWorkspace}
           showAddWorkspace={showAddWorkspace}
         />
-        <section className="main__section-main">
+        <section className={`main__section-main ${activeChat && 'section-main__view'}`}>
           <div
             className={
               showView === 'hiddenAll'
@@ -110,11 +110,6 @@ export const LandingPage = () => {
             }>
             <HeaderChat />
             {!activeChat && (
-              // <img
-              //   className="main__img-chat"
-              //   src="https://cdn.wallpapersafari.com/46/27/ZWbv3h.jpg"
-              //   alt="background slack"
-              // />
               <section className="main__section-chat-image">
                 <main className="main__container">
                   <div className="main__div-chat-container">
