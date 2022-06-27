@@ -32,6 +32,10 @@ export const Aside = ({
   const hiddenScroll = useSelector(
     (state) => state.changeStateReducer.hiddenScroll
   );
+  const OpenCloseAside = useSelector(
+    (state) => state.changeViewReducer.hiddenAside
+  );
+
   const channelsByUser = useSelector((state) => state.channelReducer.channels);
   const workspaceByUser = useSelector((state) => state.authReducer.workspace);
   const channelsloading = useSelector((state) => state.channelReducer.loading);
@@ -62,13 +66,13 @@ export const Aside = ({
   }, [socket, channelIds()]);
 
   return (
-    <div className="aside-container">
+    <div className={OpenCloseAside === 'hiddenAside' ? 'aside-container-open' : 'aside-container'}>
       <section className="aside-section-workspace">
         {workspaceByUser
           .filter((workspace) => workspace.users.includes(memberInChannel))
           .map((workspace) => {
             return (
-              <AsideWorkspace 
+              <AsideWorkspace
                 key={workspace._id}
                 name={workspace.name}
                 workspaceId={workspace._id}
@@ -76,21 +80,20 @@ export const Aside = ({
             );
           })}
         <div type="button" onClick={handleWorkspace}></div>
-        <PopoverAddChannel name={'+'} setOpenedPopover={setOpenedPopover} openedPopover={openedPopover}/>
+        <PopoverAddChannel
+          name={'+'}
+          setOpenedPopover={setOpenedPopover}
+          openedPopover={openedPopover}
+        />
       </section>
 
       <section className="aside-section-channels">
         <div className="aside-channels-header">
-          {
-            workspaceByUser
-              .filter((workspace) => workspace._id === workspaceActive)
-              .map((workspace) => {
-              return (
-                <p key={workspace._id}>{workspace.name}ㅤ⌵</p>
-              );
-            })
-          }
-          
+          {workspaceByUser
+            .filter((workspace) => workspace._id === workspaceActive)
+            .map((workspace) => {
+              return <p key={workspace._id}>{workspace.name}ㅤ⌵</p>;
+            })}
         </div>
 
         <aside
@@ -139,8 +142,8 @@ export const Aside = ({
                         .filter((channels) =>
                           channels.users.includes(memberInChannel)
                         )
-                        .filter((channels) =>
-                          channels.workSpaceId === workspaceActive
+                        .filter(
+                          (channels) => channels.workSpaceId === workspaceActive
                         )
                         .map((channel) => {
                           return (
@@ -181,7 +184,9 @@ export const Aside = ({
                 transitionTimingFunction="linear">
                 <ul>
                   {allUser
-                    .filter((user) => user.workSpaceId.includes(workspaceActive))
+                    .filter((user) =>
+                      user.workSpaceId.includes(workspaceActive)
+                    )
                     .map((user) => (
                       <DirectMessageUser
                         key={user._id}
@@ -189,8 +194,8 @@ export const Aside = ({
                         fullName={user.fullName}
                         state={user.state}
                         image={user.image}
-                    />
-                  ))}
+                      />
+                    ))}
 
                   <li className="list-channels-dropdown-direct">
                     <button className="button-add-channels">+</button>{' '}

@@ -1,5 +1,6 @@
 const initialState = {
   hiddenView: 'hiddenAll',
+  hiddenAside: 'showAside',
 };
 
 export const changeViewReducer = (state = initialState, action) => {
@@ -8,6 +9,11 @@ export const changeViewReducer = (state = initialState, action) => {
       return {
         ...state,
         hiddenView: action.payload,
+      };
+    case 'CHANGE_VIEW_ASIDE':
+      return {
+        ...state,
+        hiddenAside: action.payload,
       };
     default:
       return state;

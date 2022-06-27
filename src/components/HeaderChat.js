@@ -26,7 +26,6 @@ export const HeaderChat = () => {
         // CHAT DIRECT
         <div className="chat__header">
           <div className="chat__header-left">
-            <i className='bx bx-food-menu'></i>
             <img
               className="chat__header-left-image"
               src={userData[0].image}

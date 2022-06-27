@@ -17,6 +17,13 @@
   width: calc(100vw - 690px);
   background-color: #fff;
 }
+.main__div-chat-without_aside {
+  height: calc(100vh - 40px);
+  position: fixed;
+  left: 0px;
+  width: calc(100vw - 690px);
+  background-color: #fff;
+}
 .main__div-chat-full {
   height: calc(100vh - 40px);
   position: fixed;
@@ -176,8 +183,8 @@
   }
 }
 @media (max-width: 450px) {
-  .main__section-main {
-    display: none;
+  .section-main__view {
+    z-index: 109;
   }
 }
 @media (max-height: 450px) {
