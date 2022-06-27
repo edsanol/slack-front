@@ -1,5 +1,5 @@
 import axios from 'axios';
-const BASE_URL = 'http://localhost:8080';
+const BASE_URL = process.env.REACT_APP_URL_BACKEND;
 
 export const actionsSocket = (sockets) => {
   return {
@@ -83,7 +83,7 @@ export const messageToDirectMessageCurrent = (directMessage) => {
     type: 'MESSAGE_TO_DIRECT_CHANNEL_CURRENT',
     payload: directMessage,
   };
-}
+};
 
 export const messageToChannel = (channelMessage) => {
   return {

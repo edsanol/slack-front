@@ -1,5 +1,5 @@
 import axios from 'axios';
-const BASE_URL = 'http://localhost:8080';
+const BASE_URL = process.env.REACT_APP_URL_BACKEND;
 
 export function createChannelAction(data) {
   return async (dispatch) => {
@@ -11,7 +11,7 @@ export function createChannelAction(data) {
           description: data.description,
           premium: data.select,
           userId: data.userId,
-          workSpaceId: data.workspaceId
+          workSpaceId: data.workspaceId,
         },
         {
           headers: {
@@ -31,8 +31,7 @@ const createChannel = (channel) => ({
   payload: channel,
 });
 
-
-export function addUserToChannelAction(data){
+export function addUserToChannelAction(data) {
   return async (dispatch) => {
     try {
       const response = await axios.put(
@@ -51,7 +50,7 @@ export function addUserToChannelAction(data){
     } catch (error) {
       console.log(error);
     }
-  }
+  };
 }
 
 const addUserToChannel = (channel) => ({
@@ -59,10 +58,9 @@ const addUserToChannel = (channel) => ({
   payload: channel,
 });
 
-
 export function getChannelsAction() {
   return async (dispatch) => {
-    dispatch(getChannelLoading())
+    dispatch(getChannelLoading());
     try {
       const response = await axios.get(`${BASE_URL}/channels`);
       dispatch(getChannels(response.data.data));
@@ -75,7 +73,7 @@ export function getChannelsAction() {
 const getChannelLoading = () => ({
   type: 'GET_CHANNELS_LOADING',
   payload: true,
-})
+});
 
 const getChannels = (channels) => ({
   type: 'GET_CHANNELS',
