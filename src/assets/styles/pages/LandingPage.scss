@@ -25,10 +25,56 @@
   background-color: #fff;
 }
 
+.main__div-chat-container {
+  display: flex;
+  max-width: 500px;
+  align-items: center;
+  margin-bottom: 30px;
+}
+
+.main__section-chat-image {
+  height: calc(100vh - 40px);
+  position: fixed;
+  left: 300px;
+  min-width: 100%;
+  background-image: url('https://cdn.wallpapersafari.com/46/27/ZWbv3h.jpg');
+  background-position: center center;
+  background-repeat: repeat-x;
+  background-attachment: fixed;
+}
+
+.main__container {
+  max-width: 500px;
+  background-color: rgba(0, 0, 0, 0.9);
+  border-radius: 10px;
+  color: white;
+  margin-top: 112px;
+  margin-left: 50px;
+  padding: 24px;
+}
+.main__container h2 {
+  font-size: 40px;
+  font-weight: 1000;
+  // margin-bottom: 18px;
+  margin-left: 30px;
+}
+.main__container p {
+  font-size: 16px;
+  font-weight: 600;
+  line-height: 1.6;
+  margin-bottom: 24px;
+}
+
 .main__img-chat {
-  width: 100%;
-  height: auto;
-  object-fit: cover;
+  width: 50px;
+  border-radius: 50%;
+}
+
+.main__img-chat {
+  background-position: center center;
+  background-size: cover;
+  background-attachment: fixed;
+  background-repeat: inherit;
 }
 
 .chat__div-message {
@@ -76,9 +122,9 @@
 .div-show-profile-optioncs {
   position: absolute;
   left: calc(100% - 312px);
-  @media (max-width: 500px) {
-    display: none;
-  }
+  // @media (max-width: 500px) {
+  //   display: none;
+  // }
 }
 
 @media (max-width: 1100px) {
@@ -93,22 +139,26 @@
   }
 }
 @media (max-width: 979px) {
-  .main__div-thread {
-    display: none;
-  }
   .main__div-chat {
-    width: calc(100vw - 270px);
-    left: 270px;
+    width: calc(100vw - 300px);
+    left: 0px;
   }
   .main__div-chat-full {
-    width: calc(100vw - 270px);
-    left: 270px;
+    width: calc(100vw - 0px);
+    left: 0px;
   }
   .chat__div-input {
-    width: calc(100vw - 270px);
+    width: calc(100vw - 300px);
+  }
+  .main__section-chat-image {
+    left: 0px;
   }
 }
 @media (max-width: 620px) {
+  .main__div-thread {
+    // display: none;
+    // right: -300px;
+  }
   .main__div-chat {
     width: 100vw;
     left: 0px;
@@ -119,6 +169,10 @@
   }
   .chat__div-input {
     width: 100vw;
+  }
+  .main__container {
+    margin: 0 24px;
+    margin-top: 40px;
   }
 }
 @media (max-width: 450px) {

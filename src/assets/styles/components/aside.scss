@@ -229,27 +229,31 @@
 
 @media (max-width: 979px) {
   .aside-container {
-    width: 270px;
+    display: none;
   }
 }
 @media (max-width: 620px) {
-  .aside-container {
-    display: none;
-  }
+  // .aside-container {
+  //   display: none;
+  // }
 }
 @media (max-width: 450px) {
   .aside-container {
     display: flex;
-    min-width: 100vw;
+    max-width: 100vw;
     width: 100%;
   }
   .aside-channels-header {
-    max-width: 100vw;
-    width: 100%;
+    width: calc(100% - 50px);
+    max-width: 100%;
   }
   .aside-section-channels {
-    max-width: 100vw;
-    width: 100%;
+    // max-width: calc(100vw - 150px);
+    width: calc(100% - 50px);
+    max-width: 100%;
+  }
+  .aside-section-workspace {
+    width: 50px;
   }
 }
 @media (max-height: 450px) {

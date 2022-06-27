@@ -10,7 +10,11 @@ import { ShowUsersProfile } from '../components/ShowUsersProfile';
 import RichInput from '../components/RichInput';
 import { useDispatch, useSelector } from 'react-redux';
 import { getChannelsAction } from '../store/actions/actionsChannel';
-import { getActiveWorkspaceAction, getWorkspaceAction, startChecking } from '../store/actions/actionsAuth';
+import {
+  getActiveWorkspaceAction,
+  getWorkspaceAction,
+  startChecking,
+} from '../store/actions/actionsAuth';
 import { getUsersAction, getUsersIdAction } from '../store/actions/actionUsers';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
@@ -58,7 +62,7 @@ export const LandingPage = () => {
     dispatch(startChecking());
     dispatch(getChannelsAction());
     dispatch(getUsersAction());
-    dispatch(getWorkspaceAction())
+    dispatch(getWorkspaceAction());
     dispatch(getActiveWorkspaceAction());
   }, [dispatch, uid]);
 
@@ -106,15 +110,32 @@ export const LandingPage = () => {
             }>
             <HeaderChat />
             {!activeChat && (
-              <img
-                className="main__img-chat"
-                src="https://i.postimg.cc/zfKs6z4n/background-slackkk.png"
-                alt="background slack"
-              />
+              // <img
+              //   className="main__img-chat"
+              //   src="https://cdn.wallpapersafari.com/46/27/ZWbv3h.jpg"
+              //   alt="background slack"
+              // />
+              <section className="main__section-chat-image">
+                <main className="main__container">
+                  <div className="main__div-chat-container">
+                    <img
+                      className="main__img-chat"
+                      src="https://i.postimg.cc/pdTJcvtL/logo-sin-fondo.gif"
+                      alt=""
+                    />
+                    <h2>Welcome to Slack</h2>
+                  </div>
+                  <p>
+                    Welcome to the Make It Real Workspace, by default you will
+                    be included in this workspace to be able to interact with
+                    all members of the community
+                  </p>
+                </main>
+              </section>
             )}
             <div className="chat__div-message">
               {chatMessage
-                .filter(item => item.workSpaceId === workspaceActive)
+                .filter((item) => item.workSpaceId === workspaceActive)
                 .map((itemChat) => (
                   <BoxChatMessage
                     key={itemChat._id}
@@ -126,8 +147,8 @@ export const LandingPage = () => {
                     likes={itemChat.likes}
                     thread={itemChat.thread}
                     showDate={itemChat.showDate}
-                />
-              ))}
+                  />
+                ))}
             </div>
             <div
               className={

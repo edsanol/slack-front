@@ -72,7 +72,7 @@ export const ModalEditUser = ({ setOpened }) => {
   };
   return (
     <form className="modal-user-edit" onSubmit={handleSubmit(onSubmit)}>
-      <h1 className="title">Edit your profile</h1>
+      {/* <h1 className="title">Edit your profile</h1> */}
       <div className="container-edit-input">
         <div className="container-input containerA">
           <div className="subcontainer-input">
