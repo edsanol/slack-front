@@ -31,12 +31,16 @@ export const ModalCreateChannel = ({ setOpenedNewChannel }) => {
     }
 
     if (select === true && userPremium === true) {
-      dispatch(createChannelAction({ name, description, select, userId, workspaceId }));
+      dispatch(
+        createChannelAction({ name, description, select, userId, workspaceId })
+      );
       setOpenedNewChannel(false);
     } else if (select === true && userPremium === false) {
       setOpenedModal(true);
     } else {
-      dispatch(createChannelAction({ name, description, select, userId, workspaceId }));
+      dispatch(
+        createChannelAction({ name, description, select, userId, workspaceId })
+      );
       setOpenedNewChannel(false);
     }
 

@@ -11,7 +11,10 @@ export const AddWorkspaceOption = () => {
   return (
     <div className="workspace-options__container">
       <div className="workspace-options__options">
-        <p type="button" onClick={() => setopenedNewWorkspace(true)}>
+        <p
+          data-cy="create-workspace-click-event"
+          type="button"
+          onClick={() => setopenedNewWorkspace(true)}>
           Create a new workspace
         </p>
       </div>
@@ -25,7 +28,10 @@ export const AddWorkspaceOption = () => {
         {<ModalCreateWorkspace setopenedNewWorkspace={setopenedNewWorkspace} />}
       </Modal>
       <div className="workspace-options__options">
-        <p type="button" onClick={() => setOpened(true)}>
+        <p
+          data-cy="browse-workspace-click-event"
+          type="button"
+          onClick={() => setOpened(true)}>
           Browse workspace list
         </p>
       </div>
