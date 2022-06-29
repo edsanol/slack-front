@@ -8,7 +8,10 @@ import { ModalBecomePremium } from './ModalBecomePremium';
 import { ToastContainer } from 'react-toastify';
 import { toast } from 'react-toastify';
 
-export const ModalCreateChannel = ({ setOpenedNewChannel, setOpenedPopoverAddChannel }) => {
+export const ModalCreateChannel = ({
+  setOpenedNewChannel,
+  setOpenedPopoverAddChannel,
+}) => {
   const [openedModal, setOpenedModal] = useState(false);
   const {
     register,
@@ -35,6 +38,12 @@ export const ModalCreateChannel = ({ setOpenedNewChannel, setOpenedPopoverAddCha
         createChannelAction({ name, description, select, userId, workspaceId })
       );
       setOpenedNewChannel(false);
+      setOpenedPopoverAddChannel(false);
+
+      toast.info('channel created successfully', {
+        position: 'top-center',
+        theme: 'colored',
+      });
     } else if (select === true && userPremium === false) {
       setOpenedModal(true);
     } else {
@@ -42,14 +51,13 @@ export const ModalCreateChannel = ({ setOpenedNewChannel, setOpenedPopoverAddCha
         createChannelAction({ name, description, select, userId, workspaceId })
       );
       setOpenedNewChannel(false);
-    }
-    
-    setOpenedPopoverAddChannel(false);
+      setOpenedPopoverAddChannel(false);
 
-    toast.info('channel created successfully', {
-      position: 'top-center',
-      theme: 'colored',
-    });
+      toast.info('channel created successfully', {
+        position: 'top-center',
+        theme: 'colored',
+      });
+    }
   };
 
   return (
