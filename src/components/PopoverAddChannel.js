@@ -42,7 +42,13 @@ export const PopoverAddChannel = ({ name }) => {
       width={240}
       position="bottom"
       closeOnClickOutside={false}>
-      {name === 'add channel' ? <AddChannelOptions /> : <AddWorkspaceOption />}
+
+      {name === 'add channel' ? (
+        <AddChannelOptions setOpenedPopoverAddChannel={setOpened} />
+      ) : (
+        <AddWorkspaceOption setOpenedPopoverAddChannel={setOpened} />
+      )}
+
     </Popover>
   );
 };

@@ -4,7 +4,7 @@ import { Modal } from '@mantine/core';
 import { ModalCreateWorkspace } from './modals/ModalCreateWorkspace';
 import { ModalListWorkspace } from './modals/ModalListWorkspace';
 
-export const AddWorkspaceOption = () => {
+export const AddWorkspaceOption = ({ setOpenedPopoverAddChannel }) => {
   const [opened, setOpened] = useState(false);
   const [openedNewWorkspace, setopenedNewWorkspace] = useState(false);
 
@@ -25,7 +25,12 @@ export const AddWorkspaceOption = () => {
         withCloseButton={false}
         size="md"
         zIndex={999}>
-        {<ModalCreateWorkspace setopenedNewWorkspace={setopenedNewWorkspace} />}
+        {
+          <ModalCreateWorkspace
+            setopenedNewWorkspace={setopenedNewWorkspace}
+            setOpenedPopoverAddChannel={setOpenedPopoverAddChannel}
+          />
+        }
       </Modal>
       <div className="workspace-options__options">
         <p
@@ -42,7 +47,12 @@ export const AddWorkspaceOption = () => {
         withCloseButton={false}
         size="lg"
         zIndex={999}>
-        {<ModalListWorkspace setOpened={setOpened} />}
+        {
+          <ModalListWorkspace
+            setOpened={setOpened}
+            setOpenedPopoverAddChannel={setOpenedPopoverAddChannel}
+          />
+        }
       </Modal>
     </div>
   );
